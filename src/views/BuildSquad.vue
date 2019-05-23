@@ -10,38 +10,54 @@
 
    <!-- <v-btn class="hidden-md-and-down">click-me</v-btn> -->
    <v-container class="my-5">
-      <v-img :aspect-ratio="23/10" src="/startingEleven.png">
-    <v-layout row wrap justify-space-around center>
-       <v-flex xs2 sm2 md2 lg2>
-         <v-btn round color="primary"> <span>Goalie</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
-       </v-flex>
+     <v-img src="/startingEleven.png">
+     
+        <v-layout row>
+         <v-flex lg1><br> <br> 
+         </v-flex>
        </v-layout>
+      
+      <!-- <v-img :aspect-ratio="23/10" src="/startingEleven.png"> -->
+
+    <v-layout row wrap justify-space-around center>
+      
+      <v-flex xs2 sm1 md2 lg1>
+       <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         
+           </v-img>
+      </v-flex>
+       </v-layout>
+       
+        
+         
+      
        <v-layout row>
-         <v-flex lg2><br> <br> <br> 
+         <v-flex lg2><br> <br> 
+         </v-flex>
+       </v-layout>
+      
+      
+       <v-layout row>
+         <v-flex lg2><br> <br> 
          </v-flex>
        </v-layout>
      <v-layout row wrap justify-space-around>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Defender</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+         <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Defender</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         
+           </v-img>
        </v-flex>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Defender</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm3 md3 lg2>
-         <v-btn round color="primary"> <span>Defender</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm3 md3 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
       
        </v-layout>
@@ -52,24 +68,20 @@
        </v-layout>
         <v-layout row wrap justify-space-around>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Midfielder</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Midfielder</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
        <v-flex xs6 sm3 md3 lg1>
-         <v-btn round color="primary"> <span>Midfielder</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm3 md3 lg2>
-         <v-btn round color="primary"> <span>Midfielder</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm3 md3 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
       
        </v-layout>
@@ -80,39 +92,33 @@
       
     
         <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm4 md2 lg2>
-         <v-btn round color="primary"> <span>Forward</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm4 md2 lg2>
-         <v-btn round color="primary"> <span>Forward</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
        
        </v-layout>
-       </v-img>
+       </v-img> 
        <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm4 md2 lg3>
-         <v-btn round color="secondary"> <span>Sub Goalie</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm4 md2 lg3>
-         <v-btn round color="secondary"> <span>Sub Defender</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm4 md2 lg3>
-         <v-btn round color="secondary"> <span>Sub Midfielder</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
-       <v-flex xs6 sm4 md2 lg3>
-         <v-btn round color="secondary"> <span>Sub Forward</span>
-           <v-icon right> control_point </v-icon>
-         </v-btn>
+       <v-flex xs6 sm4 md2 lg1>
+          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
+         </v-img>
        </v-flex>
        </v-layout>
        
@@ -150,17 +156,25 @@
 
   export default {
    data(){
-   return {
-     remove: true,
-     teamPrice: 100.00,
-      team: [
-       { name: 'Marcus Haber', position: 'Forward', avatar: '/pacificFc.jpg', price: '7.00'},
+      return {
+
+        remove: true,
+        teamPrice: 100.00,
+        team: [
+        { name: 'Marcus Haber', position: 'Forward', avatar: '/pacificFc.jpg', price: '7.00'},
+          
+          
+        ]
+    
+      }
+    },
+    methods:{
+      pickPlayer(){
+        console.log('hello')
         
-        
-      ]
-   
+      }
+
     }
-  }
   }
  
   
