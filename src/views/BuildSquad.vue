@@ -22,9 +22,8 @@
     <v-layout row wrap justify-space-around center>
       
       <v-flex xs2 sm1 md2 lg1>
-       <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         
-           </v-img>
+      <popUp />         
+           
       </v-flex>
        </v-layout>
        
@@ -119,6 +118,7 @@
        <v-flex xs6 sm4 md2 lg1>
           <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
          </v-img>
+         
        </v-flex>
        </v-layout>
        
@@ -152,9 +152,13 @@
 </template>
 
 <script>
+  import popUp from "@/components/popUp"
   
 
   export default {
+    components:{
+      popUp
+    },
    data(){
       return {
 
@@ -171,7 +175,6 @@
     methods:{
       pickPlayer(){
         console.log('hello')
-        
       }
 
     }
