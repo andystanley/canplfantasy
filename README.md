@@ -1,4 +1,4 @@
-# cplfantasy
+# canplfantasy
 
 ## Project setup
 ```
