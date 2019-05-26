@@ -1,12 +1,7 @@
 <template>
 <div class="team">
-    <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Team Name"
-          ></v-text-field>
-        </v-flex>
-<h1>Team creation rules</h1>
-<h2 class="red">1-Select 15 players, 2 Goalkeepers, 5 Defenders, 5 Midfielders, 3 Forwards</h2>
+
+<h1>Chose your first starting 11</h1>
 
    <!-- <v-btn class="hidden-md-and-down">click-me</v-btn> -->
    <v-container class="my-5">
