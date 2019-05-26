@@ -2,6 +2,7 @@
 <div class="team">
 
 <h1>Chose your first starting 11</h1>
+<h1>{{ teamPrice.toFixed(2) }}</h1>
 
    <!-- <v-btn class="hidden-md-and-down">click-me</v-btn> -->
    <v-container class="my-5">
@@ -128,7 +129,7 @@
       return {
 
         remove: true,
-        teamPrice: 100.00,
+        teamPrice: 90.00,
         goalies:[
            { name: 'Marcus Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00, team: 'cavs', teamColor: 'red'},
             { name: 'karcu Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 9.00,points: 0.00, team: 'Pacific Fc'},
