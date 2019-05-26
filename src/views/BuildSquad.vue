@@ -1,9 +1,20 @@
 <template>
 <div class="team">
 
-<h1>Chose your first starting 11</h1>
-<h1>{{ teamPrice.toFixed(1) }}</h1>
 
+<h1>
+  
+  Money Remaining    
+  &nbsp;&nbsp;&nbsp;&nbsp;   
+  Players Selected
+
+
+</h1> 
+<h2>&nbsp;&nbsp;&nbsp;
+ ${{ teamPriceStarter.toFixed(1) }} mil &nbsp; / &nbsp; ${{ teamPriceMax.toFixed(1) }} mil
+ &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  
+ {{ playersSelected }}  &nbsp; / &nbsp; {{ maxPlayers }} 
+</h2>
    <!-- <v-btn class="hidden-md-and-down">click-me</v-btn> -->
    <v-container class="my-5">
      <v-img src="/startingEleven.png">
@@ -129,7 +140,10 @@
       return {
 
         remove: true,
-        teamPrice: 80.00,
+        teamPriceMax: 80.00,
+        teamPriceStarter: 0.00,
+        playersSelected: 0,
+        maxPlayers: 11,
         goalies:[
            { name: 'Marcus Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00, team: 'cavs', teamColor: 'red'},
             { name: 'karcu Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 9.00,points: 0.00, team: 'Pacific Fc'},
@@ -155,3 +169,10 @@
  
   
 </script>
+<style>
+hr {
+display: inline;
+}
+
+</style>
+
