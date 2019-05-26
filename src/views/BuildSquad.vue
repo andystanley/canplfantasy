@@ -2,7 +2,7 @@
 <div class="team">
 
 <h1>Chose your first starting 11</h1>
-<h1>{{ teamPrice.toFixed(2) }}</h1>
+<h1>{{ teamPrice.toFixed(1) }}</h1>
 
    <!-- <v-btn class="hidden-md-and-down">click-me</v-btn> -->
    <v-container class="my-5">

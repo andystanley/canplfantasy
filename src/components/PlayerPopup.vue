@@ -14,7 +14,7 @@
          <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search">
             <template v-slot:items="props">
                 <td  style="cursor: pointer">{{ props.item.name }} <br> <h5 class="red">{{ props.item.team }}</h5></td>
-                <td >{{ props.item.price.toFixed(2) }}</td>
+                <td >{{ props.item.price.toFixed(1) }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.team }}</td>
             </template>
