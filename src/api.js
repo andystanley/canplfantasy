@@ -54,5 +54,15 @@ export default {
       .catch(error => {
         handle(error)
       })
+  },
+
+  players() {
+    return axios.get(url + 'player/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
   }
 }

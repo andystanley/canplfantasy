@@ -18,11 +18,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getTeams'
+      'getTeams',
+      'getPlayers'
     ]),
   },
   created() {
     this.getTeams()
+    this.getPlayers()
   }
 }
 </script>

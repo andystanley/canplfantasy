@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem('token') || '',
-    teams: []
+    teams: [],
+    players: []
   },
   mutations: {
     setToken: (state, token) => {
@@ -23,6 +24,10 @@ export default new Vuex.Store({
 
     setTeams: (state, teams) => {
       state.teams = teams
+    },
+
+    setPlayers: (state, players) => {
+      state.players = players
     }
   },
   actions: {
@@ -48,6 +53,12 @@ export default new Vuex.Store({
       return api.teams()
         .then(teams => {
           commit('setTeams', teams)
+        })
+    },
+    getPlayers: ({ commit }) => {
+      return api.players()
+        .then(players => {
+          commit('setPlayers', players)
         })
     }
   },
