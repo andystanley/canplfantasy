@@ -1,30 +1,29 @@
 <template>
   <div class="team">
-    <v-container>
-      <v-layout row class="mb-4">
+    <v-container fluid>
+      <v-layout class="mb-4">
+        <v-spacer></v-spacer>
         <v-flex>
-          <h1>Budget</h1> 
-          <h2>{{ teamPriceMax.toFixed(1) }}m / {{ teamPriceMax.toFixed(1) }}m</h2>
+          <h2>Budget</h2> 
+          <h3>{{ teamPriceMax.toFixed(1) }}m / {{ teamPriceMax.toFixed(1) }}m</h3>
         </v-flex>
         <v-flex>
-          <h1>Players Selected</h1>
-          <h2>{{ playersSelected }}  / {{ maxPlayers }} </h2>
+          <h2>Players Selected</h2>
+          <h3>{{ playersSelected }}  / {{ maxPlayers }} </h3>
         </v-flex>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
       </v-layout>
     </v-container>
 
     <v-layout justify-center>
       <v-img src="/startingEleven.png" max-width="600">
         <v-container fluid>
-          <v-layout row justify-space-around>
+          <v-layout justify-space-around>
             <v-flex xs2>
               <PlayerPopup position="goalie" :players="goalies"/>          
             </v-flex>
           </v-layout>  
           
-          <v-layout row justify-space-around>
+          <v-layout justify-space-around>
             <v-flex xs2>
               <PlayerPopup position="defender" :players="defenders"/> 
             </v-flex>
@@ -39,7 +38,7 @@
             </v-flex>
           </v-layout>
 
-          <v-layout row justify-space-around>
+          <v-layout justify-space-around>
             <v-flex xs2>
                 <PlayerPopup position="midfielder" :players="midfielders"/>   
             </v-flex>
@@ -54,7 +53,7 @@
             </v-flex>
           </v-layout>
           
-          <v-layout row justify-space-around>
+          <v-layout justify-space-around>
             <v-flex xs2>
                 <PlayerPopup position="forward" :players="forwards"/> 
             </v-flex>
