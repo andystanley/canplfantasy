@@ -6,7 +6,7 @@
         <span class="accent--text">Fantasy</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <LoginSignup v-if="!isAuthenticated" />
+      <LoginSignupDialog v-if="!isAuthenticated" />
       <v-btn 
         v-if="isAuthenticated"
         @click="logout" 
@@ -21,11 +21,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-import LoginSignup from '@/components/LoginSignup'
+import LoginSignupDialog from '@/components/LoginSignupDialog'
 
 export default {
   components: { 
-    LoginSignup,
+    LoginSignupDialog,
   },
   methods: {
     ...mapActions([

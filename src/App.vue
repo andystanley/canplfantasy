@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import NavBar from '@/components/NavBar'
 
 export default {
@@ -15,9 +16,13 @@ export default {
   components: { 
     NavBar
   },
-  data () {
-    return {
-    }
+  methods: {
+    ...mapActions([
+      'getTeams'
+    ]),
+  },
+  created() {
+    this.getTeams()
   }
 }
 </script>

@@ -1,43 +1,55 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import api from './api'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('token') || ''
+    token: localStorage.getItem('token') || '',
+    teams: []
   },
   mutations: {
-    saveToken: (state, token) => {
+    setToken: (state, token) => {
       localStorage.setItem('token', token)
       state.token = token
     },
-    removeToken: (state) => {
+
+    removeToken: state => {
       localStorage.removeItem('token')
       state.token = ''
+    },
+
+    setTeams: (state, teams) => {
+      state.teams = teams
     }
   },
   actions: {
-    login: ({ commit }, form) => {
-      return new Promise((resolve, reject) => {
-        fetch('http://127.0.0.1:8000/login/', {
-          method: 'POST',
-          body: form
+    login: ({ commit }, { email, password }) => {
+      return api.login(email, password)
+        .then(token => {
+          commit('setToken', token)
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw Error(response.json())
-            }
-            return response.json()
-          })
-          .then((json) => {
-            commit('saveToken', json['token'])
-            resolve()
-          })
-          .catch(error => reject(error))
-      })
     },
-    logout: ({ commit }) => commit('removeToken')
+
+    signup: ({ commit }, { email, password, favoriteTeam }) => {
+      return api.signup(email, password, favoriteTeam)
+        .then(token => {
+          commit('setToken', token)
+        })
+    },
+
+    logout: ({ commit }) => {
+      commit('removeToken')
+    },
+
+    getTeams: ({ commit }) => {
+      return api.teams()
+        .then(teams => {
+          commit('setTeams', teams)
+        })
+    }
   },
   getters: {
     isAuthenticated: state => !!state.token
