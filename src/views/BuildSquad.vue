@@ -129,7 +129,7 @@
       return {
 
         remove: true,
-        teamPrice: 90.00,
+        teamPrice: 80.00,
         goalies:[
            { name: 'Marcus Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00, team: 'cavs', teamColor: 'red'},
             { name: 'karcu Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 9.00,points: 0.00, team: 'Pacific Fc'},
