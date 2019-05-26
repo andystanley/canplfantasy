@@ -21,8 +21,8 @@
 
     <v-layout row wrap justify-space-around center>
       
-      <v-flex xs2 sm1 md2 lg1>
-      <popUp />         
+      <v-flex xs3 sm3 md3 lg1>
+      <PlayerPopup position="Goalie" :players="goalies"/>         
            
       </v-flex>
        </v-layout>
@@ -41,22 +41,17 @@
          </v-flex>
        </v-layout>
      <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm3 md3 lg1>
-         <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+        <PlayerPopup position="defender" :players="defenders"/> 
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         
-           </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="defender" :players="defenders"/>  
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="defender" :players="defenders"/> 
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="defender" :players="defenders"/> 
        </v-flex>
       
        </v-layout>
@@ -66,21 +61,17 @@
          </v-flex>
        </v-layout>
         <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="midfielder" :players="midfielders"/>   
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="midfielder" :players="midfielders"/> 
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="midfielder" :players="midfielders"/>  
        </v-flex>
-       <v-flex xs6 sm3 md3 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="midfielder" :players="midfielders"/> 
        </v-flex>
       
        </v-layout>
@@ -91,33 +82,27 @@
       
     
         <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="forward" :players="forwards"/> 
        </v-flex>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="forward" :players="forwards"/> 
        </v-flex>
        
        </v-layout>
        </v-img> 
        <v-layout row wrap justify-space-around>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="goalie" :players="goalies"/> 
        </v-flex>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="defender" :players="defenders"/> 
        </v-flex>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+          <PlayerPopup position="midfielder" :players="midfielders"/> 
        </v-flex>
-       <v-flex xs6 sm4 md2 lg1>
-          <v-img   src="/blank.png" @click="pickPlayer" style="cursor: pointer">
-         </v-img>
+       <v-flex xs3 sm3 md3 lg1>
+         <PlayerPopup position="forward" :players="forwards"/> 
          
        </v-flex>
        </v-layout>
@@ -152,32 +137,39 @@
 </template>
 
 <script>
-  import popUp from "@/components/popUp"
+  import PlayerPopup from "@/components/PlayerPopup"
   
 
   export default {
     components:{
-      popUp
+      PlayerPopup
     },
    data(){
       return {
 
         remove: true,
         teamPrice: 100.00,
-        team: [
-        { name: 'Marcus Haber', position: 'Forward', avatar: '/pacificFc.jpg', price: '7.00'},
-          
-          
-        ]
-    
+        goalies:[
+           { name: 'Marcus Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00, team: 'cavs', teamColor: 'red'},
+            { name: 'karcu Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 9.00,points: 0.00, team: 'Pacific Fc'},
+            { name: 'Marcus Haber', position: 'goalie', avatar: '/pacificFc.jpg', price: 10.00,points: 0.00, team: 'Pacific Fc'}
+           
+        ],
+        defenders:[
+           { name: 'Marcus Haber', position: 'defender', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00 , team: 'Pacific Fc'},
+           
+        ],
+        midfielders:[
+           { name: 'Marcus Haber', position: 'midfielder', avatar: '/pacificFc.jpg', price: 7.00,points: 0.00, team: 'Pacific Fc'},
+           
+        ],
+        forwards:[
+           { name: 'Marcus Haber', position: 'forward', avatar: '/pacificFc.jpg', price: 7.00, points: 0.00, team: 'Pacific Fc'},
+        ],
+       
       }
     },
-    methods:{
-      pickPlayer(){
-        console.log('hello')
-      }
-
-    }
+  
   }
  
   
