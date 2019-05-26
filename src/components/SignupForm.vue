@@ -34,7 +34,7 @@
       item-value="id"
       required>
     </v-select>
-    <v-checkbox label="I'm ready to play CPL Fantasy!"></v-checkbox>
+    <v-checkbox label="I'm ready to play CANPL Fantasy!"></v-checkbox>
     <span style="color:red;">{{ error }}</span>
     <v-layout justify-end>
       <v-btn 

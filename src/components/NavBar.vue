@@ -2,7 +2,7 @@
   <nav>
     <v-toolbar flat app>
       <v-toolbar-title class="text-uppercase grey--text">
-        <span class="primary--text">CPL</span>
+        <span class="primary--text">CANPL</span>
         <span class="accent--text">Fantasy</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
