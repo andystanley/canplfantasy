@@ -86,22 +86,7 @@
        
        </v-layout>
        </v-img> 
-       <v-layout row wrap justify-space-around>
-       <v-flex xs3 sm3 md3 lg1>
-          <PlayerPopup position="goalie" :players="goalies"/> 
-       </v-flex>
-       <v-flex xs3 sm3 md3 lg1>
-          <PlayerPopup position="defender" :players="defenders"/> 
-       </v-flex>
-       <v-flex xs3 sm3 md3 lg1>
-          <PlayerPopup position="midfielder" :players="midfielders"/> 
-       </v-flex>
-       <v-flex xs3 sm3 md3 lg1>
-         <PlayerPopup position="forward" :players="forwards"/> 
-         
-       </v-flex>
-       </v-layout>
-       
+      
        </v-container>
         <v-layout row wrap>
          <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name">
