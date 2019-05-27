@@ -19,26 +19,25 @@
       <v-layout class="mb-4">
         <v-spacer></v-spacer>
         <v-flex>
+           <v-btn @click="threeFiveTwo">3-5-2</v-btn>
+        </v-flex>
+        <v-flex>
            <v-btn @click="threeFourThree">3-4-3</v-btn>
         </v-flex>
         <v-flex>
            <v-btn @click="fourFiveOne">4-5-1</v-btn>
         </v-flex>
-        
         <v-flex>
          <v-btn @click="fourFourTwo">4-4-2</v-btn>
+        </v-flex>
+        <v-flex>
+         <v-btn @click="fourThreeThree">4-3-3</v-btn>
         </v-flex>
         <v-flex>
          <v-btn @click="fiveThreeTwo">5-3-2</v-btn>
         </v-flex>
         <v-flex>
          <v-btn @click="fiveTwoThree">5-2-3</v-btn>
-        </v-flex>
-        <v-flex>
-         <v-btn @click="fourThreeThree">4-3-3</v-btn>
-        </v-flex>
-                <v-flex>
-         <v-btn @click="threeFiveTwo">3-5-2</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
