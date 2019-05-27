@@ -24,7 +24,7 @@ export default {
   },
   created() {
     this.getTeams()
-    this.getPlayers()
+    //this.getPlayers() TODO: Uncomment before merging
   }
 }
 </script>
