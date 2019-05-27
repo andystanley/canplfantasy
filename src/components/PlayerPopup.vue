@@ -13,8 +13,8 @@
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search">
             <template v-slot:items="props">
                 <td style="cursor: pointer">{{ props.item.name }}</td>
-                <td >{{ props.item.price.toFixed(1) }}</td>
                 <td >{{ props.item.points }}</td>
+                <td >{{ props.item.price.toFixed(1) }}</td>
                 <td >{{ props.item.team }}</td>
             </template>
           </v-data-table>  
@@ -39,8 +39,8 @@ export default {
           sortable: false,
           value: 'name'
         },
-        { text: 'Price', value: 'price'  },
-        { text: 'Total Score', value: 'points' },
+        { text: 'Points', value: 'points' },
+        { text: 'Price', value: 'price' },
         { text: 'Team', value: 'team' }
       ]
     }
