@@ -11,11 +11,18 @@
         </v-card-title>
         <v-card-text>
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
-            <template v-slot:items="props">
+            <template v-slot:items="props"> 
+              <tr @click="props.expanded = !props.expanded">
                 <td style="cursor: pointer">{{ props.item.name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
                 <td ><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
+                </tr>
+            </template>
+            <template v-slot:expand="props">
+               <v-card flat>
+               <v-card-text>Peek-a-boo!</v-card-text>
+               </v-card>
             </template>
           </v-data-table>  
         </v-card-text>
