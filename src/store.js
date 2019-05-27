@@ -20,7 +20,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       },
       {
@@ -33,7 +33,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       },
       {
@@ -46,7 +46,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       },
       {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       },
       {
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       },
       {
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "https://s3.ca-central-1.amazonaws.com/canplfantasy/shirts/calgary.jpg"
+            "shirt": "/images/pacificFc.png"
         }
       }
     ]

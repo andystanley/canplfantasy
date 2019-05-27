@@ -1,7 +1,7 @@
 <template>
     <v-dialog max-width="600">
       <template v-slot:activator="{ on }">
-          <v-img v-on="on" :src="require('@/assets/images/blank.png')" style="cursor: pointer"></v-img>
+          <v-img v-on="on" src="/images/blank.png" style="cursor: pointer"></v-img>
       </template>
       <v-card>
         <v-card-title>
@@ -15,7 +15,7 @@
                 <td style="cursor: pointer">{{ props.item.name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
-                <td >{{ props.item.team.name }}</td>
+                <td ><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
             </template>
           </v-data-table>  
         </v-card-text>

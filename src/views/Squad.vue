@@ -15,7 +15,7 @@
     </v-container>
 
     <v-layout justify-center>
-      <v-img :src="require('@/assets/images/startingEleven.png')" max-width="600">
+      <v-img src="/images/startingEleven.png" max-width="600">
         <v-container fluid>
           <v-layout justify-space-around>
             <v-flex xs2 v-for="i in formation.goalkeepers" :key="i">
