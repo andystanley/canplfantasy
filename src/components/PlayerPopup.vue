@@ -12,11 +12,12 @@
         <v-card-text>
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
             <template v-slot:items="props"> 
-              <tr @click="props.expanded = !props.expanded">
+              <tr >
                 <td style="cursor: pointer">{{ props.item.name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
-                <td ><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
+                <td @click="props.expanded = !props.expanded"><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
+                <td @click="props.expanded = !props.expanded" style="cursor: pointer"><v-icon>expand_more</v-icon></td>
                 </tr>
             </template>
             <template v-slot:expand="props">
