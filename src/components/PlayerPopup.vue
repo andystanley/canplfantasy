@@ -22,7 +22,7 @@
             </template>
             <template v-slot:expand="props">
                <v-card flat>
-               <v-card-text>Peek-a-boo!</v-card-text>
+               <v-card-text>Stats</v-card-text>
                </v-card>
             </template>
           </v-data-table>  
