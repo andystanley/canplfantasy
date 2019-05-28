@@ -1,7 +1,8 @@
 <template>
     <v-dialog max-width="600">
       <template v-slot:activator="{ on }">
-          <v-img v-on="on" src="/images/blank.png" style="cursor: pointer"></v-img>
+        <v-icon color="red" class ="warning" small right @click="removePlayer">close</v-icon>
+        <v-img v-on="on" :src="playerImage" style="cursor: pointer"></v-img>  
       </template>
       <v-card>
         <v-card-title>
@@ -13,7 +14,7 @@
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
             <template v-slot:items="props"> 
               <tr >
-                <td style="cursor: pointer">{{ props.item.name }}</td>
+                <td style="cursor: pointer"  @click="addPlayer(props.item)">{{ props.item.name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
                 <td @click="props.expanded = !props.expanded"><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
@@ -35,10 +36,13 @@
 export default {
   props: {
     position: String,
-    players: Array
+    players: Array,
+    addPlayerToSquad: Function,
+    removePlayerFromSquad: Function
   },
   data () {
     return {
+      playerImage: '/images/blank.png',
       search: '',
       headers: [
         { text: 'Players', align: 'left', sortable: false, value: 'name'},
@@ -47,6 +51,17 @@ export default {
         { text: 'Team', value: 'team' }
       ],
       pagination: {'sortBy': 'points', 'descending': true}
+    }
+  },
+  methods : {
+    addPlayer(player) {
+      this.playerImage = player.team.shirt
+      this.addPlayerToSquad(player)
+    },
+
+    removePlayer(player){
+      this.playerImage = '/images/blank.png'
+      this.removePlayerFromSquad(player)
     }
   }
 }
