@@ -55,6 +55,10 @@
         <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
       </v-btn-toggle>
     </v-layout>
+    <br>
+    <v-layout justify-center>
+       <v-btn class="success">Save Squad</v-btn>
+    </v-layout>
   </div>
 </template>
 
