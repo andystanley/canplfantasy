@@ -15,7 +15,7 @@
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
             <template v-slot:items="props"> 
               <tr >
-                <td style="cursor: pointer"  @click="addPlayer(props.item)">{{ props.item.name }}</td>
+                <td style="cursor: pointer"  @click="addPlayer(props.item)">{{ props.item.first_name }} {{ props.item.last_name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
                 <td @click="props.expanded = !props.expanded"><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
@@ -58,14 +58,14 @@ export default {
   methods : {
     addPlayer(player) {
       this.playerImage = player.team.shirt
-       this.playerName = player.name
+      this.playerName = player.last_name
       this.addPlayerToSquad(player)
      
     },
 
     removePlayer(player){
       this.playerImage = '/images/blank.png'
-       this.playerName = ''
+      this.playerName = ''
       this.removePlayerFromSquad(player)
     }
   }

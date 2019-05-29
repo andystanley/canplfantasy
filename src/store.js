@@ -11,8 +11,9 @@ export default new Vuex.Store({
     teams: [],
     players: [ // TODO: Remove before merging
       {
-        "id": 2,
-        "name": "Nathan Ingham",
+        "id": 1,
+        "first_name": "Nathan",
+        "last_name": "Ingham",
         "points": 16,
         "price": "4.5",
         "position": {
@@ -24,8 +25,9 @@ export default new Vuex.Store({
         }
       },
       {
-        "id": 1,
-        "name": "Kyle Bekker",
+        "id": 2,
+        "first_name": "Kyle",
+        "last_name": "Bekker",
         "points": 40,
         "price": "6.0",
         "position": {
@@ -38,7 +40,8 @@ export default new Vuex.Store({
       },
       {
         "id": 3,
-        "name": "Ryan Telfer",
+        "first_name": "Ryan",
+        "last_name": "Telfer",
         "points": 28,
         "price": "8.0",
         "position": {
@@ -51,7 +54,8 @@ export default new Vuex.Store({
       },
       {
         "id": 4,
-        "name": "Emilio Estevez",
+        "first_name": "Emilio",
+        "last_name": "Estevez",
         "points": 4,
         "price": "4.0",
         "position": {
@@ -64,7 +68,8 @@ export default new Vuex.Store({
       },
       {
         "id": 5,
-        "name": "Gareth Wheeler",
+        "first_name": "Gareth",
+        "last_name": "Wheeler",
         "points": 0,
         "price": "5.0",
         "position": {
@@ -77,7 +82,8 @@ export default new Vuex.Store({
       },
       {
         "id": 6,
-        "name": "Tristan Borges",
+        "first_name": "Tristan",
+        "last_name": "Borges",
         "points": 32,
         "price": "8.0",
         "position": {
