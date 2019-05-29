@@ -16,13 +16,18 @@
         <v-card-text>
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
             <template v-slot:items="props"> 
-              <tr>
+              <tr @click="props.expanded = !props.expanded">
                 <td class="no-padding"><v-btn icon small @click="addPlayer(props.item)"><v-icon>person_add</v-icon></v-btn></td>
                 <td>{{ props.item.first_name }} {{ props.item.last_name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
                 <td><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
               </tr>
+            </template>
+            <template v-slot:expand="props">
+              <v-card flat>
+                <v-card-text>Stats</v-card-text>
+              </v-card>
             </template>
           </v-data-table>  
         </v-card-text>
