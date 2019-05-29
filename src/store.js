@@ -20,7 +20,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "/images/pacificFc.png"
+            "shirt": "/images/york9.png"
         }
       },
       {
@@ -33,7 +33,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "/images/pacificFc.png"
+            "shirt": "/images/calgary.png"
         }
       },
       {
@@ -46,7 +46,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "/images/pacificFc.png"
+            "shirt": "/images/york9.png"
         }
       },
       {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "York 9 FC",
-            "shirt": "/images/pacificFc.png"
+            "shirt": "/images/calgary.png"
         }
       },
       {
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "/images/pacificFc.png"
+            "shirt": "/images/york9.png"
         }
       }
     ]
