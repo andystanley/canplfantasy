@@ -11,7 +11,7 @@
         <v-card-title>
           <h2>Add {{ position }}</h2>
           <v-spacer></v-spacer>
-          <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
+          <v-text-field v-model="search" append-icon="search" label="Search by last name" single-line hide-details></v-text-field>
         </v-card-title>
         <v-card-text>
           <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
@@ -45,10 +45,10 @@ export default {
       search: '',
       headers: [
         { sortable: false},
-        { text: 'Players', value: 'name'},
-        { text: 'Points', value: 'points' },
-        { text: 'Price', value: 'price' },
-        { text: 'Team', value: 'team' }
+        { text: 'Players', value: 'last_name'},
+        { text: 'Points'},
+        { text: 'Price'},
+        { text: 'Team'}
       ],
       pagination: {'sortBy': 'points', 'descending': true}
     }
