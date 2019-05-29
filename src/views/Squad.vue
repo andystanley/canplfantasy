@@ -5,7 +5,7 @@
         <v-spacer></v-spacer>
         <v-flex>
           <h2>Budget</h2> 
-          <h3>{{ maxSquadPrice.toFixed(1) }}m / {{ maxSquadPrice.toFixed(1) }}m</h3>
+          <h3>{{ squadPrice.toFixed(1) }}m / {{ maxSquadPrice.toFixed(1) }}m</h3>
         </v-flex>
         <v-flex>
           <h2>Players Selected</h2>
@@ -71,7 +71,8 @@ export default {
       squad: new Set(),
       squadSize: 0,
       maxSquadSize: 11,
-      maxSquadPrice: 80.00,
+      squadPrice: 80.0,
+      maxSquadPrice: 80.0,
       formation: {
         defenders: 5,
         midfielders: 4,
@@ -94,14 +95,15 @@ export default {
     addPlayerToSquad(player) {
       if (!this.squad.has(player)) {
         this.squadSize++
+        this.squadPrice -= player.price
         this.squad.add(player)
       }
     },
 
     removePlayerFromSquad(player) {
-      debugger
       if (this.squad.has(player)) {
         this.squadSize--
+        this.squadPrice += player.price
         this.squad.delete(player)
       }
     }
