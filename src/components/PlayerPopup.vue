@@ -3,6 +3,7 @@
       <template v-slot:activator="{ on }">
         <v-icon color="red" class ="warning" small right @click="removePlayer">close</v-icon>
         <v-img v-on="on" :src="playerImage" style="cursor: pointer"></v-img>  
+        <span>{{ playerName }}</span>
       </template>
       <v-card>
         <v-card-title>
@@ -43,6 +44,7 @@ export default {
   data () {
     return {
       playerImage: '/images/blank.png',
+      playerName: '',
       search: '',
       headers: [
         { text: 'Players', align: 'left', sortable: false, value: 'name'},
@@ -56,11 +58,14 @@ export default {
   methods : {
     addPlayer(player) {
       this.playerImage = player.team.shirt
+       this.playerName = player.name
       this.addPlayerToSquad(player)
+     
     },
 
     removePlayer(player){
       this.playerImage = '/images/blank.png'
+       this.playerName = ''
       this.removePlayerFromSquad(player)
     }
   }
