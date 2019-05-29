@@ -1,9 +1,11 @@
 <template>
     <v-dialog max-width="600">
       <template v-slot:activator="{ on }">
-        <v-icon color="red" class ="warning" small right @click="removePlayer">close</v-icon>
-        <v-img v-on="on" :src="playerImage" style="cursor: pointer"></v-img>  
-        <span>{{ playerName }}</span>
+          <v-icon color="red" class ="warning" small right @click="removePlayer">close</v-icon>
+          <v-img v-on="on" :src="playerImage" style="cursor: pointer"></v-img>  
+          <v-layout justify-center>
+            <span>{{ playerName }}</span>
+          </v-layout>
       </template>
       <v-card>
         <v-card-title>
