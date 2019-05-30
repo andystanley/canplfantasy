@@ -1,33 +1,28 @@
 <template>
-    <v-dialog max-width="600">
+    <v-dialog max-width="600" v-model="popupOpen">
       <template v-slot:activator="{ on }">
-          <v-icon color="red" class ="warning" small right @click="removePlayer">close</v-icon>
-          <v-img v-on="on" :src="playerImage" style="cursor: pointer"></v-img>  
+          <v-icon :disabled="!player" color="red" class ="warning" small right @click="removePlayer">close</v-icon>
+          <v-img v-on="on" :src="player && player.team ? player.team.shirt : '/images/blank.png'" style="cursor: pointer"></v-img>  
           <v-layout justify-center>
-            <span>{{ playerName }}</span>
+            <span :class="{'visible': !player}">{{ player ? player.last_name : position }}</span>
           </v-layout>
       </template>
       <v-card>
         <v-card-title>
           <h2>Add {{ position }}</h2>
           <v-spacer></v-spacer>
-          <v-text-field v-model="search" append-icon="search" label="Search by last name" single-line hide-details></v-text-field>
+          <v-text-field v-model="search" append-icon="search" label="Search by name" single-line hide-details></v-text-field>
         </v-card-title>
         <v-card-text>
-          <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :pagination.sync="pagination">
+          <v-data-table :headers="headers" :items="players" class="elevation-1" :search="search" :custom-filter="filterNames" :pagination.sync="pagination">
             <template v-slot:items="props"> 
-              <tr @click="props.expanded = !props.expanded">
+              <tr>
                 <td class="no-padding"><v-btn icon small @click="addPlayer(props.item)"><v-icon>person_add</v-icon></v-btn></td>
                 <td>{{ props.item.first_name }} {{ props.item.last_name }}</td>
                 <td >{{ props.item.points }}</td>
                 <td >{{ props.item.price }}</td>
                 <td><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
               </tr>
-            </template>
-            <template v-slot:expand="props">
-              <v-card flat>
-                <v-card-text>Stats</v-card-text>
-              </v-card>
             </template>
           </v-data-table>  
         </v-card-text>
@@ -45,31 +40,38 @@ export default {
   },
   data () {
     return {
-      playerImage: '/images/blank.png',
-      playerName: '',
+      popupOpen: false,
+      player: null,
       search: '',
       headers: [
         { sortable: false},
         { text: 'Players', value: 'last_name'},
-        { text: 'Points'},
-        { text: 'Price'},
-        { text: 'Team'}
+        { text: 'Points', value: 'points'},
+        { text: 'Price', value: 'price'},
+        { text: 'Team', value: 'team.name'}
       ],
       pagination: {'sortBy': 'points', 'descending': true}
     }
   },
   methods : {
     addPlayer(player) {
-      this.playerImage = player.team.shirt
-      this.playerName = player.last_name
+      this.player = player
       this.addPlayerToSquad(player)
-     
+      this.popupOpen = false
     },
 
-    removePlayer(player){
-      this.playerImage = '/images/blank.png'
-      this.playerName = ''
-      this.removePlayerFromSquad(player)
+    removePlayer() {
+      this.removePlayerFromSquad(this.player)
+      this.player = null
+    },
+
+    filterNames(players, search, filter) {
+      search = search.toString().toLowerCase()
+      return players.filter(player => {
+        return filter(player.last_name, search) 
+          || filter(player.first_name, search)
+          || filter(player.first_name + ' ' + player.last_name, search)
+      })
     }
   }
 }
@@ -78,5 +80,9 @@ export default {
 <style>
   .no-padding {
     padding: 0px !important;
+  }
+
+  .visible {
+    opacity: 0;
   }
 </style>

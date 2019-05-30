@@ -9,7 +9,7 @@
         </v-flex>
         <v-flex>
           <h2>Players Selected</h2>
-          <h3>{{ squadSize }}  / {{ maxSquadSize }} </h3>
+          <h3>{{ squad.size }}  / {{ maxSquadSize }} </h3>
         </v-flex>
       </v-layout>
     </v-container>
@@ -19,25 +19,25 @@
         <v-container fluid>
           <v-layout justify-space-around>
             <v-flex xs2>
-              <PlayerPopup position="goalkeeper" :players="goalkeepers" :addPlayerToSquad="addPlayerToSquad" :removePlayerFromSquad="removePlayerFromSquad" />          
+              <PlayerPopup position="goalkeeper" :players="unselectedPlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
             </v-flex>
           </v-layout>  
           
           <v-layout justify-space-around>
             <v-flex xs2 v-for="i in formation.defenders" :key="i">
-              <PlayerPopup position="defender" :players="defenders" :addPlayerToSquad="addPlayerToSquad" :removePlayerFromSquad="removePlayerFromSquad" /> 
+              <PlayerPopup position="defender" :players="unselectedPlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
             </v-flex>
           </v-layout>
 
           <v-layout justify-space-around>
             <v-flex xs2 v-for="i in formation.midfielders" :key="i">
-                <PlayerPopup position="midfielder" :players="midfielders" :addPlayerToSquad="addPlayerToSquad" :removePlayerFromSquad="removePlayerFromSquad" />   
+                <PlayerPopup position="midfielder" :players="unselectedPlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
             </v-flex>
           </v-layout>
           
           <v-layout justify-space-around>
             <v-flex xs2 v-for="i in formation.forwards" :key="i">
-                <PlayerPopup position="forward" :players="forwards" :addPlayerToSquad="addPlayerToSquad" :removePlayerFromSquad="removePlayerFromSquad" /> 
+                <PlayerPopup position="forward" :players="unselectedPlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
             </v-flex>
           </v-layout>
         </v-container>   
@@ -57,7 +57,7 @@
     </v-layout>
     <br>
     <v-layout justify-center>
-       <v-btn class="success">Save Squad</v-btn>
+       <v-btn :disabled="!isValidSquad()" class="success">Save Squad</v-btn>
     </v-layout>
   </div>
 </template>
@@ -73,7 +73,6 @@ export default {
   data(){
     return {
       squad: new Set(),
-      squadSize: 0,
       maxSquadSize: 11,
       squadPrice: 80.0,
       maxSquadPrice: 80.0,
@@ -85,11 +84,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards']),
-    
-
+    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards'])
   },
-  methods : {
+  methods: {
     setFormation(defenders, midfielders, forwards) {
       this.formation.defenders = defenders
       this.formation.midfielders = midfielders
@@ -97,19 +94,25 @@ export default {
     },
 
     addPlayerToSquad(player) {
-      if (!this.squad.has(player)) {
-        this.squadSize++
-        this.squadPrice -= player.price
-        this.squad.add(player)
+      if (!this.squad.has(player.id)) {
+        this.squadPrice -= Number(player.price)
+        this.squad.add(player.id)
       }
     },
 
     removePlayerFromSquad(player) {
-      if (this.squad.has(player)) {
-        this.squadSize--
-        this.squadPrice += player.price
-        this.squad.delete(player)
+      if (this.squad.has(player.id)) {
+        this.squadPrice += Number(player.price)
+        this.squad.delete(player.id)
       }
+    },
+
+    isValidSquad() {
+      return this.squad.size === 11 && this.squadPrice >= 0
+    },
+
+    unselectedPlayers(players) {
+      return players.filter(player => !this.squad.has(player.id))
     }
   }
 }
