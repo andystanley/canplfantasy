@@ -2,10 +2,22 @@
     <v-dialog max-width="600" v-model="popupOpen">
       <template v-slot:activator="{ on }">
           <v-icon :disabled="!player" color="red" class ="warning" small right @click="removePlayer">close</v-icon>
-          <v-img v-on="on" :src="player && player.team ? player.team.shirt : '/images/blank.png'" style="cursor: pointer"></v-img>  
+          <v-layout  justify-center> 
+          <v-img v-on="on" :src="player && player.team ? player.team.shirt : '/images/blank.png'" style="cursor: pointer" max-width="80"></v-img>  
+           </v-layout>
+           <div class="darkGreen">
           <v-layout justify-center>
-            <span :class="{'visible': !player}">{{ player ? player.last_name : position }}</span>
+         
+            <span :class="{'visible': !player}" class= "font-weight-bold white--text " >{{ player ? player.last_name : position }}</span>
+            
+
           </v-layout>
+          <hr>
+          <v-layout justify-center>
+          <span :class="{'visible': !player}" class= "font-weight-bold white--text ">{{ player ? player.price : position }}</span>
+          </v-layout>
+         
+            </div>
       </template>
       <v-card>
         <v-card-title>
