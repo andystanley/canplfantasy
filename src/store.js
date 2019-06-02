@@ -8,93 +8,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem('token') || '',
+    profile: {},
     teams: [],
-    players: [ // TODO: Remove before merging
-      {
-        "id": 1,
-        "first_name": "Nathan",
-        "last_name": "Ingham",
-        "points": 16,
-        "price": "4.5",
-        "position": {
-            "name": "goalkeeper"
-        },
-        "team": {
-            "name": "York 9 FC",
-            "shirt": "/images/goalkeeper.png"
-        }
-      },
-      {
-        "id": 2,
-        "first_name": "Kyle",
-        "last_name": "Bekker",
-        "points": 40,
-        "price": "6.0",
-        "position": {
-            "name": "midfielder"
-        },
-        "team": {
-            "name": "Forge FC",
-            "shirt": "/images/forge.png"
-        }
-      },
-      {
-        "id": 3,
-        "first_name": "Ryan",
-        "last_name": "Telfer",
-        "points": 28,
-        "price": "8.0",
-        "position": {
-            "name": "forward"
-        },
-        "team": {
-            "name": "York 9 FC",
-            "shirt": "/images/york9.png"
-        }
-      },
-      {
-        "id": 4,
-        "first_name": "Emilio",
-        "last_name": "Estevez",
-        "points": 4,
-        "price": "4.0",
-        "position": {
-            "name": "forward"
-        },
-        "team": {
-            "name": "York 9 FC",
-            "shirt": "/images/calgary.png"
-        }
-      },
-      {
-        "id": 5,
-        "first_name": "Gareth",
-        "last_name": "Wheeler",
-        "points": 0,
-        "price": "5.0",
-        "position": {
-            "name": "defender"
-        },
-        "team": {
-            "name": "Forge FC",
-            "shirt": "/images/pacificFc.png"
-        }
-      },
-      {
-        "id": 6,
-        "first_name": "Tristan",
-        "last_name": "Borges",
-        "points": 32,
-        "price": "8.0",
-        "position": {
-            "name": "midfielder"
-        },
-        "team": {
-            "name": "Forge FC",
-            "shirt": "/images/edmonton.png"
-        }
-      }
-    ]
+    players: []
   },
   mutations: {
     setToken(state, token) {
@@ -113,7 +29,11 @@ export default new Vuex.Store({
 
     setPlayers(state, players) {
       state.players = players
-    }
+    },
+
+    setProfile(state, profile) {
+      state.profile = profile
+    },
   },
   actions: {
     login({ commit }, { email, password }) {
@@ -146,7 +66,22 @@ export default new Vuex.Store({
         .then(players => {
           commit('setPlayers', players)
         })
-    }
+    },
+
+    getProfile({ commit }) {
+      api.setToken(this.state.token)
+      return api.getProfile()
+        .then(profile => {
+          commit('setProfile', profile)
+        })
+    },
+
+    saveSquad({ dispatch }, { players }) {
+      api.setToken(this.state.token)
+      return api.saveSquad(players).then(() => {
+        dispatch('getProfile')
+      })
+    },
   },
   getters: {
     isAuthenticated(state) {
@@ -155,25 +90,25 @@ export default new Vuex.Store({
     
     goalkeepers(state) {
       return state.players.filter(player => 
-        player.position.name == 'goalkeeper'
+        player.position.short_name == 'GK'
       )
     },
 
     defenders(state) {
       return state.players.filter(player => 
-        player.position.name == 'defender'
+        player.position.short_name == 'DEF'
       )
     },
 
     midfielders(state) {
       return state.players.filter(player => 
-        player.position.name == 'midfielder'
+        player.position.short_name == 'MID'
       )
     },
 
     forwards(state) {
       return state.players.filter(player => 
-        player.position.name == 'forward'
+        player.position.short_name == 'FW'
       )
     }
   }

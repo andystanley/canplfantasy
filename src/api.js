@@ -1,10 +1,8 @@
 import axios from 'axios'
 
-const url = 'http://127.0.0.1:8000/'
-
-// const config = {
-//   headers: {'Authorization': 'Token ' + 'd04ecda3672daa522fc4d2d0ad4c59cce6d8a9f5'}
-// }
+let client = axios.create({
+  baseURL: 'http://127.0.0.1:8000/'
+})
 
 const handle = (error) => {
   if (error.response) {
@@ -17,8 +15,15 @@ const handle = (error) => {
 }
 
 export default {  
+  setToken(token) {
+    client = axios.create({
+      baseURL: 'http://127.0.0.1:8000/',
+      headers: {'Authorization': 'Token ' + token}
+    })
+  },
+
   login(email, password) {
-    return axios.post(url + 'login/', {
+    return client.post('login/', {
       username: email,
       password: password
     })
@@ -31,7 +36,7 @@ export default {
   },
 
   signup(email, password, favorite_team) {
-    return axios.post(url + 'profile/', {
+    return client.post('profile/', {
       username: email,
       password: password,
       profile: {
@@ -47,7 +52,7 @@ export default {
   },
 
   teams() {
-    return axios.get(url + 'team/')
+    return client.get('team/')
       .then(response => 
         response.data
       )
@@ -57,7 +62,26 @@ export default {
   },
 
   players() {
-    return axios.get(url + 'player/')
+    return client.get('player/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  saveSquad(players) {
+    return client.post('profile/squad/', {
+      players: players
+    })
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  getProfile() {
+    return client.get('/profile/user/')
       .then(response => 
         response.data
       )
