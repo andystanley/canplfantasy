@@ -11,6 +11,8 @@ Vue.use(Vuetify, {
     error: '#ff5722',
     warning: '#ffeb3b',
     info: '#607d8b',
-    success: '#4caf50'
+    success: '#4caf50',
+    darkGreen: '#006400',
+    
   }
 })

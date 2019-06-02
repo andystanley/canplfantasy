@@ -97,6 +97,7 @@ export default {
           .catch(() => this.error = 'Unable to signup') // Update this to use a better error message
 
         this.loading = false
+        this.$router.push('/squad')
       }
     }
   }

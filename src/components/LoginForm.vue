@@ -55,6 +55,7 @@ export default {
     ...mapActions([
       'login',
     ]),
+    
     loginSubmit() {
       if (this.$refs.loginForm.validate()) {
         this.loading = true
