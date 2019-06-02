@@ -91,7 +91,7 @@ export default new Vuex.Store({
         },
         "team": {
             "name": "Forge FC",
-            "shirt": "/images/york9.png"
+            "shirt": "/images/edmonton.jpg"
         }
       }
     ]
