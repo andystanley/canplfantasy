@@ -63,7 +63,12 @@ export default {
  
   data() {
     return {
-      
+      squad: {
+        goalkeepers: [{blank: true}],
+        defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}, {blank: true}],
+        midfielders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}],
+        forwards: [{blank: true}]
+      },
      
     }
   },
