@@ -51,7 +51,7 @@ export default {
       })
   },
 
-  teams() {
+  getTeams() {
     return client.get('team/')
       .then(response => 
         response.data
@@ -61,8 +61,28 @@ export default {
       })
   },
 
-  players() {
+  getPlayers() {
     return client.get('player/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  getGameweeks() {
+    return client.get('gameweek/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  getProfile() {
+    return client.get('/profile/user/')
       .then(response => 
         response.data
       )
@@ -75,16 +95,6 @@ export default {
     return client.post('profile/squad/', {
       players: players
     })
-      .catch(error => {
-        handle(error)
-      })
-  },
-
-  getProfile() {
-    return client.get('/profile/user/')
-      .then(response => 
-        response.data
-      )
       .catch(error => {
         handle(error)
       })

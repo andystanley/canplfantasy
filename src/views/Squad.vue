@@ -60,6 +60,9 @@
     <v-layout justify-center>
        <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
     </v-layout>
+    <v-layout justify-center>
+      <GameweeksTable />
+    </v-layout>
     <v-snackbar v-model="snackbar" :timeout="3000" color="success">
       <v-layout justify-center>
         Squad Saved!
@@ -71,10 +74,12 @@
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
 import PlayerPopup from '@/components/PlayerPopup'
+import GameweeksTable from '@/components/GameweeksTable'
 
 export default {
   components:{
-    PlayerPopup
+    PlayerPopup,
+    GameweeksTable
   },
   data() {
     return {
@@ -208,7 +213,7 @@ export default {
           
           this.profile.next_squad.players.map(player => this.addPlayerToSquad(player))
         }
-      })
+    })
   },
 }
 </script>
