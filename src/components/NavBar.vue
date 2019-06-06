@@ -6,8 +6,9 @@
         <span class="accent--text">Fantasy</span>
       </v-toolbar-title>
       <v-layout v-if="isAuthenticated" class="px-5">
-        <v-btn flat to="squad">My Squad</v-btn>
+        <v-btn  flat to="squad">My Squad</v-btn>
         <v-btn flat to="points">Points</v-btn>
+         <v-btn flat to="rules">Rules</v-btn>
       </v-layout>
       <v-layout justify-end>
         <LoginSignupPopup v-if="!isAuthenticated" />

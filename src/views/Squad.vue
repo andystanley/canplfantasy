@@ -1,4 +1,5 @@
 <template>
+
   <div class="squad">
     <v-container fluid>
       <v-layout>

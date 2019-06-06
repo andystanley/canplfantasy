@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home'
 import Squad from './views/Squad'
 import Points from './views/Points'
-
+import Rules from './views/Rules'
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +24,11 @@ export default new Router({
       path: '/points',
       name: 'points',
       component: Points
+    },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: Rules
     }
   ]
 })
