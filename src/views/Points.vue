@@ -1,59 +1,58 @@
 <template>
   <div class="points">
     <div v-if="!squadExists">
-      <h1>Gameweek hasnt started</h1>
+      <v-layout justify-center>
+        <h1>Gameweek 1 has not started</h1>
+      </v-layout>
     </div>
     <div v-if="squadExists">
-    <v-container fluid>
-      <v-layout justify-space-around>
-        <v-spacer></v-spacer>
-
-         <v-flex>
-          <h2>Week 1 rank</h2>
-          <h3> 44 </h3>
-        </v-flex>
-        <v-flex>
-          <h2>Total points</h2>
-          <h3> 0 </h3>
-        </v-flex>
+      <v-layout justify-center>
+        <h1>Gameweek 1</h1>
       </v-layout>
-    </v-container>
+      <v-container fluid>
+        <v-layout justify-space-around>
+          <v-spacer></v-spacer>
+          <v-flex>
+            <h2>Rank</h2>
+            <h3>44</h3>
+          </v-flex>
+          <v-flex>
+            <h2>Points</h2>
+            <h3>{{ profile.active_squad.points }}</h3>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
-    <v-layout justify-center>
-      <v-img src="/images/startingEleven.png" max-width="600">
-        <v-container fluid>
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-              
-              <PointsPopup :initialPlayer="goalkeeper"/>
-            </v-flex>
-          </v-layout>  
-          
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-              <PointsPopup :initialPlayer="defender"/>
-            </v-flex>
-          </v-layout>
+      <v-layout justify-center>
+        <v-img src="/images/startingEleven.png" max-width="600">
+          <v-container fluid>
+            <v-layout justify-space-around>
+              <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                <PointsPopup :initialPlayer="goalkeeper"/>
+              </v-flex>
+            </v-layout>  
+            
+            <v-layout justify-space-around class="mt-5">
+              <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                <PointsPopup :initialPlayer="defender"/>
+              </v-flex>
+            </v-layout>
 
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-              <PointsPopup :initialPlayer="midfielder"/>  
-            </v-flex>
-          </v-layout>
-          
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                 <PointsPopup :initialPlayer="forward"/>  
-            </v-flex>
-          </v-layout>
-        </v-container>   
-      </v-img>
-    </v-layout>
-  </div>
-  
-    
-    
-    
+            <v-layout justify-space-around class="mt-5">
+              <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                <PointsPopup :initialPlayer="midfielder"/>  
+              </v-flex>
+            </v-layout>
+            
+            <v-layout justify-space-around class="mt-5">
+              <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                  <PointsPopup :initialPlayer="forward"/>  
+              </v-flex>
+            </v-layout>
+          </v-container>   
+        </v-img>
+      </v-layout>
+    </div>
   </div>
 </template>
 
@@ -74,8 +73,7 @@ export default {
         defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}, {blank: true}],
         midfielders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}],
         forwards: [{blank: true}]
-      },
-     
+      }
     }
   },
   methods:{
@@ -100,6 +98,7 @@ export default {
       this.squadSize += 1
       this.squadPrice -= Number(player.price)
     },
+
     setFormation(defenders, midfielders, forwards) {
       while (defenders !== this.squad.defenders.length) {
         if (defenders > this.squad.defenders.length) {
@@ -152,8 +151,6 @@ export default {
           this.profile.active_squad.players.map(player => this.addPlayerToSquad(player))
         }
       })
-  },
-
-  
+  }
 }
 </script>
