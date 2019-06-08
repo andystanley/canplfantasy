@@ -16,20 +16,20 @@
       </template>
       <v-card>
         <v-card-title>
-          <h2>Player Stats For {{ gameweek }}</h2>
+          <h2>Player Stats For</h2>
           <v-spacer></v-spacer>
         </v-card-title>
         <v-card-text>
-          
-            <template > 
+            <v-data-table :headers="headers"  :items="players" class="elevation-1">
+            <template  v-slot:items="props" :headers="headers"  class="elevation-1"> 
               <tr>
+                <td>{{ props.item.last_name }}</td>
                 <td></td>
-                <td ></td>
-                <td ></td>
+                <td></td>
                 <td></td>
               </tr>
             </template>
-         
+          </v-data-table>
         </v-card-text>
       </v-card>
       </v-dialog>
@@ -39,6 +39,8 @@
 export default {
   props: {
     initialPlayer: Object,
+    position: String,
+    players: Array
   },
    data () {
       return {
