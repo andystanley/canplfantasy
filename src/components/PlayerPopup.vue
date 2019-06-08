@@ -7,11 +7,11 @@
           </v-layout>
           <div class="darkGreen">
             <v-layout justify-center>
-              <span :class="{'hide-text': !player}" class="font-weight-bold white--text " >{{ player ? player.last_name : 'position' }}</span>
+              <span :class="{'hide-text': !player}" class="font-weight-bold white--text">{{ player ? player.last_name : 'position' }}</span>
             </v-layout>
             <hr>
             <v-layout justify-center>
-              <span :class="{'hide-text': !player}" class="font-weight-bold white--text ">{{ player ? player.price : 'price' }}</span>
+              <span :class="{'hide-text': !player}" class="font-weight-bold white--text">{{ player ? player.price : 'price' }}</span>
             </v-layout>
           </div>
       </template>

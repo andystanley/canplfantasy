@@ -1,6 +1,5 @@
 <template>
-
-  <div class="squad">
+  <v-container fluid>
     <v-container fluid>
       <v-layout>
         <v-spacer></v-spacer>
@@ -16,33 +15,35 @@
     </v-container>
 
     <v-layout justify-center>
-      <v-img src="/images/startingEleven.png" max-width="600">
-        <v-container fluid>
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-              <PlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
-            </v-flex>
-          </v-layout>  
-          
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-              <PlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-            </v-flex>
-          </v-layout>
+      <v-flex xs12 sm8 md6 lg4>
+        <v-img src="/images/startingEleven.png">
+          <v-container fluid>
+            <v-layout justify-space-around>
+              <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                <PlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+              </v-flex>
+            </v-layout>  
+            
+            <v-layout justify-space-around>
+              <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                <PlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+              </v-flex>
+            </v-layout>
 
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                <PlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
-            </v-flex>
-          </v-layout>
-          
-          <v-layout justify-space-around>
-            <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                <PlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-            </v-flex>
-          </v-layout>
-        </v-container>   
-      </v-img>
+            <v-layout justify-space-around>
+              <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                  <PlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+              </v-flex>
+            </v-layout>
+            
+            <v-layout justify-space-around>
+              <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                  <PlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+              </v-flex>
+            </v-layout>
+          </v-container>   
+        </v-img>
+      </v-flex>
     </v-layout>
 
     <v-layout justify-center class="mt-1">
@@ -56,19 +57,20 @@
         <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
       </v-btn-toggle>
     </v-layout>
-    <br>
     <v-layout justify-center>
        <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
     </v-layout>
     <v-layout justify-center>
-      <GameweeksTable />
+      <v-flex xs12 sm8 md6 lg4>
+        <GameweeksTable />
+      </v-flex>
     </v-layout>
     <v-snackbar v-model="snackbar" :timeout="3000" color="success">
       <v-layout justify-center>
         Squad Saved!
       </v-layout>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script>
