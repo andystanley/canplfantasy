@@ -16,17 +16,17 @@
       </template>
       <v-card>
         <v-card-title>
-          <h2>Player Stats For</h2>
-          <v-spacer></v-spacer>
+          <h2>{{ `${player.first_name} ${player.last_name}` }} </h2>
         </v-card-title>
         <v-card-text>
-            <v-data-table :headers="headers"  :items="players" class="elevation-1">
+            <v-data-table :headers="headers"  :items="player.stats" class="elevation-1">
             <template  v-slot:items="props" :headers="headers"  class="elevation-1"> 
               <tr>
-                <td>{{ props.item.last_name }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ props.item.game.date }}</td>
+                <td>{{ props.item.points }}</td>
+                <td>{{ props.item.goals }}</td>
+                <td>{{ props.item.assists }}</td>
+                <td>{{ props.item.minutes_played }}</td>
               </tr>
             </template>
           </v-data-table>
@@ -47,14 +47,60 @@ export default {
       popupOpen: false,
       player: !this.initialPlayer.hasOwnProperty('blank') ? this.initialPlayer : null,
       headers: [
-        { text: 'Players', value: 'last_name'},
+        { text: 'Gameweek', value: 'game.date'},
         { text: 'Points', value: 'points'},
-        { text: 'Price', value: 'price'},
-        { text: 'Team', value: 'team.name'},
-        { text: 'Gameweek', value: 'gameweek.number'}
+        { text: 'Goals', value: 'goals'},
+        { text: 'Assists', value: 'assists'},
+        { text: 'Minutes Played', value: 'minutes_played'}
       ],
     }
     }
   }
 
 </script>
+
+<!--
+{
+    "id": 2,
+    "position": {
+        "id": 4,
+        "name": "Forward",
+        "short_name": "FW"
+    },
+    "team": {
+        "name": "York 9",
+        "shirt": "/images/york9.png"
+    },
+    "stats": [
+        {
+            "id": 1,
+            "game": {
+                "home_team": {
+                    "name": "York 9",
+                    "shirt": "/images/york9.png"
+                },
+                "away_team": {
+                    "name": "Forge",
+                    "shirt": "/images/forge.png"
+                },
+                "date": "2019-07-06",
+                "home_score": 2,
+                "away_score": 1
+            },
+            "minutes_played": 90,
+            "goals": 1,
+            "assists": 0,
+            "yellow_cards": 0,
+            "red_cards": 0,
+            "saves": 0,
+            "clean_sheets": 0,
+            "points": 0,
+            "player": 2
+        }
+    ],
+    "first_name": "Ryan",
+    "last_name": "Telfer",
+    "points": 0,
+    "price": "7.0"
+}
+--> 

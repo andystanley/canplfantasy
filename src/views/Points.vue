@@ -28,25 +28,25 @@
           <v-container fluid>
             <v-layout justify-space-around>
               <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                <PointsPopup position="goalkeeper" :initialPlayer="goalkeeper"/>
+                <PointsPopup :initialPlayer="goalkeeper"/>
               </v-flex>
             </v-layout>  
             
             <v-layout justify-space-around class="mt-5">
               <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                <PointsPopup position="defender" :initialPlayer="defender"/>
+                <PointsPopup :initialPlayer="defender"/>
               </v-flex>
             </v-layout>
 
             <v-layout justify-space-around class="mt-5">
               <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                <PointsPopup position="midfielder" :initialPlayer="midfielder"/>  
+                <PointsPopup :initialPlayer="midfielder"/>  
               </v-flex>
             </v-layout>
             
             <v-layout justify-space-around class="mt-5">
               <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                  <PointsPopup position="forward" :initialPlayer="forward"/>  
+                <PointsPopup :initialPlayer="forward"/>  
               </v-flex>
             </v-layout>
           </v-container>   
