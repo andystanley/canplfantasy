@@ -2,7 +2,7 @@
   <nav>
     <v-toolbar flat app>
       <v-layout>
-        <v-img src='/images/logoCanpl.png' max-width="75"></v-img>
+        <v-img src="/images/logoCanpl.png" max-width="60"></v-img>
       </v-layout> 
       
       <v-layout v-if="isAuthenticated" class="px-5">
