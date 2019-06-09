@@ -1,15 +1,18 @@
 <template>
   <v-container fluid>
+    <v-layout justify-center>
+      <h4 class="display-1">Gameweek 1</h4>
+    </v-layout>
     <v-container fluid>
       <v-layout>
         <v-spacer></v-spacer>
         <v-flex>
-          <h2>Budget</h2> 
-          <h3>{{ squadPrice }}m / {{ maxSquadPrice }}m</h3>
+          <h6 class="title">Budget</h6> 
+          <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
         </v-flex>
         <v-flex>
-          <h2>Players Selected</h2>
-          <h3>{{ squadSize }}  / {{ maxSquadSize }} </h3>
+          <h6 class="title">Players Selected</h6>
+          <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
         </v-flex>
       </v-layout>
     </v-container>
@@ -20,25 +23,25 @@
           <v-container fluid>
             <v-layout justify-space-around>
               <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                <PlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+                <SelectPlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
               </v-flex>
             </v-layout>  
             
             <v-layout justify-space-around>
               <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                <PlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                <SelectPlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
               </v-flex>
             </v-layout>
 
             <v-layout justify-space-around>
               <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                  <PlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+                  <SelectPlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
               </v-flex>
             </v-layout>
             
             <v-layout justify-space-around>
               <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                  <PlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  <SelectPlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
               </v-flex>
             </v-layout>
           </v-container>   
@@ -75,12 +78,12 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
-import PlayerPopup from '@/components/PlayerPopup'
+import SelectPlayerPopup from '@/components/SelectPlayerPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 
 export default {
   components:{
-    PlayerPopup,
+    SelectPlayerPopup,
     GameweeksTable
   },
   data() {

@@ -16,7 +16,7 @@
     </template>
       <v-card>
         <v-card-title>
-          <h2>{{ `${player.first_name} ${player.last_name}` }} </h2>
+          <h6 class="title">{{ `${player.first_name} ${player.last_name}` }}</h6>
         </v-card-title>
       <v-card-text>
         <v-data-table :headers="getHeaders" :items="player.stats" :pagination.sync="pagination" class="elevation-1">
@@ -125,7 +125,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .v-table thead tr th {
   padding-right: 0px !important;
 }

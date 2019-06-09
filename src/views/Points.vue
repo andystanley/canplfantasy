@@ -1,70 +1,80 @@
 <template>
-  <div class="points">
-    <div v-if="!squadExists">
+  <v-container fluid>
+    <template v-if="!squadExists">
       <v-layout justify-center>
-        <h1>Gameweek 1 has not started</h1>
+        <h4 class="display-1">Gameweek 1 has not started</h4>
       </v-layout>
-    </div>
-    <div v-if="squadExists">
+    </template>
+
+    <template v-if="squadExists">
       <v-layout justify-center>
-        <h1>Gameweek 1</h1>
+        <h4 class="display-1">Gameweek 1</h4>
       </v-layout>
       <v-container fluid>
         <v-layout justify-space-around>
           <v-spacer></v-spacer>
           <v-flex>
-            <h2>Rank</h2>
-            <h3>44</h3>
+            <h6 class="title">Rank</h6>
+            <span class="subheading">44</span>
           </v-flex>
           <v-flex>
-            <h2>Points</h2>
-            <h3>{{ profile.active_squad.points }}</h3>
+            <h6 class="title">Points</h6>
+            <span class="subheading">{{ profile.active_squad.points }}</span>
           </v-flex>
         </v-layout>
       </v-container>
 
       <v-layout justify-center>
-        <v-img src="/images/startingEleven.png" max-width="600">
-          <v-container fluid>
-            <v-layout justify-space-around>
-              <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                <PointsPopup :initialPlayer="goalkeeper"/>
-              </v-flex>
-            </v-layout>  
-            
-            <v-layout justify-space-around class="mt-5">
-              <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                <PointsPopup :initialPlayer="defender"/>
-              </v-flex>
-            </v-layout>
+        <v-flex xs12 sm8 md6 lg4>
+          <v-img src="/images/startingEleven.png" max-width="600">
+            <v-container fluid>
+              <v-layout justify-space-around>
+                <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                  <PlayerStatsPopup :initialPlayer="goalkeeper"/>
+                </v-flex>
+              </v-layout>  
+              
+              <v-layout justify-space-around class="mt-3">
+                <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                  <PlayerStatsPopup :initialPlayer="defender"/>
+                </v-flex>
+              </v-layout>
 
-            <v-layout justify-space-around class="mt-5">
-              <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                <PointsPopup :initialPlayer="midfielder"/>  
-              </v-flex>
-            </v-layout>
-            
-            <v-layout justify-space-around class="mt-5">
-              <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                <PointsPopup :initialPlayer="forward"/>  
-              </v-flex>
-            </v-layout>
-          </v-container>   
-        </v-img>
+              <v-layout justify-space-around class="mt-3">
+                <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                  <PlayerStatsPopup :initialPlayer="midfielder"/>  
+                </v-flex>
+              </v-layout>
+              
+              <v-layout justify-space-around class="mt-3">
+                <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                  <PlayerStatsPopup :initialPlayer="forward"/>  
+                </v-flex>
+              </v-layout>
+            </v-container>   
+          </v-img>
+        </v-flex>
       </v-layout>
-    </div>
-  </div>
+
+      <v-layout justify-center>
+        <v-flex xs12 sm8 md6 lg4>
+          <GameweeksTable />
+        </v-flex>
+      </v-layout>
+    </template>
+  </v-container>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PointsPopup from '@/components/PointsPopup'
+import PlayerStatsPopup from '@/components/PlayerStatsPopup'
+import GameweeksTable from '@/components/GameweeksTable'
 
 export default {
   components:{
-    PointsPopup
+    PlayerStatsPopup,
+    GameweeksTable
   },
- 
   data() {
     return {
       squadExists: false,

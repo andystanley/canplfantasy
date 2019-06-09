@@ -6,7 +6,7 @@
     </v-content>
     <v-footer justify-center color="#fafafa" class="mb-3">
       <v-layout justify-center>
-        <v-img src="/images/logoCanpl.png" max-width="60"></v-img>
+        <v-img src="/images/logo.png" max-width="60"></v-img>
       </v-layout>
     </v-footer>
   </v-app>
