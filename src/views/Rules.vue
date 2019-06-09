@@ -1,6 +1,8 @@
 <template>
-  <div class="rules">
-    <h1>Rules</h1>
+  <v-container fluid>
+    <v-layout justify-center>
+      <h4 class="display-1">Rules</h4>
+    </v-layout>
 
     <v-container class="my-5">
       <v-expansion-panel>
@@ -32,8 +34,7 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-container>
-    
-  </div>
+  </v-container>
 </template>
 
 <script>
