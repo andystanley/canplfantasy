@@ -19,14 +19,18 @@
           <h2>{{ `${player.first_name} ${player.last_name}` }} </h2>
         </v-card-title>
         <v-card-text>
-            <v-data-table :headers="headers"  :items="player.stats" class="elevation-1">
+          <v-data-table :headers="getHeaders"  :items="player.stats" class="elevation-1">
             <template  v-slot:items="props" :headers="headers"  class="elevation-1"> 
               <tr>
                 <td>{{ props.item.game.date }}</td>
                 <td>{{ props.item.points }}</td>
-                <td>{{ props.item.goals }}</td>
+                <td v-if="player.position.short_name !=='GK'">{{ props.item.goals }}</td>
                 <td>{{ props.item.assists }}</td>
                 <td>{{ props.item.minutes_played }}</td>
+                <td>{{ props.item.yellow_card }}</td>
+                <td>{{ props.item.red_card }}</td>
+                <td>{{ props.item.clean_sheets }}</td>
+                <td>{{ props.item.saves }}</td>
               </tr>
             </template>
           </v-data-table>
@@ -46,17 +50,61 @@ export default {
       return {
       popupOpen: false,
       player: !this.initialPlayer.hasOwnProperty('blank') ? this.initialPlayer : null,
-      headers: [
-        { text: 'Gameweek', value: 'game.date'},
-        { text: 'Points', value: 'points'},
-        { text: 'Goals', value: 'goals'},
-        { text: 'Assists', value: 'assists'},
-        { text: 'Minutes Played', value: 'minutes_played'}
-      ],
     }
+   
+  },
+  computed:{
+    getHeaders(){
+      switch(this.player.position.short_name) {
+        case "GK":
+          return [ 
+            { text: 'Gameweek', value: 'game.date'},
+            { text: 'Points', value: 'points'},
+            { text: 'Goals', value: 'goals'},
+            { text: 'Assists', value: 'assists'},
+            { text: 'Minutes Played', value: 'minutes_played'},
+            { text: 'Yellow Card', value: 'yellow_cards'},
+            { text: 'Red Card', value: 'red_cards'},
+            { text: 'Clean Sheets', value: 'clean_sheets'},
+            { text: 'Saves', value: 'saves'},
+          ]
+        case "DEF":
+          return [ 
+            { text: 'Gameweek', value: 'game.date'},
+            { text: 'Points', value: 'points'},
+            { text: 'Goals', value: 'goals'},
+            { text: 'Assists', value: 'assists'},
+            { text: 'Minutes Played', value: 'minutes_played'},
+            { text: 'Yellow Card', value: 'yellow_cards'},
+            { text: 'Red Card', value: 'red_cards'},
+            { text: 'Clean Sheets', value: 'clean_sheets'}
+          ]
+        case "MID":
+          return [ 
+            { text: 'Gameweek', value: 'game.date'},
+            { text: 'Points', value: 'points'},
+            { text: 'Goals', value: 'goals'},
+            { text: 'Assists', value: 'assists'},
+            { text: 'Minutes Played', value: 'minutes_played'},
+            { text: 'Yellow Card', value: 'yellow_cards'},
+            { text: 'Red Card', value: 'red_cards'},
+            { text: 'Clean Sheets', value: 'clean_sheets'}
+          ]
+        default:
+          return [ 
+            { text: 'Gameweek', value: 'game.date'},
+            { text: 'Points', value: 'points'},
+            { text: 'Goals', value: 'goals'},
+            { text: 'Assists', value: 'assists'},
+            { text: 'Minutes Played', value: 'minutes_played'},
+            { text: 'Yellow Card', value: 'yellow_cards'},
+            { text: 'Red Card', value: 'red_cards'}
+          ]
+      }      
     }
   }
-
+    
+    }
 </script>
 
 <!--
