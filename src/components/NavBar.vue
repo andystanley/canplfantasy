@@ -1,13 +1,14 @@
 <template>
   <nav>
     <v-toolbar flat app>
-      <v-toolbar-title class="text-uppercase grey--text">
-        <span class="primary--text">CANPL</span>
-        <span class="accent--text">Fantasy</span>
-      </v-toolbar-title>
+      <v-layout>
+        <v-img src="/images/logoCanpl.png" max-width="60"></v-img>
+      </v-layout> 
+      
       <v-layout v-if="isAuthenticated" class="px-5">
-        <v-btn flat to="squad">My Squad</v-btn>
+        <v-btn  flat to="squad">My Squad</v-btn>
         <v-btn flat to="points">Points</v-btn>
+         <v-btn flat to="rules">Rules</v-btn>
       </v-layout>
       <v-layout justify-end>
         <LoginSignupPopup v-if="!isAuthenticated" />

@@ -1,4 +1,5 @@
 <template>
+
   <div class="squad">
     <v-container fluid>
       <v-layout>
@@ -79,9 +80,9 @@ export default {
     return {
       squad: {
         goalkeepers: [{blank: true}],
-        defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}, {blank: true}],
+        defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}], 
         midfielders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}],
-        forwards: [{blank: true}]
+        forwards: [{blank: true}, {blank: true}],
       },
       squadSize: 0,
       maxSquadSize: 11,

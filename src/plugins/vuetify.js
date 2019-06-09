@@ -12,7 +12,6 @@ Vue.use(Vuetify, {
     warning: '#ffeb3b',
     info: '#607d8b',
     success: '#4caf50',
-    darkGreen: '#006400',
-    
+    darkGreen: '#006400'
   }
 })
