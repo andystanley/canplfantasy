@@ -10,7 +10,7 @@
         <v-flex>
             <br>
           <h6 class="title">Overall</h6> 
-          <v-btn class="primary">322/1000</v-btn>
+          <v-btn class="primary" to="overall">322/1000</v-btn>
           <span ></span>
         </v-flex>
         <v-flex>

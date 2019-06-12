@@ -5,6 +5,7 @@ import Squad from './views/Squad'
 import Points from './views/Points'
 import Rules from './views/Rules'
 import Leaderboards from './views/Leaderboards'
+import Overall from './views/overall'
 Vue.use(Router)
 
 export default new Router({
@@ -34,7 +35,12 @@ export default new Router({
     {
       path: '/leaderboards',
       name: 'leaderboards',
-      component: Leaderboards
+      component: Leaderboards,
+    },
+    {
+      path: '/overall',
+      name: 'overall',
+      component: Overall,
     }
   ]
 })
