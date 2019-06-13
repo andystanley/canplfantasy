@@ -14,12 +14,16 @@
         <v-layout justify-space-around>
           <v-spacer></v-spacer>
           <v-flex>
-            <h6 class="title">Rank</h6>
-            <span class="subheading">44</span>
+            <h6 class="title">Overall Rank</h6>
+            <v-btn flat to="/league/2">300/1331</v-btn>
           </v-flex>
           <v-flex>
             <h6 class="title">Points</h6>
             <span class="subheading">{{ profile.active_squad.points }}</span>
+          </v-flex>
+          <v-flex>
+            <h6 class="title">Fan League</h6>
+            <v-btn to="/league/2">30/131</v-btn>
           </v-flex>
         </v-layout>
       </v-container>
