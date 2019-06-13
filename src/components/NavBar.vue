@@ -10,6 +10,7 @@
         <v-btn flat to="/points">Points</v-btn>
         <v-btn flat to="/leagues">Leagues</v-btn>
         <v-btn flat to="/rules">Rules</v-btn>
+        <v-btn flat to="/News">News</v-btn>
       </v-layout>
       <v-layout justify-end>
         <LoginSignupPopup v-if="!isAuthenticated" />
