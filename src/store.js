@@ -11,7 +11,8 @@ export default new Vuex.Store({
     profile: {},
     teams: [],
     players: [],
-    gameweeks: []
+    gameweeks: [],
+    leagues: []
   },
   mutations: {
     setToken(state, token) {
@@ -34,6 +35,10 @@ export default new Vuex.Store({
 
     setGameweeks(state, gameweeks) {
       state.gameweeks = gameweeks
+    },
+
+    setLeagues(state, leagues) {
+      state.leagues = leagues.sort((a, b) => b.profiles.length - a.profiles.length)
     },
 
     setProfile(state, profile) {
@@ -77,6 +82,13 @@ export default new Vuex.Store({
       return api.getGameweeks()
         .then(gameweeks => {
           commit('setGameweeks', gameweeks)
+        })
+    },
+
+    getLeagues({ commit }) {
+      return api.getLeagues()
+        .then(leagues => {
+          commit('setLeagues', leagues)
         })
     },
 

@@ -81,6 +81,26 @@ export default {
       })
   },
 
+  getLeagues() {
+    return client.get('league/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  getLeague(id) {
+    return client.get(`league/${id}`)
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
   getProfile() {
     return client.get('/profile/user/')
       .then(response => 

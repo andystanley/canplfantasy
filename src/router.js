@@ -4,8 +4,8 @@ import Home from './views/Home'
 import Squad from './views/Squad'
 import Points from './views/Points'
 import Rules from './views/Rules'
-import Leaderboards from './views/Leaderboards'
-import Overall from './views/overall'
+import League from './views/League'
+import Leagues from './views/Leagues'
 Vue.use(Router)
 
 export default new Router({
@@ -33,14 +33,14 @@ export default new Router({
       component: Rules
     },
     {
-      path: '/leaderboards',
-      name: 'leaderboards',
-      component: Leaderboards,
+      path: '/leagues',
+      name: 'leagues',
+      component: Leagues,
     },
     {
-      path: '/overall',
-      name: 'overall',
-      component: Overall,
+      path: '/league/:id',
+      name: 'league',
+      component: League,
     }
   ]
 })

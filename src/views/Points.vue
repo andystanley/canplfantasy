@@ -148,19 +148,19 @@ export default {
     ...mapState(['profile']),
     
   },
-   created() {
-    this.getProfile()
-      .then(() => {
-        if (this.profile.active_squad) {
-          this.squadExists = true
-          const defenders = this.profile.active_squad.players.filter(player => player.position.short_name === 'DEF').length
-          const midfielders = this.profile.active_squad.players.filter(player => player.position.short_name === 'MID').length
-          const forwards = this.profile.active_squad.players.filter(player => player.position.short_name === 'FW').length
-          this.setFormation(defenders, midfielders, forwards)
+  created() {
+  this.getProfile()
+    .then(() => {
+      if (this.profile.active_squad) {
+        this.squadExists = true
+        const defenders = this.profile.active_squad.players.filter(player => player.position.short_name === 'DEF').length
+        const midfielders = this.profile.active_squad.players.filter(player => player.position.short_name === 'MID').length
+        const forwards = this.profile.active_squad.players.filter(player => player.position.short_name === 'FW').length
+        this.setFormation(defenders, midfielders, forwards)
 
-          this.profile.active_squad.players.map(player => this.addPlayerToSquad(player))
-        }
-      })
+        this.profile.active_squad.players.map(player => this.addPlayerToSquad(player))
+      }
+    })
   }
 }
 </script>
