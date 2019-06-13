@@ -23,7 +23,7 @@
           </v-flex>
           <v-flex>
             <h6 class="title">Fan League</h6>
-            <v-btn to="/league/2">30/131</v-btn>
+            <v-btn to="/league/1">30/131</v-btn>
           </v-flex>
         </v-layout>
       </v-container>
