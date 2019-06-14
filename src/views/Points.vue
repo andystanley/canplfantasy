@@ -29,7 +29,9 @@
       </v-container>
 
       <v-layout justify-center>
+        
         <v-flex xs12 sm8 md6 lg4>
+           
           <v-img src="/images/startingEleven.png" max-width="600">
             <v-container fluid>
               <v-layout justify-space-around>
@@ -58,6 +60,9 @@
             </v-container>   
           </v-img>
         </v-flex>
+         <v-flex xs12 sm8 md6 lg4>
+         <v-layout> <RankingAndPoints /></v-layout>
+         </v-flex>
       </v-layout>
 
       <v-layout justify-center>
@@ -66,6 +71,7 @@
         </v-flex>
       </v-layout>
     </template>
+     
   </v-container>
 </template>
 
@@ -73,11 +79,12 @@
 import { mapActions, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
-
+import RankingAndPoints from '@/components/RankingAndPoints'
 export default {
   components:{
     PlayerStatsPopup,
-    GameweeksTable
+    GameweeksTable,
+    RankingAndPoints
   },
   data() {
     return {
