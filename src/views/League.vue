@@ -5,17 +5,19 @@
     </v-layout>
 
     <v-layout justify-center>
+      <v-flex xs12 sm10 md8 lg6>
         <v-data-table :headers="headers" :items="league.profiles" hide-actions :pagination.sync="pagination" class="elevation-1">
           <template v-slot:items="props" >
             <td>{{ props.item.squad_name }}</td>
             <td>{{ props.item.points }}</td>
-            <td>{{ props.item.points }}</td>
+            <td>0</td>
           </template>
         </v-data-table>
+      </v-flex>
     </v-layout>
 
     <v-layout justify-center class="text-xs-center pt-2">
-      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+      <v-pagination v-model="pagination.page" :length="pages" circle></v-pagination>
     </v-layout>
   </v-container>
 </template>
@@ -24,27 +26,33 @@
 import api from '../api'
 
 export default {
-  data () {
+  data() {
     return {
       league: {},
       pagination: {
-          rowsPerPage: 15
+          page: 1,
+          rowsPerPage: 10,
+          totalItems: 0,
+          sortBy: 'points', 
+          descending: true
       },
       headers: [
         { text: 'Squad', sortable: false, value: 'squad_name'},
-        { text: 'Total Points', value: 'points' },
-        { text: 'Gameweek Points', value: 'points' }
+        { text: 'Gameweek Points', value: 'gameweek_points' },
+        { text: 'Total Points', value: 'points' }
       ]
     }
   },
 
   computed: {
-    pages () {
-      if (this.pagination.rowsPerPage == null ||
-        this.pagination.totalItems == null
-      ) return 0
-
+    pages() {
       return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+    }
+  },
+
+  watch: {
+    league() {
+      this.pagination.totalItems = this.league.profiles.length
     }
   },
 
