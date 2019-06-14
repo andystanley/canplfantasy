@@ -6,7 +6,6 @@ import Points from './views/Points'
 import Rules from './views/Rules'
 import League from './views/League'
 import Leagues from './views/Leagues'
-import News from './views/News'
 Vue.use(Router)
 
 export default new Router({
@@ -42,11 +41,6 @@ export default new Router({
       path: '/league/:id',
       name: 'league',
       component: League,
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: News,
     }
   ]
 })
