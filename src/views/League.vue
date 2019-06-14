@@ -10,7 +10,7 @@
           <template v-slot:items="props" >
             <td>{{ props.item.squad_name }}</td>
             <td>{{ props.item.gameweek_points || 0 }}</td>
-            <td>0</td>
+            <td>{{ props.item.points }}</td>
           </template>
         </v-data-table>
       </v-flex>
