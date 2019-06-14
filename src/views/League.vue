@@ -9,7 +9,7 @@
         <v-data-table :headers="headers" :items="league.profiles" hide-actions :pagination.sync="pagination" class="elevation-1">
           <template v-slot:items="props" >
             <td>{{ props.item.squad_name }}</td>
-            <td>{{ props.item.points }}</td>
+            <td>{{ props.item.gameweek_points || 0 }}</td>
             <td>0</td>
           </template>
         </v-data-table>
