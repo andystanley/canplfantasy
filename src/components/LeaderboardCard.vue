@@ -11,11 +11,11 @@
                <v-divider></v-divider>
                 <v-container>
                   <v-layout justify-center>
-                     <span class="title">Overall: 130/200</span>
+                      <v-btn flat to="/league/2">Overall Points: 13/200</v-btn>
                   </v-layout>
-                 <br>
+
                   <v-layout justify-center>
-                     <span class="title">Fan League: 130/200</span>
+                      <v-btn flat to="/league/1">Fan League: 10/200</v-btn>
                   </v-layout>
                 </v-container>
                

@@ -9,13 +9,15 @@
               </v-flex>
             </v-card-title>
                <v-divider></v-divider>
+               <br>
                 <v-container>
                   <v-layout justify-center>
-                     <span class="title">Overall Points: 1300</span>
+                      <span class="subheading">Overall Points: 200</span>
                   </v-layout>
                  <br>
                   <v-layout justify-center>
-                     <span class="title">Gameweek Points: 1300</span>
+                      <span class="subheading">Gameweek Points: 20</span>
+                      <br> <br>
                   </v-layout>
                 </v-container>
                
