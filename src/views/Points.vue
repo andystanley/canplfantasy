@@ -30,7 +30,11 @@
 
       <v-layout justify-center>
         
-        <v-flex xs12 sm8 md6 lg4>
+        
+         <v-flex xs12 sm8 md6 lg3>
+         <v-layout > <RankingAndPoints /></v-layout>
+         </v-flex>
+         <v-flex xs12 sm8 md6 lg4>
            
           <v-img src="/images/startingEleven.png" max-width="600">
             <v-container fluid>
@@ -59,12 +63,12 @@
               </v-layout>
             </v-container>   
           </v-img>
-        </v-flex>
-         <v-flex xs12 sm8 md6 lg4>
-         <v-layout> <RankingAndPoints /></v-layout>
          </v-flex>
-      </v-layout>
-
+          <v-flex xs12 sm8 md6 lg3>
+        <v-layout >  <LeaderboardCard/> </v-layout >
+         </v-flex>
+ </v-layout>
+      
       <v-layout justify-center>
         <v-flex xs12 sm8 md6 lg4>
           <GameweeksTable />
@@ -80,11 +84,13 @@ import { mapActions, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 import RankingAndPoints from '@/components/RankingAndPoints'
+import LeaderboardCard from '@/components/LeaderboardCard'
 export default {
   components:{
     PlayerStatsPopup,
     GameweeksTable,
-    RankingAndPoints
+    RankingAndPoints,
+    LeaderboardCard
   },
   data() {
     return {
