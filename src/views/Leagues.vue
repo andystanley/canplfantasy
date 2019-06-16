@@ -18,11 +18,15 @@
             <v-list dense>
               <v-list-tile>
                 <v-list-tile-content>Players:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ league.profiles.length }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ league.profiles_count }}</v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-content>Total Points:</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ league.points }}</v-list-tile-content>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>Leader:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ league.profiles.length ? league.profiles[0].squad_name : '' }}</v-list-tile-content>
+                <v-list-tile-content class="align-end">{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</v-list-tile-content>
               </v-list-tile>
             </v-list>
             <v-divider></v-divider>
@@ -53,7 +57,9 @@ export default {
   },
 
   created() {
-    this.getLeagues()
+    if (!this.leagues.length) {
+      this.getLeagues()
+    }
   }
 }
 </script>

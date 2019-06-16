@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem('token') || '',
-    profile: {},
+    profile: null,
     teams: [],
     players: [],
     gameweeks: [],
@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
 
     setLeagues(state, leagues) {
-      state.leagues = leagues.sort((a, b) => b.profiles.length - a.profiles.length)
+      state.leagues = leagues.sort((a, b) => b.profiles_count - a.profiles_count)
     },
 
     setProfile(state, profile) {

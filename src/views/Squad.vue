@@ -17,62 +17,69 @@
       </v-layout>
     </v-container>
 
-    <v-layout justify-center>
-      <v-flex xs12 sm8 md6 lg4>
-        <v-img src="/images/startingEleven.png">
-          <v-container fluid>
-            <v-layout justify-space-around>
-              <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                <SelectPlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
-              </v-flex>
-            </v-layout>  
-            
-            <v-layout justify-space-around>
-              <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                <SelectPlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-              </v-flex>
-            </v-layout>
+    <v-container grid-list-md>
+      <v-layout wrap justify-center>
+        <v-flex xs12 sm8 md6>
+          <v-img src="/images/startingEleven.png">
+            <v-container fluid>
+              <v-layout justify-space-around>
+                <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                  <SelectPlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+                </v-flex>
+              </v-layout>  
+              
+              <v-layout justify-space-around>
+                <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                  <SelectPlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                </v-flex>
+              </v-layout>
 
-            <v-layout justify-space-around>
-              <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                  <SelectPlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
-              </v-flex>
-            </v-layout>
-            
-            <v-layout justify-space-around>
-              <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                  <SelectPlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-              </v-flex>
-            </v-layout>
-          </v-container>   
-        </v-img>
-      </v-flex>
-    </v-layout>
+              <v-layout justify-space-around>
+                <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                    <SelectPlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+                </v-flex>
+              </v-layout>
+              
+              <v-layout justify-space-around>
+                <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                    <SelectPlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                </v-flex>
+              </v-layout>
+            </v-container>   
+          </v-img>
 
-    <v-layout justify-center class="mt-1">
-      <v-btn-toggle dark>
-        <v-btn @click="setFormation(5,4,1)" flat>5-4-1</v-btn>
-        <v-btn @click="setFormation(5,3,2)" flat>5-3-2</v-btn>
-        <v-btn @click="setFormation(4,5,1)" flat>4-5-1</v-btn>
-        <v-btn @click="setFormation(4,4,2)" flat>4-4-2</v-btn>
-        <v-btn @click="setFormation(4,3,3)" flat>4-3-3</v-btn>
-        <v-btn @click="setFormation(3,5,2)" flat>3-5-2</v-btn>
-        <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
-      </v-btn-toggle>
-    </v-layout>
-    <v-layout justify-center>
-       <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
-    </v-layout>
-    <v-layout justify-center>
-      <v-flex xs12 sm8 md6 lg4>
-        <GameweeksTable />
-      </v-flex>
-    </v-layout>
-    <v-snackbar v-model="snackbar" :timeout="3000" color="success">
+          <div class="text-xs-center">
+            <v-btn-toggle dark>
+              <v-btn @click="setFormation(5,4,1)" flat>5-4-1</v-btn>
+              <v-btn @click="setFormation(5,3,2)" flat>5-3-2</v-btn>
+              <v-btn @click="setFormation(4,5,1)" flat>4-5-1</v-btn>
+              <v-btn @click="setFormation(4,4,2)" flat>4-4-2</v-btn>
+              <v-btn @click="setFormation(4,3,3)" flat>4-3-3</v-btn>
+              <v-btn @click="setFormation(3,5,2)" flat>3-5-2</v-btn>
+              <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
+            </v-btn-toggle>
+          </div>
+
+          <div class="text-xs-center">
+            <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
+          </div>
+          
+          <GameweeksTable />
+        </v-flex>
+
+        <v-flex xs8 sm6 lg3>
+          <RankingAndPoints />
+          <LeaderboardCard />
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-snackbar v-model="snackbar" :timeout="3000" color="success" class="justify-center">
       <v-layout justify-center>
         Squad Saved!
       </v-layout>
     </v-snackbar>
+    
   </v-container>
 </template>
 
@@ -80,11 +87,15 @@
 import { mapActions, mapState, mapGetters } from 'vuex'
 import SelectPlayerPopup from '@/components/SelectPlayerPopup'
 import GameweeksTable from '@/components/GameweeksTable'
+import RankingAndPoints from '@/components/RankingAndPoints'
+import LeaderboardCard from '@/components/LeaderboardCard'
 
 export default {
   components:{
     SelectPlayerPopup,
-    GameweeksTable
+    GameweeksTable,
+    RankingAndPoints,
+    LeaderboardCard
   },
   data() {
     return {
@@ -102,12 +113,23 @@ export default {
     }
   },
   computed: {
-    ...mapState(['token', 'profile']),
+    ...mapState(['profile']),
     ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards'])
   },
   
   methods: {
     ...mapActions(['getProfile', 'saveSquad']),
+
+    setupSquad() {
+      if (this.profile.next_squad) {
+        const defenders = this.profile.next_squad.players.filter(player => player.position.short_name === 'DEF').length
+        const midfielders = this.profile.next_squad.players.filter(player => player.position.short_name === 'MID').length
+        const forwards = this.profile.next_squad.players.filter(player => player.position.short_name === 'FW').length
+        this.setFormation(defenders, midfielders, forwards)
+        
+        this.profile.next_squad.players.map(player => this.addPlayerToSquad(player))
+      }
+    },
 
     setFormation(defenders, midfielders, forwards) {
       while (defenders !== this.squad.defenders.length) {
@@ -204,21 +226,20 @@ export default {
       this.saveSquad({ players })
         .then(() => {
           this.snackbar = true
+          this.getProfile()
         })
     }
   },
   created() {
-    this.getProfile()
-      .then(() => {
-        if (this.profile.next_squad) {
-          const defenders = this.profile.next_squad.players.filter(player => player.position.short_name === 'DEF').length
-          const midfielders = this.profile.next_squad.players.filter(player => player.position.short_name === 'MID').length
-          const forwards = this.profile.next_squad.players.filter(player => player.position.short_name === 'FW').length
-          this.setFormation(defenders, midfielders, forwards)
-          
-          this.profile.next_squad.players.map(player => this.addPlayerToSquad(player))
-        }
-    })
+    if (!this.profile) {
+      this.getProfile()
+        .then(() => {
+          this.setupSquad()
+        })
+    }
+    else {
+      this.setupSquad()
+    }
   },
 }
 </script>

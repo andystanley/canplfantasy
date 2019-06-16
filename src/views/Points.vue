@@ -7,79 +7,56 @@
     </template>
 
     <template v-if="squadExists">
-      <v-layout justify-center>
+      <v-layout justify-center class="mb-3">
         <h4 class="display-1">Gameweek 1</h4>
       </v-layout>
-      <v-container fluid>
-        <v-layout justify-space-around>
-          <v-spacer></v-spacer>
-          <v-flex>
-            <h6 class="title">Overall Rank</h6>
-            <v-btn flat to="/league/2">300/1331</v-btn>
+      
+      <v-container grid-list-md>
+        <v-layout wrap justify-center>      
+          <v-flex xs12 sm8 md6>
+            <v-img src="/images/startingEleven.png" max-width="600">
+              <v-container fluid>
+                <v-layout justify-space-around>
+                  <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                    <PlayerStatsPopup :initialPlayer="goalkeeper"/>
+                  </v-flex>
+                </v-layout>  
+                
+                <v-layout justify-space-around class="mt-3">
+                  <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                    <PlayerStatsPopup :initialPlayer="defender"/>
+                  </v-flex>
+                </v-layout>
+
+                <v-layout justify-space-around class="mt-3">
+                  <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                    <PlayerStatsPopup :initialPlayer="midfielder"/>  
+                  </v-flex>
+                </v-layout>
+                
+                <v-layout justify-space-around class="mt-3">
+                  <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                    <PlayerStatsPopup :initialPlayer="forward"/>  
+                  </v-flex>
+                </v-layout>
+              </v-container>   
+            </v-img>
+
+            <GameweeksTable />
           </v-flex>
-          <v-flex>
-            <h6 class="title">Points</h6>
-            <span class="subheading">{{ profile.active_squad.points }}</span>
-          </v-flex>
-          <v-flex>
-            <h6 class="title">Fan League</h6>
-            <v-btn to="/league/1">30/131</v-btn>
+
+          <v-flex xs8 sm6 lg3>
+            <RankingAndPoints />
+            <LeaderboardCard />
           </v-flex>
         </v-layout>
       </v-container>
-
-      <v-layout justify-center>
-        
-        
-         <v-flex xs12 sm8 md6 lg3>
-         <v-layout > <RankingAndPoints /></v-layout>
-         </v-flex>
-         <v-flex xs12 sm8 md6 lg4>
-           
-          <v-img src="/images/startingEleven.png" max-width="600">
-            <v-container fluid>
-              <v-layout justify-space-around>
-                <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                  <PlayerStatsPopup :initialPlayer="goalkeeper"/>
-                </v-flex>
-              </v-layout>  
-              
-              <v-layout justify-space-around class="mt-3">
-                <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                  <PlayerStatsPopup :initialPlayer="defender"/>
-                </v-flex>
-              </v-layout>
-
-              <v-layout justify-space-around class="mt-3">
-                <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                  <PlayerStatsPopup :initialPlayer="midfielder"/>  
-                </v-flex>
-              </v-layout>
-              
-              <v-layout justify-space-around class="mt-3">
-                <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                  <PlayerStatsPopup :initialPlayer="forward"/>  
-                </v-flex>
-              </v-layout>
-            </v-container>   
-          </v-img>
-         </v-flex>
-          <v-flex xs12 sm8 md6 lg3>
-        <v-layout >  <LeaderboardCard/> </v-layout >
-         </v-flex>
- </v-layout>
-      
-      <v-layout justify-center>
-        <v-flex xs12 sm8 md6 lg4>
-          <GameweeksTable />
-        </v-flex>
-      </v-layout>
     </template>
-     
   </v-container>
 </template>
 
 <script>
+import api from '../api'
 import { mapActions, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
@@ -94,6 +71,7 @@ export default {
   },
   data() {
     return {
+      profile: {},
       squadExists: false,
       squad: {
         goalkeepers: [{blank: true}],
@@ -103,8 +81,26 @@ export default {
       }
     }
   },
+
+  computed: {
+    ...mapState({ cachedProfile: 'profile', token: 'token' }),
+  },
+
   methods:{
     ...mapActions(['getProfile']),
+
+    setupSquad() {
+      if (this.profile.active_squad) {
+        const defenders = this.profile.active_squad.players.filter(player => player.position.short_name === 'DEF').length
+        const midfielders = this.profile.active_squad.players.filter(player => player.position.short_name === 'MID').length
+        const forwards = this.profile.active_squad.players.filter(player => player.position.short_name === 'FW').length
+        this.setFormation(defenders, midfielders, forwards)
+
+        this.profile.active_squad.players.map(player => this.addPlayerToSquad(player))
+
+        this.squadExists = true
+      }
+    },
     
     addPlayerToSquad(player) {
       if (player.position.short_name =='GK') {
@@ -161,23 +157,31 @@ export default {
       }
     },
   },
-  computed: {
-    ...mapState(['profile']),
-    
-  },
-  created() {
-  this.getProfile()
-    .then(() => {
-      if (this.profile.active_squad) {
-        this.squadExists = true
-        const defenders = this.profile.active_squad.players.filter(player => player.position.short_name === 'DEF').length
-        const midfielders = this.profile.active_squad.players.filter(player => player.position.short_name === 'MID').length
-        const forwards = this.profile.active_squad.players.filter(player => player.position.short_name === 'FW').length
-        this.setFormation(defenders, midfielders, forwards)
 
-        this.profile.active_squad.players.map(player => this.addPlayerToSquad(player))
+  created() {
+    const profileId = this.$route.params.id
+
+    if (profileId) {
+      api.setToken(this.token)
+      
+      api.getProfileById(profileId)
+        .then(profile => {
+          this.profile = profile
+          this.setupSquad()
+        })
+    } 
+    else {
+      if (!this.cachedProfile) {
+        this.getProfile().then(() => {
+          this.profile = this.cachedProfile
+          this.setupSquad()
+        })
       }
-    })
+      else {
+        this.profile = this.cachedProfile
+        this.setupSquad()
+      }
+    }
   }
 }
 </script>

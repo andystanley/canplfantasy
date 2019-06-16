@@ -92,7 +92,7 @@ export default {
   },
 
   getLeague(id) {
-    return client.get(`league/${id}`)
+    return client.get(`league/${id}/`)
       .then(response => 
         response.data
       )
@@ -102,7 +102,17 @@ export default {
   },
 
   getProfile() {
-    return client.get('/profile/user/')
+    return client.get('profile/user/')
+      .then(response => 
+        response.data
+      )
+      .catch(error => {
+        handle(error)
+      })
+  },
+
+  getProfileById(id) {
+    return client.get(`profile/${id}/`)
       .then(response => 
         response.data
       )

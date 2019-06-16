@@ -28,6 +28,11 @@ export default new Router({
       component: Points
     },
     {
+      path: '/view/points/:id',
+      name: 'view points',
+      component: Points
+    },
+    {
       path: '/rules',
       name: 'rules',
       component: Rules

@@ -54,20 +54,32 @@ import { mapActions, mapState } from 'vuex'
 export default {
   data() {
     return {
+      gameweeks: [],
       pagination: {
         page: 1,
         rowsPerPage: 1
       }
     }
   },
+
   computed: {
-    ...mapState(['gameweeks'])
+    ...mapState({ cachedGameweeks: 'gameweeks' }),
   },
+
   methods: {
     ...mapActions(['getGameweeks']),
   },
+
   created() {
-    this.getGameweeks()
+    if (this.cachedGameweeks.length) {
+      this.gameweeks = this.cachedGameweeks
+    }
+    else {
+      this.getGameweeks()
+        .then(() => {
+          this.gameweeks = this.cachedGameweeks
+        })
+    }
   },
 }
 </script>
