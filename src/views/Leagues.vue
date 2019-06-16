@@ -10,8 +10,8 @@
           <v-card>
             <v-card-title>
               <div>
-                <h5 class="headline">{{ league.name }}</h5>
-                <span :class="{'hide-text': league.name === 'Overall'}" class="grey--text">Fan League</span>
+                <h5 class="headline">{{ league.short_name }}</h5>
+                <span :class="{'hide-text': league.short_name === 'Overall'}" class="grey--text">Fan League</span>
               </div>
               </v-card-title>
             <v-divider></v-divider>

@@ -35,12 +35,15 @@ export default {
       })
   },
 
-  signup(email, password, favorite_team) {
+  signup(email, first_name, last_name, password, squad_name, favorite_team) {
     return client.post('profile/', {
       username: email,
+      first_name: first_name,
+      last_name: last_name,
       password: password,
       profile: {
-        favorite_team: favorite_team
+        favorite_team: favorite_team,
+        squad_name: squad_name
       }
     })
       .then(response => 

@@ -53,8 +53,8 @@ export default new Vuex.Store({
         })
     },
 
-    signup({ commit }, { email, password, favoriteTeam }) {
-      return api.signup(email, password, favoriteTeam)
+    signup({ commit }, { email, firstName, lastName, password, squadName, favoriteTeam }) {
+      return api.signup(email, firstName, lastName, password, squadName, favoriteTeam)
         .then(token => {
           commit('setToken', token)
         })

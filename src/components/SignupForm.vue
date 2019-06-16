@@ -8,33 +8,68 @@
       type="text" 
       required>
     </v-text-field>
+    <v-layout wrap justify-space-between>
+      <v-flex xs12 md5>
+        <v-text-field 
+          v-model="signupForm.firstName" 
+          :rules="signupRules.name"
+          prepend-icon="person" 
+          label="First Name" 
+          type="text" 
+          required>
+        </v-text-field>
+      </v-flex>
+      <v-flex xs12 md5>
+        <v-text-field 
+          v-model="signupForm.lastName" 
+          :rules="signupRules.name"
+          prepend-icon="person" 
+          label="Last Name" 
+          type="text" 
+          required>
+        </v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout wrap justify-space-between>
+      <v-flex xs12 md5>
+        <v-text-field 
+          v-model="signupForm.password" 
+          :rules="signupRules.password"
+          prepend-icon="lock" 
+          label="Password" 
+          type="password" 
+          required>
+        </v-text-field>
+      </v-flex>
+      <v-flex xs12 md5>
+        <v-text-field 
+          v-model="signupForm.confirmPassword" 
+          :rules="signupRules.confirmPassword"
+          prepend-icon="lock" 
+          label="Confirm Password" 
+          type="password" 
+          required>
+        </v-text-field>
+      </v-flex>
+    </v-layout>
     <v-text-field 
-      v-model="signupForm.password" 
-      :rules="signupRules.password"
-      prepend-icon="lock" 
-      label="Password" 
-      type="password" 
-      required>
-    </v-text-field>
-    <v-text-field 
-      v-model="signupForm.confirmPassword" 
-      :rules="signupRules.confirmPassword"
-      prepend-icon="lock" 
-      label="Confirm Password" 
-      type="password" 
+      v-model="signupForm.squadName" 
+      :rules="signupRules.name"
+      prepend-icon="people" 
+      label="Squad Name" 
+      type="text" 
       required>
     </v-text-field>
     <v-select 
       v-model="signupForm.favoriteTeam" 
       :rules="signupRules.favoriteTeam"
-      prepend-icon="group" 
+      prepend-icon="star" 
       label="Favorite Team" 
       :items="teams"
       item-text="name"
       item-value="id"
       required>
     </v-select>
-    <v-checkbox label="I'm ready to play CANPL Fantasy!"></v-checkbox>
     <span style="color:red;">{{ error }}</span>
     <v-layout justify-end>
       <v-btn 
@@ -57,11 +92,17 @@ export default {
       error: '',
       signupForm: {
         email: '',
+        firstName: '',
+        lastName: '',
         password: '',
         confirmPassword: '',
+        squadName: '',
         favoriteTeam: null,
       },
       signupRules: {
+        name: [
+          v => !!v || 'Name is required'
+        ],
         email: [
           v => !!v || 'Email is required',
           v => /.+@.+/.test(v) || 'Email must be valid'
@@ -91,9 +132,9 @@ export default {
       if (this.$refs.signupForm.validate()) {
         this.loading = true
         
-        const { email, password, favoriteTeam } = this.signupForm
+        const { email, firstName, lastName, password, squadName, favoriteTeam } = this.signupForm
 
-        this.signup({ email, password, favoriteTeam })
+        this.signup({ email, firstName, lastName, password, squadName, favoriteTeam })
           .catch(() => this.error = 'Unable to signup') // Update this to use a better error message
 
         this.loading = false

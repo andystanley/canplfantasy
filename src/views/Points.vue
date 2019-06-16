@@ -45,9 +45,14 @@
             <GameweeksTable />
           </v-flex>
 
-          <v-flex xs8 sm6 lg3>
-            <RankingAndPoints :points="profile.points" :gameweekPoints="profile.active_squad.points" />
-            <LeaderboardCard :leagues="profile.leagues" />
+          <v-flex v-if="profile" xs8 sm6 lg3 >
+            <ProfileCard 
+              :name="profile.name" 
+              :squadName="profile.squad_name" 
+              :team="profile.favorite_team"
+              :points="profile.points" 
+              :gameweekPoints="profile.active_squad ? profile.active_squad.points : 0" />
+            <LeaguesCard :leagues="profile.leagues" />
           </v-flex>
         </v-layout>
       </v-container>
@@ -60,18 +65,18 @@ import api from '../api'
 import { mapActions, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
-import RankingAndPoints from '@/components/RankingAndPoints'
-import LeaderboardCard from '@/components/LeaderboardCard'
+import ProfileCard from '@/components/ProfileCard'
+import LeaguesCard from '@/components/LeaguesCard'
 export default {
   components:{
     PlayerStatsPopup,
     GameweeksTable,
-    RankingAndPoints,
-    LeaderboardCard
+    ProfileCard,
+    LeaguesCard
   },
   data() {
     return {
-      profile: {},
+      profile: null,
       squadExists: false,
       squad: {
         goalkeepers: [{blank: true}],
