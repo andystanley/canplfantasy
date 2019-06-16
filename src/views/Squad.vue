@@ -68,8 +68,8 @@
         </v-flex>
 
         <v-flex xs8 sm6 lg3>
-          <RankingAndPoints />
-          <LeaderboardCard />
+          <RankingAndPoints :points="profile.points" :gameweekPoints="profile.active_squad.points" />
+          <LeaderboardCard :leagues="profile.leagues" />
         </v-flex>
       </v-layout>
     </v-container>
