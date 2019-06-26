@@ -135,10 +135,11 @@ export default {
         const { email, firstName, lastName, password, squadName, favoriteTeam } = this.signupForm
 
         this.signup({ email, firstName, lastName, password, squadName, favoriteTeam })
-          .catch(() => this.error = 'Unable to signup') // Update this to use a better error message
-
-        this.loading = false
-        this.$router.push('/squad')
+          .catch(() => this.error = 'Unable to signup')
+          .then(() => {
+            this.loading = false
+            this.$router.push('/squad')
+          })
       }
     }
   }

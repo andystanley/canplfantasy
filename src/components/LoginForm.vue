@@ -63,9 +63,10 @@ export default {
         const { email, password } = this.loginForm
 
         this.login({ email, password })
-          .catch(() => this.error = 'Unable to login') // Update this to use a better error message
-
-        this.loading = false
+          .catch(() => this.error = 'Unable to login')
+          .then(() => {
+            this.loading = false
+          })
       }
     }
   }
