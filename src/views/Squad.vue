@@ -61,7 +61,7 @@
           </div>
 
           <div class="text-xs-center">
-            <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
+            <v-btn @click="save()" :disabled="!isValidSquad()" :loading="loading" class="success">Save Squad</v-btn>
           </div>
           
           <GameweeksTable />
@@ -79,9 +79,14 @@
       </v-layout>
     </v-container>
 
-    <v-snackbar v-model="snackbar" :timeout="3000" color="success" class="justify-center">
+    <v-snackbar v-model="successPopup" :timeout="3000" color="success" class="justify-center">
       <v-layout justify-center>
-        Squad Saved!
+        Squad saved!
+      </v-layout>
+    </v-snackbar>
+    <v-snackbar v-model="errrorPopup" :timeout="3000" color="error" class="justify-center">
+      <v-layout justify-center>
+        Unable to save squad. Please try again
       </v-layout>
     </v-snackbar>
     
@@ -114,7 +119,9 @@ export default {
       maxSquadSize: 11,
       squadPrice: 80.0,
       maxSquadPrice: 80.0,
-      snackbar: false,
+      successPopup: false,
+      errrorPopup: false,
+      loading: false
     }
   },
   computed: {
@@ -227,12 +234,15 @@ export default {
     },
 
     save() {
+      this.loading = true
       const players = [...this.selectedPlayers()]
       this.saveSquad({ players })
         .then(() => {
-          this.snackbar = true
+          this.successPopup = true
           this.getProfile()
         })
+        .catch(() => this.errorPopup = true)
+        .then(() => this.loading = false)
     }
   },
   created() {

@@ -79,6 +79,12 @@
         Signup
       </v-btn>
     </v-layout>
+
+    <v-snackbar v-model="errorPopup" :timeout="3000" color="error" class="justify-center">
+      <v-layout justify-center>
+        Unable to signup. Please try again
+      </v-layout>
+    </v-snackbar>
   </v-form>
 </template>
 
@@ -89,7 +95,7 @@ export default {
   data() {
     return {
       loading: false,
-      error: '',
+      errorPopup: false,
       signupForm: {
         email: '',
         firstName: '',
@@ -135,11 +141,11 @@ export default {
         const { email, firstName, lastName, password, squadName, favoriteTeam } = this.signupForm
 
         this.signup({ email, firstName, lastName, password, squadName, favoriteTeam })
-          .catch(() => this.error = 'Unable to signup')
           .then(() => {
-            this.loading = false
             this.$router.push('/squad')
           })
+          .catch(() => this.errorPopup = true)
+          .then(() => this.loading = false)
       }
     }
   }
