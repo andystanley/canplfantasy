@@ -6,11 +6,11 @@
     </v-layout>
     <div class="darkGreen">
       <v-layout justify-center>
-        <span :class="{'hide-text': !player}" class="font-weight-bold white--text " >{{ player.last_name }}</span>
+        <span :class="{'hide-text': !player}" class="font-weight-regular white--text " >{{ player.last_name }}</span>
       </v-layout>
       <hr>
       <v-layout justify-center>
-        <span :class="{'hide-text': !player}" class="font-weight-bold white--text ">{{ player.points }}</span>
+        <span :class="{'hide-text': !player}" class="font-weight-medium white--text ">{{ player.points }}</span>
       </v-layout>
     </div>
     </template>

@@ -19,7 +19,7 @@
 
     <v-container grid-list-md>
       <v-layout wrap justify-center>
-        <v-flex xs12 sm8 md6>
+        <v-flex xs12 sm8 md6 lg5>
           <v-img src="/images/startingEleven.png">
             <v-container fluid>
               <v-layout justify-space-around>

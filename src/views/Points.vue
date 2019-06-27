@@ -13,7 +13,7 @@
       
       <v-container grid-list-md>
         <v-layout wrap justify-center>      
-          <v-flex xs12 sm8 md6>
+          <v-flex xs12 sm8 md6 lg5>
             <v-img src="/images/startingEleven.png" max-width="600">
               <v-container fluid>
                 <v-layout justify-space-around>
@@ -45,7 +45,7 @@
             <GameweeksTable />
           </v-flex>
 
-          <v-flex v-if="profile" xs8 sm6 lg3 >
+          <v-flex v-if="profile" xs8 sm6 lg3>
             <ProfileCard 
               :name="profile.name" 
               :squadName="profile.squad_name" 
