@@ -7,7 +7,7 @@
         </v-layout>
         <div class="darkGreen">
           <v-layout justify-center>
-            <span :class="{'hide-text': !player}" class="font-weight-regular white--text">{{ player ? player.last_name : 'position' }}</span>
+            <span :class="{'hide-text': !player}" class="font-weight-regular white--text text-xs-center">{{ player ? player.last_name : 'position' }}</span>
           </v-layout>
           <hr>
           <v-layout justify-center>
