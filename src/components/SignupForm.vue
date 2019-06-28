@@ -70,7 +70,6 @@
       item-value="id"
       required>
     </v-select>
-    <span style="color:red;">{{ error }}</span>
     <v-layout justify-end>
       <v-btn 
         color="primary" 

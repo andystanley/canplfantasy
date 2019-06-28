@@ -64,14 +64,13 @@
 <script>
 export default {
   props: {
-    initialPlayer: Object,
+    player: Object,
     position: String,
     players: Array
   },
    data () {
     return {
       popupOpen: false,
-      player: !this.initialPlayer.hasOwnProperty('blank') ? this.initialPlayer : null,
       pagination: {'sortBy': 'game.gameweek.number', 'descending': true}
     }
   },

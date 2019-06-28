@@ -18,25 +18,25 @@
               <v-container fluid>
                 <v-layout justify-space-around>
                   <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                    <PlayerStatsPopup :initialPlayer="goalkeeper"/>
+                    <PlayerStatsPopup :player="goalkeeper" />
                   </v-flex>
                 </v-layout>  
                 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                    <PlayerStatsPopup :initialPlayer="defender"/>
+                    <PlayerStatsPopup :player="defender" />
                   </v-flex>
                 </v-layout>
 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                    <PlayerStatsPopup :initialPlayer="midfielder"/>  
+                    <PlayerStatsPopup :player="midfielder" />  
                   </v-flex>
                 </v-layout>
                 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                    <PlayerStatsPopup :initialPlayer="forward"/>  
+                    <PlayerStatsPopup :player="forward" />  
                   </v-flex>
                 </v-layout>
               </v-container>   
@@ -45,7 +45,7 @@
             <GameweeksTable />
           </v-flex>
 
-          <v-flex v-if="profile" xs8 sm6 lg3>
+          <v-flex v-if="profile" xs12 sm6 md5 lg4>
             <ProfileCard 
               :name="profile.name" 
               :squadName="profile.squad_name" 

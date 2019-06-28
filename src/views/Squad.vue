@@ -24,25 +24,25 @@
             <v-container fluid>
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                  <SelectPlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+                  <SelectPlayerPopup position="goalkeeper" :player="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
                 </v-flex>
               </v-layout>  
               
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                  <SelectPlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  <SelectPlayerPopup position="defender" :player="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
                 </v-flex>
               </v-layout>
 
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                    <SelectPlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+                  <SelectPlayerPopup position="midfielder" :player="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
                 </v-flex>
               </v-layout>
               
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                    <SelectPlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  <SelectPlayerPopup position="forward" :player="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
                 </v-flex>
               </v-layout>
             </v-container>   
@@ -67,7 +67,7 @@
           <GameweeksTable />
         </v-flex>
 
-        <v-flex v-if="profile" xs8 sm6 lg3>
+        <v-flex v-if="profile" xs12 sm6 md5 lg4>
             <ProfileCard 
               :name="profile.name" 
               :squadName="profile.squad_name" 

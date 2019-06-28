@@ -16,7 +16,6 @@
         type="password" 
         required>
     </v-text-field>
-    <span style="color:red;">{{ error }}</span>
     <v-layout justify-end>
       <v-btn 
         color="primary" 
