@@ -1,48 +1,47 @@
 <template>
   <v-container fluid>
     <v-layout justify-center>
-      <h4 class="display-1">Gameweek 1</h4>
+      <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
     </v-layout>
-    <v-container fluid>
-      <v-layout>
-        <v-spacer></v-spacer>
-        <v-flex>
-          <h6 class="title">Budget</h6> 
-          <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
-        </v-flex>
-        <v-flex>
-          <h6 class="title">Players Selected</h6>
-          <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
-        </v-flex>
-      </v-layout>
-    </v-container>
 
     <v-container grid-list-md>
       <v-layout wrap justify-center>
-        <v-flex xs12 sm8 md6>
+        <v-flex xs12 sm8 md6 lg5>
+          <v-layout class="pa-2">
+            <v-flex>
+              <h6 class="title">Budget</h6> 
+              <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
+            </v-flex>
+            <v-spacer></v-spacer>
+            <v-flex text-xs-right>
+              <h6 class="title">Players Selected</h6>
+              <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
+            </v-flex>
+          </v-layout>
+          <div class="text-xs-center red white--text font-weight-medium">{{ errorMessage }}</div>
           <v-img src="/images/startingEleven.png">
             <v-container fluid>
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                  <SelectPlayerPopup position="goalkeeper" :initialPlayer="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+                  <SelectPlayerPopup position="goalkeeper" :player="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
                 </v-flex>
               </v-layout>  
               
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                  <SelectPlayerPopup position="defender" :initialPlayer="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  <SelectPlayerPopup position="defender" :player="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
                 </v-flex>
               </v-layout>
 
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                    <SelectPlayerPopup position="midfielder" :initialPlayer="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+                  <SelectPlayerPopup position="midfielder" :player="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
                 </v-flex>
               </v-layout>
               
               <v-layout justify-space-around>
                 <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                    <SelectPlayerPopup position="forward" :initialPlayer="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  <SelectPlayerPopup position="forward" :player="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
                 </v-flex>
               </v-layout>
             </v-container>   
@@ -61,13 +60,13 @@
           </div>
 
           <div class="text-xs-center">
-            <v-btn :disabled="!isValidSquad()" @click="save()" class="success">Save Squad</v-btn>
+            <v-btn @click="save()" :disabled="!isValidSquad()" :loading="loading" class="success">Save Squad</v-btn>
           </div>
           
           <GameweeksTable />
         </v-flex>
 
-        <v-flex v-if="profile" xs8 sm6 lg3>
+        <v-flex v-if="profile" xs12 sm6 md5 lg4>
             <ProfileCard 
               :name="profile.name" 
               :squadName="profile.squad_name" 
@@ -79,9 +78,14 @@
       </v-layout>
     </v-container>
 
-    <v-snackbar v-model="snackbar" :timeout="3000" color="success" class="justify-center">
+    <v-snackbar v-model="successPopup" :timeout="3000" color="success" class="justify-center">
       <v-layout justify-center>
-        Squad Saved!
+        Squad saved!
+      </v-layout>
+    </v-snackbar>
+    <v-snackbar v-model="errrorPopup" :timeout="3000" color="error" class="justify-center">
+      <v-layout justify-center>
+        Unable to save squad. Please try again
       </v-layout>
     </v-snackbar>
     
@@ -114,12 +118,15 @@ export default {
       maxSquadSize: 11,
       squadPrice: 80.0,
       maxSquadPrice: 80.0,
-      snackbar: false,
+      successPopup: false,
+      errrorPopup: false,
+      loading: false,
+      errorMessage: ''
     }
   },
   computed: {
     ...mapState(['profile']),
-    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards'])
+    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards', 'nextGameweek'])
   },
   
   methods: {
@@ -172,9 +179,23 @@ export default {
     },
 
     selectedPlayers() {
-      let selectedPlayers = [this.squad.goalkeepers, this.squad.defenders, this.squad.midfielders, this.squad.forwards].flat()
-      selectedPlayers = selectedPlayers.filter(player => !player.hasOwnProperty('blank'))
+      const selectedPlayers = [this.squad.goalkeepers, this.squad.defenders, this.squad.midfielders, this.squad.forwards].flat()
+      return selectedPlayers.filter(player => !player.hasOwnProperty('blank'))
+    },
+
+    selectedPlayerIds() {
+      const selectedPlayers = this.selectedPlayers()
       return new Set(selectedPlayers.map(player => player.id))
+    },
+
+    maxTeamPlayers() {
+      const selectedPlayers = this.selectedPlayers()
+      const teamPlayers = new Map()
+      for (let player of selectedPlayers) {
+        let players = teamPlayers.get(player.team.name) || 0
+        teamPlayers.set(player.team.name, ++players)
+      }
+      return [...teamPlayers.entries()].reduce((team, players) => players[1] > players[1] ? team : players, ['', 0])
     },
 
     addPlayerToSquad(player) {
@@ -195,6 +216,11 @@ export default {
       }
       this.squadSize += 1
       this.squadPrice -= Number(player.price)
+      
+      const [team, players] = this.maxTeamPlayers()
+      if (players > 4) {
+        this.errorMessage = `Too many players selected from ${team}`
+      }
     },
 
     removePlayerFromSquad(player) {
@@ -215,24 +241,36 @@ export default {
       }
       this.squadSize -= 1
       this.squadPrice += Number(player.price)
+
+      const players = this.maxTeamPlayers()[1]
+      if (players <= 4) {
+        this.errorMessage = ''
+      }
     },
 
     isValidSquad() {
+      const players = this.maxTeamPlayers()[1]
+      if (players > 4) {
+        return false
+      }
       return this.squadSize === 11 && this.squadPrice >= 0
     },
 
     availablePlayers(players) {
-      const selectedPlayers = this.selectedPlayers()
-      return players.filter(player => !selectedPlayers.has(player.id))
+      const selectedPlayerIds = this.selectedPlayerIds()
+      return players.filter(player => !selectedPlayerIds.has(player.id))
     },
 
     save() {
-      const players = [...this.selectedPlayers()]
+      this.loading = true
+      const players = [...this.selectedPlayerIds()]
       this.saveSquad({ players })
         .then(() => {
-          this.snackbar = true
+          this.successPopup = true
           this.getProfile()
         })
+        .catch(() => this.errorPopup = true)
+        .then(() => this.loading = false)
     }
   },
   created() {

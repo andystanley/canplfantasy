@@ -16,7 +16,6 @@
         type="password" 
         required>
     </v-text-field>
-    <span style="color:red;">{{ error }}</span>
     <v-layout justify-end>
       <v-btn 
         color="primary" 
@@ -25,6 +24,12 @@
         Login
       </v-btn>
     </v-layout>
+    
+    <v-snackbar v-model="errorPopup" :timeout="3000" color="error" class="justify-center">
+      <v-layout justify-center>
+        Unable to login. Please try again
+      </v-layout>
+    </v-snackbar>
   </v-form>
 </template>
 
@@ -35,7 +40,7 @@ export default {
   data() {
     return {
       loading: false,
-      error: '',
+      errorPopup: false,
       loginForm: {
         email: '',
         password: ''
@@ -63,9 +68,8 @@ export default {
         const { email, password } = this.loginForm
 
         this.login({ email, password })
-          .catch(() => this.error = 'Unable to login') // Update this to use a better error message
-
-        this.loading = false
+          .catch(() => this.errorPopup = true)
+          .then(() => this.loading = false)
       }
     }
   }

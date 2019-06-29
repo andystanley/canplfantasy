@@ -1,17 +1,17 @@
 <template>
   <v-dialog max-width="600" v-model="popupOpen">
     <template v-slot:activator="{ on }">
-        <v-icon :disabled="!player" color="red" class ="warning" small right @click="removePlayer">close</v-icon>
+        <v-icon :disabled="isBlankPlayer" color="red" class ="warning" small right @click="removePlayer">close</v-icon>
         <v-layout justify-center> 
-          <v-img v-on="on" :src="player && player.team ? player.team.shirt : '/images/blank.png'" style="cursor: pointer" max-width="80"></v-img>  
+          <v-img v-on="on" :src="!isBlankPlayer ? player.team.shirt : '/images/blank.png'" style="cursor: pointer" max-width="80"></v-img>  
         </v-layout>
         <div class="darkGreen">
           <v-layout justify-center>
-            <span :class="{'hide-text': !player}" class="font-weight-bold white--text">{{ player ? player.last_name : 'position' }}</span>
+            <span :class="{'hide-text': isBlankPlayer}" class="font-weight-regular white--text text-xs-center">{{ !isBlankPlayer ? player.last_name : 'position' }}</span>
           </v-layout>
           <hr>
           <v-layout justify-center>
-            <span :class="{'hide-text': !player}" class="font-weight-bold white--text">{{ player ? player.price : 'price' }}</span>
+            <span :class="{'hide-text': isBlankPlayer}" class="font-weight-medium white--text">{{ !isBlankPlayer ? player.price : 'price' }}</span>
           </v-layout>
         </div>
     </template>
@@ -41,7 +41,7 @@
 <script>
 export default {
   props: {
-    initialPlayer: Object,
+    player: Object,
     position: String,
     players: Array,
     addPlayerToSquad: Function,
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       popupOpen: false,
-      player: !this.initialPlayer.hasOwnProperty('blank') ? this.initialPlayer : null,
+      isBlankPlayer: this.player.hasOwnProperty('blank') ? true : false,
       search: '',
       headers: [
         { sortable: false},
@@ -64,17 +64,15 @@ export default {
   },
   methods : {
     addPlayer(player) {
-      if (this.player) {
+      if (!this.isBlankPlayer) {
         this.removePlayerFromSquad(this.player)
       }
-      this.player = player
       this.addPlayerToSquad(player)
       this.popupOpen = false
     },
 
     removePlayer() {
       this.removePlayerFromSquad(this.player)
-      this.player = null
     },
 
     filterNames(players, search, filter) {

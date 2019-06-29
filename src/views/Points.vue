@@ -8,35 +8,35 @@
 
     <template v-if="squadExists">
       <v-layout justify-center class="mb-3">
-        <h4 class="display-1">Gameweek 1</h4>
+        <h4 class="display-1">Gameweek {{ activeGameweek ? activeGameweek.number : '' }}</h4>
       </v-layout>
       
       <v-container grid-list-md>
         <v-layout wrap justify-center>      
-          <v-flex xs12 sm8 md6>
+          <v-flex xs12 sm8 md6 lg5>
             <v-img src="/images/startingEleven.png" max-width="600">
               <v-container fluid>
                 <v-layout justify-space-around>
                   <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                    <PlayerStatsPopup :initialPlayer="goalkeeper"/>
+                    <PlayerStatsPopup :player="goalkeeper" />
                   </v-flex>
                 </v-layout>  
                 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                    <PlayerStatsPopup :initialPlayer="defender"/>
+                    <PlayerStatsPopup :player="defender" />
                   </v-flex>
                 </v-layout>
 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                    <PlayerStatsPopup :initialPlayer="midfielder"/>  
+                    <PlayerStatsPopup :player="midfielder" />  
                   </v-flex>
                 </v-layout>
                 
                 <v-layout justify-space-around class="mt-3">
                   <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                    <PlayerStatsPopup :initialPlayer="forward"/>  
+                    <PlayerStatsPopup :player="forward" />  
                   </v-flex>
                 </v-layout>
               </v-container>   
@@ -45,7 +45,7 @@
             <GameweeksTable />
           </v-flex>
 
-          <v-flex v-if="profile" xs8 sm6 lg3 >
+          <v-flex v-if="profile" xs12 sm6 md5 lg4>
             <ProfileCard 
               :name="profile.name" 
               :squadName="profile.squad_name" 
@@ -62,11 +62,12 @@
 
 <script>
 import api from '../api'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 import ProfileCard from '@/components/ProfileCard'
 import LeaguesCard from '@/components/LeaguesCard'
+
 export default {
   components:{
     PlayerStatsPopup,
@@ -89,6 +90,7 @@ export default {
 
   computed: {
     ...mapState({ cachedProfile: 'profile', token: 'token' }),
+    ...mapGetters(['activeGameweek'])
   },
 
   methods:{
