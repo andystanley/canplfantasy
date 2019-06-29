@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Home from './views/Home'
 import Squad from './views/Squad'
 import Points from './views/Points'
-import Rules from './views/Rules'
+import Help from './views/Help'
 import League from './views/League'
 import Leagues from './views/Leagues'
 import store from './store'
+import Forwards from './views/articles/Forwards'
+import Midfielder from './views/articles/Midfielder'
 Vue.use(Router)
 
 const router = new Router({
@@ -38,9 +40,9 @@ const router = new Router({
       meta: { protected: true }
     },
     {
-      path: '/rules',
-      name: 'rules',
-      component: Rules,
+      path: '/help',
+      name: 'help',
+      component: Help,
       meta: { protected: false }
     },
     {
@@ -54,6 +56,16 @@ const router = new Router({
       name: 'league',
       component: League,
       meta: { protected: true }
+    },
+    {
+      path: '/articles/forwards',
+      name: 'forwards',
+      component: Forwards,
+    },
+    {
+      path: '/articles/midfielder',
+      name: 'midfielder',
+      component: Midfielder,
     }
   ]
 })

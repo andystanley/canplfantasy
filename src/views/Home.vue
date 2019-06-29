@@ -4,24 +4,45 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-img
-            src="https://cdn.vox-cdn.com/thumbor/2nhfdsvOBdAX3aHQimT359gcyps=/0x0:1099x733/1200x800/filters:focal(0x0:1099x733)/cdn.vox-cdn.com/uploads/chorus_image/image/23488171/13_bekker.0.jpg"
-            aspect-ratio="2"
+            src="/images/forwardsArticle.jpg"
+            aspect-ratio="1.7"
           ></v-img>
 
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">Why Kyle Bekker is a must have for week one</h3>
-              <br>
-              <div>  </div>
+              <h3 class="headline mb-0">Best Forwards Options in the CANPL: Fall Split</h3>
             </div>
           </v-card-title>
 
           <v-card-actions>
-            <v-btn flat color="orange">Read More</v-btn>
+            <v-btn flat color="orange" to="/articles/forwards">Read More</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
+    <br>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-img
+            src="/images/MidfielderArticle.jpg"
+            aspect-ratio="1.7"
+          ></v-img>
+
+          <v-card-title primary-title>
+            <div>
+              <h3 class="headline mb-0">Best Midfielders Options in the CANPL: Fall Split</h3>
+            </div>
+          </v-card-title>
+
+          <v-card-actions>
+            <v-btn flat color="orange"  to="/articles/midfielder">Read More</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+     <br>
+   
   </v-container>
 </template>
 

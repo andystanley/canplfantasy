@@ -59,7 +59,13 @@ export default {
         { text: 'Price', value: 'price'},
         { text: 'Team', value: 'team.name'}
       ],
-      pagination: {'sortBy': 'points', 'descending': true}
+      pagination: {
+          page: 1,
+          rowsPerPage: 5,
+          totalItems: 0,
+          sortBy: 'price', 
+          descending: true
+      },
     }
   },
   methods : {
