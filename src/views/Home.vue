@@ -1,5 +1,10 @@
 <template>
   <v-container fluid>
+    <v-flex >
+      <div>
+    <h3 class="display-3 mb-2 text-xs-center"> CANPL FANTASY</h3>
+    </div>
+    </v-flex>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
