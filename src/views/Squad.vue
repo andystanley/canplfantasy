@@ -108,6 +108,11 @@ export default {
   },
   data() {
     return {
+       pagination: {
+          page: 1,
+          rowsPerPage: 10,
+          descending: true
+      },
       squad: {
         goalkeepers: [{blank: true}],
         defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}], 
@@ -116,8 +121,8 @@ export default {
       },
       squadSize: 0,
       maxSquadSize: 11,
-      squadPrice: 80.0,
-      maxSquadPrice: 80.0,
+      squadPrice: 75.0,
+      maxSquadPrice: 75.0,
       successPopup: false,
       errrorPopup: false,
       loading: false,

@@ -3,8 +3,10 @@
     <v-data-iterator :items="gameweeks" :pagination.sync="pagination" rows-per-page-text="" :rows-per-page-items="[0]">
       <template v-slot:item="props">
           <v-card class="px-1">
-            <v-card-title class="justify-center">
-              <h6 class="title">Gameweek {{ props.item.number }}</h6>
+            <v-card-title class="align-center justify-space-between row fill-height">
+              <h6 class="title">Home</h6>
+              <h6 class="title"> Gameweek {{ props.item.number }}</h6>
+              <h6 class="title">Away</h6>
             </v-card-title>
             
             <v-divider></v-divider>
