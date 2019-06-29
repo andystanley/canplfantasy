@@ -3,23 +3,22 @@
     <v-layout justify-center>
       <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
     </v-layout>
-    <v-container fluid>
-      <v-layout>
-        <v-spacer></v-spacer>
-        <v-flex>
-          <h6 class="title">Budget</h6> 
-          <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
-        </v-flex>
-        <v-flex>
-          <h6 class="title">Players Selected</h6>
-          <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
-        </v-flex>
-      </v-layout>
-    </v-container>
 
     <v-container grid-list-md>
       <v-layout wrap justify-center>
         <v-flex xs12 sm8 md6 lg5>
+          <v-layout class="pa-2">
+            <v-flex>
+              <h6 class="title">Budget</h6> 
+              <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
+            </v-flex>
+            <v-spacer></v-spacer>
+            <v-flex text-xs-right>
+              <h6 class="title">Players Selected</h6>
+              <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
+            </v-flex>
+          </v-layout>
+          <div class="text-xs-center red white--text font-weight-medium">{{ errorMessage }}</div>
           <v-img src="/images/startingEleven.png">
             <v-container fluid>
               <v-layout justify-space-around>
@@ -121,7 +120,8 @@ export default {
       maxSquadPrice: 80.0,
       successPopup: false,
       errrorPopup: false,
-      loading: false
+      loading: false,
+      errorMessage: ''
     }
   },
   computed: {
@@ -179,9 +179,23 @@ export default {
     },
 
     selectedPlayers() {
-      let selectedPlayers = [this.squad.goalkeepers, this.squad.defenders, this.squad.midfielders, this.squad.forwards].flat()
-      selectedPlayers = selectedPlayers.filter(player => !player.hasOwnProperty('blank'))
+      const selectedPlayers = [this.squad.goalkeepers, this.squad.defenders, this.squad.midfielders, this.squad.forwards].flat()
+      return selectedPlayers.filter(player => !player.hasOwnProperty('blank'))
+    },
+
+    selectedPlayerIds() {
+      const selectedPlayers = this.selectedPlayers()
       return new Set(selectedPlayers.map(player => player.id))
+    },
+
+    maxTeamPlayers() {
+      const selectedPlayers = this.selectedPlayers()
+      const teamPlayers = new Map()
+      for (let player of selectedPlayers) {
+        let players = teamPlayers.get(player.team.name) || 0
+        teamPlayers.set(player.team.name, ++players)
+      }
+      return [...teamPlayers.entries()].reduce((team, players) => players[1] > players[1] ? team : players, ['', 0])
     },
 
     addPlayerToSquad(player) {
@@ -202,6 +216,11 @@ export default {
       }
       this.squadSize += 1
       this.squadPrice -= Number(player.price)
+      
+      const [team, players] = this.maxTeamPlayers()
+      if (players > 4) {
+        this.errorMessage = `Too many players selected from ${team}`
+      }
     },
 
     removePlayerFromSquad(player) {
@@ -222,20 +241,29 @@ export default {
       }
       this.squadSize -= 1
       this.squadPrice += Number(player.price)
+
+      const players = this.maxTeamPlayers()[1]
+      if (players <= 4) {
+        this.errorMessage = ''
+      }
     },
 
     isValidSquad() {
+      const players = this.maxTeamPlayers()[1]
+      if (players > 4) {
+        return false
+      }
       return this.squadSize === 11 && this.squadPrice >= 0
     },
 
     availablePlayers(players) {
-      const selectedPlayers = this.selectedPlayers()
-      return players.filter(player => !selectedPlayers.has(player.id))
+      const selectedPlayerIds = this.selectedPlayerIds()
+      return players.filter(player => !selectedPlayerIds.has(player.id))
     },
 
     save() {
       this.loading = true
-      const players = [...this.selectedPlayers()]
+      const players = [...this.selectedPlayerIds()]
       this.saveSquad({ players })
         .then(() => {
           this.successPopup = true
