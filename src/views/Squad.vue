@@ -200,7 +200,7 @@ export default {
         let players = teamPlayers.get(player.team.name) || 0
         teamPlayers.set(player.team.name, ++players)
       }
-      return [...teamPlayers.entries()].reduce((team, players) => players[1] > players[1] ? team : players, ['', 0])
+      return [...teamPlayers.entries()].reduce((a, b) => b[1] > a[1] ? b : a, ['', 0])
     },
 
     addPlayerToSquad(player) {
