@@ -8,7 +8,7 @@
 
     <template v-if="squadExists">
       <v-layout justify-center class="mb-3">
-        <h4 class="display-1">Gameweek 1</h4>
+        <h4 class="display-1">Gameweek {{ activeGameweek ? activeGameweek.number : '' }}</h4>
       </v-layout>
       
       <v-container grid-list-md>
@@ -62,11 +62,12 @@
 
 <script>
 import api from '../api'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 import ProfileCard from '@/components/ProfileCard'
 import LeaguesCard from '@/components/LeaguesCard'
+
 export default {
   components:{
     PlayerStatsPopup,
@@ -89,6 +90,7 @@ export default {
 
   computed: {
     ...mapState({ cachedProfile: 'profile', token: 'token' }),
+    ...mapGetters(['activeGameweek'])
   },
 
   methods:{

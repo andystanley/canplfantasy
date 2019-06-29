@@ -111,10 +111,22 @@ export default new Vuex.Store({
     isAuthenticated(state) {
       return !!state.token
     },
+
+    activeGameweek(state) {
+      return state.gameweeks.find(gameweek => 
+        gameweek.is_active === true
+      )
+    },
+
+    nextGameweek(state) {
+      return state.gameweeks.find(gameweek => 
+        gameweek.is_next === true
+      )
+    },
     
     goalkeepers(state) {
       return state.players.filter(player => 
-        player.position.short_name == 'GK'
+        player.position.short_name === 'GK'
       )
     },
 
@@ -126,13 +138,13 @@ export default new Vuex.Store({
 
     midfielders(state) {
       return state.players.filter(player => 
-        player.position.short_name == 'MID'
+        player.position.short_name === 'MID'
       )
     },
 
     forwards(state) {
       return state.players.filter(player => 
-        player.position.short_name == 'FW'
+        player.position.short_name === 'FW'
       )
     }
   }

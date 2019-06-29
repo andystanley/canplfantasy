@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout justify-center>
-      <h4 class="display-1">Gameweek 1</h4>
+      <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
     </v-layout>
     <v-container fluid>
       <v-layout>
@@ -126,7 +126,7 @@ export default {
   },
   computed: {
     ...mapState(['profile']),
-    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards'])
+    ...mapGetters(['goalkeepers', 'defenders', 'midfielders', 'forwards', 'nextGameweek'])
   },
   
   methods: {
