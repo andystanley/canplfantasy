@@ -7,16 +7,14 @@
     <v-footer justify-space-around color="#fafafa" class="mb-3">
       <v-layout justify-center>
         <a href="https://www.reddit.com/r/canplfantasy/">
-          <img src="/images/redditImage.png" alt="reddit" height="39" width="39" >
+          <img src="/images/redditImage.png" alt="reddit" height="39" width="39">
         </a>  
        
-          <img src="/images/logo.png" alt="Logo" height="42" width="42">
+        <img src="/images/logo.png" alt="logo" height="42" width="42">
         
         <a href="https://twitter.com/canplfantasy">
           <img src="/images/twitter.png" alt="twitter" height="39" width="39" >
         </a>
-
-        
       </v-layout>
     </v-footer>
   </v-app>

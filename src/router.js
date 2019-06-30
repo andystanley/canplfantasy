@@ -8,7 +8,7 @@ import League from './views/League'
 import Leagues from './views/Leagues'
 import store from './store'
 import Forwards from './views/articles/Forwards'
-import Midfielder from './views/articles/Midfielder'
+import Midfielders from './views/articles/Midfielders'
 Vue.use(Router)
 
 const router = new Router({
@@ -63,9 +63,9 @@ const router = new Router({
       component: Forwards,
     },
     {
-      path: '/articles/midfielder',
-      name: 'midfielder',
-      component: Midfielder,
+      path: '/articles/midfielders',
+      name: 'midfielders',
+      component: Midfielders,
     }
   ]
 })

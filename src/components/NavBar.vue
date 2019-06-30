@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-toolbar flat dense app>
-      <v-toolbar-side-icon class="grey--text hidden-md-and-up" v-if="isAuthenticated" @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon class="grey--text hidden-md-and-up" @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-img src="/images/logo.png" @click="$router.push('/')" max-width="45" class="mr-3" style="cursor: pointer"></v-img>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat v-for="link in links" :key="link.text" router :to="link.route">{{ link.text }}</v-btn>

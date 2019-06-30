@@ -2,7 +2,7 @@
   <v-container fluid>
     <template v-if="!squadExists">
       <v-layout justify-center>
-        <h4 class="display-1">Gameweek 1 has not started</h4>
+        <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }} has not finished</h4>
       </v-layout>
     </template>
 
@@ -90,7 +90,7 @@ export default {
 
   computed: {
     ...mapState({ cachedProfile: 'profile', token: 'token' }),
-    ...mapGetters(['activeGameweek'])
+    ...mapGetters(['activeGameweek', 'nextGameweek'])
   },
 
   methods:{
