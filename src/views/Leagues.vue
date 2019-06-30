@@ -18,15 +18,15 @@
             <v-list dense>
               <v-list-tile>
                 <v-list-tile-content>Players:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ league.profiles_count }}</v-list-tile-content>
+                <span>{{ league.profiles_count }}</span>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>Total Points:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ league.points }}</v-list-tile-content>
+                <span>{{ league.points }}</span>
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-content>Leader:</v-list-tile-content>
-                <v-list-tile-content class="align-end">{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</v-list-tile-content>
+                <span>{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</span>
               </v-list-tile>
             </v-list>
             <v-divider></v-divider>
