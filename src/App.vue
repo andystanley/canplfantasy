@@ -13,7 +13,7 @@
           <img src="/images/logo.png" alt="Logo" height="42" width="42">
         
         <a href="https://twitter.com/canplfantasy">
-          <img src="/images/Twitter.png" alt="twitter" height="39" width="39" >
+          <img src="/images/twitter.png" alt="twitter" height="39" width="39" >
         </a>
 
         
