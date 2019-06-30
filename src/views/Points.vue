@@ -1,15 +1,11 @@
 <template>
   <v-container fluid>
     <template v-if="!squadExists">
-      <v-layout justify-center>
-        <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }} has not finished</h4>
-      </v-layout>
+      <h4 class="display-1 text-xs-center">Gameweek {{ nextGameweek ? nextGameweek.number : '' }} has not finished</h4>
     </template>
 
     <template v-if="squadExists">
-      <v-layout justify-center class="mb-3">
-        <h4 class="display-1">Gameweek {{ activeGameweek ? activeGameweek.number : '' }}</h4>
-      </v-layout>
+      <h4 class="display-1 text-xs-center">Gameweek {{ activeGameweek ? activeGameweek.number : '' }}</h4>
       
       <v-container grid-list-md>
         <v-layout wrap justify-center>      

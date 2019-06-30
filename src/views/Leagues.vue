@@ -1,9 +1,7 @@
 <template>
-  <v-container>
-    <v-layout justify-center>
-      <h4 class="display-1">Leagues</h4>
-    </v-layout>
-
+  <v-container fluid>
+    <h4 class="display-1 text-xs-center">Leagues</h4>
+    
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex v-for="league in leagues" :key="league.id" align-center xs12 sm6 md4 lg3 class="mb-4">

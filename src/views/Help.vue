@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout justify-center>
-      <h4 class="display-1 ma-3">Help</h4>
+      <h4 class="display-1 mb-3">Help</h4>
     </v-layout>
 
     <v-expansion-panel>
@@ -80,7 +80,7 @@
     </v-expansion-panel>
 
     <v-layout justify-center>
-      <h4 class="display-1 ma-3">FAQ</h4>
+      <h4 class="display-1 my-3">FAQ</h4>
     </v-layout>
     <v-expansion-panel>
       <v-expansion-panel-content>

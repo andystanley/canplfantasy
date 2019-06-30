@@ -1,8 +1,6 @@
 <template>
   <v-container fluid>
-    <v-layout justify-center>
-      <h4 class="display-1 mb-4">{{ league.name }}</h4>
-    </v-layout>
+    <h4 class="display-1 text-xs-center mb-4">{{ league.name }}</h4>
 
     <v-layout justify-center>
       <v-flex xs12 sm10 md8 lg6>
