@@ -4,7 +4,7 @@
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
          <v-img
-            src="/images/MidfielderArticle.jpg"
+            src="/images/midfielderArticleReal.jpg"
             aspect-ratio="1.7"
           ></v-img>
 

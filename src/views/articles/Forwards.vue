@@ -4,7 +4,7 @@
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
          <v-img
-            src="/images/forwardsArticle.jpg"
+            src="/images/forwardArticleReal.jpg"
             aspect-ratio="1.7"
           ></v-img>
 

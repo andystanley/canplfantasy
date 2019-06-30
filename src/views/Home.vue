@@ -2,20 +2,20 @@
   <v-container fluid>
     <v-flex >
       <div>
-    <h3 class="display-3 mb-2 text-xs-center"> CANPL FANTASY</h3>
+    <h3 class="display-2 mb-4 text-xs-center">CANPL Fantasy</h3>
     </div>
     </v-flex>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-img
-            src="/images/forwardsArticle.jpg"
+            src="/images/forwardArticleReal.jpg"
             aspect-ratio="1.7"
           ></v-img>
 
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">Best Forwards Options in the CANPL: Fall Split</h3>
+              <h3 class="headline mb-0">Forwards to watch: Fall Split</h3>
             </div>
           </v-card-title>
 
@@ -30,13 +30,13 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-img
-            src="/images/MidfielderArticle.jpg"
+            src="/images/midfielderArticleReal.jpg"
             aspect-ratio="1.7"
           ></v-img>
 
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">Best Midfielders Options in the CANPL: Fall Split</h3>
+              <h3 class="headline mb-0">Midfielders to watch: Fall Split</h3>
             </div>
           </v-card-title>
 
