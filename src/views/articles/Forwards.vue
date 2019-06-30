@@ -79,7 +79,7 @@
             <span class="subheading">Anthony Novak (8.0m)</span>
             <p class="body-1">Anthony Novak sustained a knee injury that limited him to 5 games. However, in these 5 games Novak has scored twice. If Novak can get fit and stay healthy he might prove to be dangerous option up front.</p>
           
-            <p class="grey--text caption">* We are interested in getting CANPL game photos. If you take photos and are interested in partering with us, please reach out to us at contact@canplfantasy.ca</p>
+            <p class="grey--text caption">* We are interested in photos of CANPL games. If you take photos and are interested in partering with us, please reach out to us at contact@canplfantasy.ca</p>
           </v-card-text>
         </v-card>
       </v-flex>

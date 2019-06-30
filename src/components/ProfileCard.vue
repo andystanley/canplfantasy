@@ -14,11 +14,11 @@
       <v-list dense>
         <v-list-tile>
           <v-list-tile-content>Overall Points:</v-list-tile-content>
-          <v-list-tile-content class="align-end">{{ points }}</v-list-tile-content>
+          <span>{{ points }}</span>
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-content>Gameweek Points:</v-list-tile-content>
-          <v-list-tile-content class="align-end">{{ gameweekPoints }}</v-list-tile-content>
+          <span>{{ gameweekPoints }}</span>
         </v-list-tile>
       </v-list>
     </v-card>

@@ -1,8 +1,6 @@
 <template>
   <v-container fluid>
-    <v-layout justify-center>
-      <h4 class="display-1">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
-    </v-layout>
+    <h4 class="display-1 text-xs-center">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
 
     <v-container grid-list-md>
       <v-layout wrap justify-center>
