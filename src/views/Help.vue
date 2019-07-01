@@ -65,7 +65,7 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
-      
+
     <v-expansion-panel>
       <v-expansion-panel-content>
         <div slot="header" class="py-1">Gameweek Deadline</div>
@@ -73,6 +73,19 @@
           <v-card-text class="px-4">
               <ul>
                 <li>The deadline to submit your squad is 1 hour before the first game of the gameweek</li>
+              </ul>
+          </v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+
+    <v-expansion-panel>
+      <v-expansion-panel-content>
+        <div slot="header" class="py-1">Transfers</div>
+        <v-card>
+          <v-card-text class="px-4">
+              <ul>
+                <li>You can make unlimited transfers until the gameweek deadline</li>
               </ul>
           </v-card-text>
         </v-card>

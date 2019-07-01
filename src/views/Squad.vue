@@ -60,6 +60,7 @@
           <div class="text-xs-center">
             <v-btn @click="save()" :disabled="!isValidSquad()" :loading="loading" class="success">Save Squad</v-btn>
           </div>
+          <div class="grey--text text-xs-center caption">* You can make unlimited transfers until the gameweek deadline</div>
           
           <GameweeksTable />
         </v-flex>
