@@ -10,52 +10,37 @@
       </v-layout>
       <hr>
       <v-layout justify-center>
-        <span :class="{'hide-text': !player}" class="font-weight-medium white--text">{{ player.points }}</span>
+        <span :class="{'hide-text': !player}" class="font-weight-medium white--text">{{ totalPoints(player.active_stats) }}</span>
       </v-layout>
     </div>
     </template>
       <v-card>
-        <v-card-title>
-          <h6 class="title">{{ `${player.first_name} ${player.last_name}` }}</h6>
+        <v-card-title class="pt-4">
+          <div>
+            <h6 class="title">{{ `${player.first_name} ${player.last_name} (${player.price}m)` }}</h6>
+            <span class="subheading grey--text">{{ totalPoints(player.active_stats) }} points</span>
+          </div>
         </v-card-title>
       <v-card-text>
-        <v-data-table :headers="getHeaders" :items="player.stats" :pagination.sync="pagination" class="elevation-1">
-          <template v-slot:items="props" :headers="headers" class="elevation-1"> 
-            <tr>
-              <td>{{ props.item.game.gameweek.number }}</td>
-              <td>{{ props.item.points }}</td>
-              <td>{{ props.item.minutes_played }}</td>
-              <template v-if="player.position.short_name === 'GK'">
-                <td>{{ props.item.saves }}</td>
-                <td>{{ props.item.clean_sheets }}</td>
-                <td>{{ props.item.yellow_cards }}</td>
-                <td>{{ props.item.red_cards }}</td>
-                <td>{{ props.item.goals }}</td>
-                <td>{{ props.item.assists }}</td>
-              </template>
-              <template v-if="player.position.short_name === 'DEF'">
-                <td>{{ props.item.clean_sheets }}</td>
-                <td>{{ props.item.goals }}</td>
-                <td>{{ props.item.assists }}</td>
-                <td>{{ props.item.yellow_cards }}</td>
-                <td>{{ props.item.red_cards }}</td>
-              </template>
-              <template v-if="player.position.short_name === 'MID'">
-                <td>{{ props.item.goals }}</td>
-                <td>{{ props.item.assists }}</td>
-                <td>{{ props.item.yellow_cards }}</td>
-                <td>{{ props.item.red_cards }}</td>
-                <td>{{ props.item.clean_sheets }}</td>
-              </template>
-              <template v-if="player.position.short_name === 'FW'">
-                <td>{{ props.item.goals }}</td>
-                <td>{{ props.item.assists }}</td>
-                <td>{{ props.item.yellow_cards }}</td>
-                <td>{{ props.item.red_cards }}</td>
-              </template>
-            </tr>
-          </template>
-        </v-data-table>
+        <v-list dense>
+          <v-list-group v-for="stat in player.active_stats" :key="stat.id" no-action>
+            <template v-slot:activator>
+              <v-list-tile class="py-1">
+                <span class="subheading">{{ player.team.name === stat.game.home_team.name ? stat.game.home_score : stat.game.away_score }} - {{ player.team.name === stat.game.home_team.name ? stat.game.away_score : stat.game.home_score }}</span>
+                <v-img max-width="35" class="mx-2" :src="player.team.name === stat.game.home_team.name ? stat.game.away_team.shirt : stat.game.home_team.shirt"></v-img>
+                <v-list-tile-content>
+                  <v-list-tile-title class="subheading">{{ stat.points }} points</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </template>
+
+            <v-list-tile v-for="(value, key) in prettyStat(stat)" :key="value.id">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ key }}: {{ value }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list-group>
+        </v-list>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -68,12 +53,37 @@ export default {
     position: String,
     players: Array
   },
-   data () {
+
+   data() {
     return {
       popupOpen: false,
       pagination: {'sortBy': 'game.gameweek.number', 'descending': true}
     }
   },
+
+  methods: {
+    totalPoints(stats) {
+      return stats.reduce((a, b) => a + b.points, 0)
+    },
+
+    prettyStat(stat) {
+      const hideKeys = new Set(['id', 'game', 'points'])
+      const pretty = {}
+      
+      for (const key in stat) {
+        if (!hideKeys.has(key)) {
+          let prettyKey = key.replace(/_/g, ' ')
+          prettyKey = prettyKey.charAt(0).toUpperCase() + prettyKey.slice(1)
+          
+          if (stat[key] !== 0) {
+            pretty[prettyKey] = stat[key]
+          } 
+        }
+      }
+      return pretty
+    }
+  },
+
   computed:{
     getHeaders(){
       const defaultHeaders = [
@@ -124,6 +134,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .v-table thead tr th {
   padding-right: 0px !important;
