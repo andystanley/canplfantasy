@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="600" v-model="popupOpen">
+  <v-dialog max-width="400" v-model="popupOpen">
     <template v-slot:activator="{ on }">
     <v-layout justify-center>
       <v-img v-on="on" :src="player.team.shirt" style="cursor: pointer" max-width="80"></v-img>  
@@ -14,13 +14,13 @@
       </v-layout>
     </div>
     </template>
-      <v-card>
-        <v-card-title class="pt-4">
-          <div>
-            <h6 class="title">{{ `${player.first_name} ${player.last_name} (${player.price}m)` }}</h6>
-            <span class="subheading grey--text">{{ totalPoints(player.active_stats) }} points</span>
-          </div>
-        </v-card-title>
+    <v-card>
+      <v-card-title class="pt-4">
+        <div>
+          <h6 class="title">{{ `${player.first_name} ${player.last_name} (${player.price}m)` }}</h6>
+          <span class="subheading grey--text">{{ totalPoints(player.active_stats) }} points</span>
+        </div>
+      </v-card-title>
       <v-card-text>
         <v-list dense>
           <v-list-group v-for="stat in player.active_stats" :key="stat.id" no-action>
