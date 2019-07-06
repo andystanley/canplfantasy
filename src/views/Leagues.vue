@@ -1,50 +1,65 @@
 <template>
   <v-container fluid>
-    <h4 class="display-1 text-xs-center">Leagues</h4>
-    
-    <v-container fluid grid-list-md>
-      <v-layout row wrap>
-        <v-flex v-for="league in leagues" :key="league.id" align-center xs12 sm6 md4 lg3 class="mb-4">
-          <v-card>
-            <v-card-title>
-              <div>
-                <h5 class="headline">{{ league.short_name }}</h5>
-                <span :class="{'hide-text': league.short_name === 'Overall'}" class="grey--text">Fan League</span>
-              </div>
-              </v-card-title>
-            <v-divider></v-divider>
-            <v-list dense>
-              <v-list-tile>
-                <v-list-tile-content>Players:</v-list-tile-content>
-                <span>{{ league.profiles_count }}</span>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-content>Total Points:</v-list-tile-content>
-                <span>{{ league.points }}</span>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-content>Leader:</v-list-tile-content>
-                <span>{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</span>
-              </v-list-tile>
-            </v-list>
-            <v-divider></v-divider>
-            <v-layout justify-end>
-              <v-btn flat color="primary" :to="`league/${league.id}`">
-                View
-              </v-btn>
-            </v-layout>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <Loading :loading="loading" :error="error" :errorDetail="errorDetail" />
+
+    <template v-if="leagues.length">
+      <h4 class="display-1 text-xs-center">Leagues</h4>
+
+      <v-container fluid grid-list-md>
+        <v-layout row wrap>
+          <v-flex v-for="league in leagues" :key="league.id" align-center xs12 sm6 md4 lg3 class="mb-4">
+            <v-card>
+              <v-card-title>
+                <div>
+                  <h5 class="headline">{{ league.short_name }}</h5>
+                  <span :class="{'hide-text': league.short_name === 'Overall'}" class="grey--text">Fan League</span>
+                </div>
+                </v-card-title>
+              <v-divider></v-divider>
+              <v-list dense>
+                <v-list-tile>
+                  <v-list-tile-content>Players:</v-list-tile-content>
+                  <span>{{ league.profiles_count }}</span>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-content>Total Points:</v-list-tile-content>
+                  <span>{{ league.points }}</span>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-content>Leader:</v-list-tile-content>
+                  <span>{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</span>
+                </v-list-tile>
+              </v-list>
+              <v-divider></v-divider>
+              <v-layout justify-end>
+                <v-btn flat color="primary" :to="`league/${league.id}`">
+                  View
+                </v-btn>
+              </v-layout>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </template>
   </v-container>
 </template>
 
 <script>
+import Loading from '@/components/Loading'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  components: { },
+  components: { 
+    Loading
+  },
+
+  data() {
+    return {
+      loading: true,
+      error: '',
+      errorDetail: ''
+    }
+  },
 
   computed: {
     ...mapState(['leagues'])
@@ -57,6 +72,13 @@ export default {
   created() {
     if (!this.leagues.length) {
       this.getLeagues()
+      .catch(() => {
+        this.error = 'An error occurred :( Please try refreshing the page'
+        this.errorDetail = 'If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca'
+      })
+      .then(() => this.loading = false)
+    } else {
+      this.loading = false
     }
   }
 }

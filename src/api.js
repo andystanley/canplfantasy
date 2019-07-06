@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let client = axios.create({
-  baseURL: 'http://127.0.0.1:8000/'
+  baseURL: process.env.VUE_APP_API_URL
 })
 
 const handle = (error) => {
@@ -17,7 +17,7 @@ const handle = (error) => {
 export default {  
   setToken(token) {
     client = axios.create({
-      baseURL: 'http://127.0.0.1:8000/',
+      baseURL: process.env.VUE_APP_API_URL,
       headers: {'Authorization': 'Token ' + token}
     })
   },

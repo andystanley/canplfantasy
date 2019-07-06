@@ -1,93 +1,96 @@
 <template>
   <v-container fluid>
-    <h4 class="display-1 text-xs-center">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
-
-    <v-container grid-list-md>
-      <v-layout wrap justify-center>
-        <v-flex xs12 sm8 md6 lg5>
-          <v-layout class="pa-2">
-            <v-flex>
-              <h6 class="title">Budget</h6> 
-              <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
-            </v-flex>
-            <v-spacer></v-spacer>
-            <v-flex text-xs-right>
-              <h6 class="title">Players Selected</h6>
-              <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
-            </v-flex>
-          </v-layout>
-          <div class="text-xs-center red white--text font-weight-medium">{{ errorMessage }}</div>
-          <v-img src="/images/startingEleven.png">
-            <v-container fluid>
-              <v-layout justify-space-around>
-                <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
-                  <SelectPlayerPopup position="goalkeeper" :player="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
-                </v-flex>
-              </v-layout>  
-              
-              <v-layout justify-space-around>
-                <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
-                  <SelectPlayerPopup position="defender" :player="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-                </v-flex>
-              </v-layout>
-
-              <v-layout justify-space-around>
-                <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
-                  <SelectPlayerPopup position="midfielder" :player="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
-                </v-flex>
-              </v-layout>
-              
-              <v-layout justify-space-around>
-                <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
-                  <SelectPlayerPopup position="forward" :player="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
-                </v-flex>
-              </v-layout>
-            </v-container>   
-          </v-img>
-
-          <div class="text-xs-center">
-            <v-btn-toggle dark>
-              <v-btn @click="setFormation(5,4,1)" flat>5-4-1</v-btn>
-              <v-btn @click="setFormation(5,3,2)" flat>5-3-2</v-btn>
-              <v-btn @click="setFormation(4,5,1)" flat>4-5-1</v-btn>
-              <v-btn @click="setFormation(4,4,2)" flat>4-4-2</v-btn>
-              <v-btn @click="setFormation(4,3,3)" flat>4-3-3</v-btn>
-              <v-btn @click="setFormation(3,5,2)" flat>3-5-2</v-btn>
-              <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
-            </v-btn-toggle>
-          </div>
-
-          <div class="text-xs-center">
-            <v-btn @click="save()" :disabled="!isValidSquad()" :loading="loading" class="success">Save Squad</v-btn>
-          </div>
-          <div class="grey--text text-xs-center caption">* You can make unlimited transfers until the gameweek deadline</div>
-          
-          <GameweeksTable />
-        </v-flex>
-
-        <v-flex v-if="profile" xs12 sm6 md5 lg4>
-            <ProfileCard 
-              :name="profile.name" 
-              :squadName="profile.squad_name" 
-              :team="profile.favorite_team"
-              :points="profile.points" 
-              :gameweekPoints="profile.active_squad ? profile.active_squad.points : 0" />
-          <LeaguesCard :leagues="profile.leagues" />
-        </v-flex>
-      </v-layout>
-    </v-container>
-
-    <v-snackbar v-model="successPopup" :timeout="3000" color="success" class="justify-center">
-      <v-layout justify-center>
-        Squad saved!
-      </v-layout>
-    </v-snackbar>
-    <v-snackbar v-model="errrorPopup" :timeout="3000" color="error" class="justify-center">
-      <v-layout justify-center>
-        Unable to save squad. Please try again
-      </v-layout>
-    </v-snackbar>
+    <Loading :loading="loading" :error="error" :errorDetail="errorDetail" />
     
+    <template v-if="profile">
+      <h4 class="display-1 text-xs-center">Gameweek {{ nextGameweek ? nextGameweek.number : '' }}</h4>
+
+      <v-container grid-list-md>
+        <v-layout wrap justify-center>
+          <v-flex xs12 sm8 md6 lg5>
+            <v-layout class="pa-2">
+              <v-flex>
+                <h6 class="title">Budget</h6> 
+                <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex text-xs-right>
+                <h6 class="title">Players Selected</h6>
+                <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
+              </v-flex>
+            </v-layout>
+            <div class="text-xs-center red white--text font-weight-medium">{{ squadError }}</div>
+            <v-img src="/images/startingEleven.png">
+              <v-container fluid>
+                <v-layout justify-space-around>
+                  <v-flex xs2 v-for="goalkeeper in squad.goalkeepers" :key="goalkeeper.id">
+                    <SelectPlayerPopup position="goalkeeper" :player="goalkeeper" :players="availablePlayers(goalkeepers)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />          
+                  </v-flex>
+                </v-layout>  
+                
+                <v-layout justify-space-around>
+                  <v-flex xs2 v-for="defender in squad.defenders" :key="defender.id">
+                    <SelectPlayerPopup position="defender" :player="defender" :players="availablePlayers(defenders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  </v-flex>
+                </v-layout>
+
+                <v-layout justify-space-around>
+                  <v-flex xs2 v-for="midfielder in squad.midfielders" :key="midfielder.id">
+                    <SelectPlayerPopup position="midfielder" :player="midfielder" :players="availablePlayers(midfielders)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" />   
+                  </v-flex>
+                </v-layout>
+                
+                <v-layout justify-space-around>
+                  <v-flex xs2 v-for="forward in squad.forwards" :key="forward.id">
+                    <SelectPlayerPopup position="forward" :player="forward" :players="availablePlayers(forwards)" v-bind="{addPlayerToSquad, removePlayerFromSquad}" /> 
+                  </v-flex>
+                </v-layout>
+              </v-container>   
+            </v-img>
+
+            <div class="text-xs-center">
+              <v-btn-toggle dark>
+                <v-btn @click="setFormation(5,4,1)" flat>5-4-1</v-btn>
+                <v-btn @click="setFormation(5,3,2)" flat>5-3-2</v-btn>
+                <v-btn @click="setFormation(4,5,1)" flat>4-5-1</v-btn>
+                <v-btn @click="setFormation(4,4,2)" flat>4-4-2</v-btn>
+                <v-btn @click="setFormation(4,3,3)" flat>4-3-3</v-btn>
+                <v-btn @click="setFormation(3,5,2)" flat>3-5-2</v-btn>
+                <v-btn @click="setFormation(3,4,3)" flat>3-4-3</v-btn>
+              </v-btn-toggle>
+            </div>
+
+            <div class="text-xs-center">
+              <v-btn @click="save()" :disabled="!isValidSquad()" :loading="popupLoading" class="success">Save Squad</v-btn>
+            </div>
+            <div class="grey--text text-xs-center caption">* You can make unlimited transfers until the gameweek deadline</div>
+            
+            <GameweeksTable />
+          </v-flex>
+
+          <v-flex v-if="profile" xs12 sm6 md5 lg4>
+              <ProfileCard 
+                :name="profile.name" 
+                :squadName="profile.squad_name" 
+                :team="profile.favorite_team"
+                :points="profile.points" 
+                :gameweekPoints="profile.active_squad ? profile.active_squad.points : 0" />
+            <LeaguesCard :leagues="profile.leagues" />
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-snackbar v-model="successPopup" :timeout="3000" color="success" class="justify-center">
+        <v-layout justify-center>
+          Squad saved!
+        </v-layout>
+      </v-snackbar>
+      <v-snackbar v-model="errrorPopup" :timeout="3000" color="error" class="justify-center">
+        <v-layout justify-center>
+          Unable to save squad. Please try again
+        </v-layout>
+      </v-snackbar>
+    </template>
   </v-container>
 </template>
 
@@ -97,13 +100,15 @@ import SelectPlayerPopup from '@/components/SelectPlayerPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 import ProfileCard from '@/components/ProfileCard'
 import LeaguesCard from '@/components/LeaguesCard'
+import Loading from '@/components/Loading'
 
 export default {
   components:{
     SelectPlayerPopup,
     GameweeksTable,
     ProfileCard,
-    LeaguesCard
+    LeaguesCard,
+    Loading
   },
   data() {
     return {
@@ -124,8 +129,11 @@ export default {
       maxSquadPrice: 75.0,
       successPopup: false,
       errrorPopup: false,
-      loading: false,
-      errorMessage: ''
+      popupLoading: false,
+      squadError: '',
+      loading: true,
+      error: '',
+      errorDetail: ''
     }
   },
   computed: {
@@ -223,7 +231,7 @@ export default {
       
       const [team, players] = this.maxTeamPlayers()
       if (players > 4) {
-        this.errorMessage = `Too many players selected from ${team}`
+        this.squadError = `Too many players selected from ${team}`
       }
     },
 
@@ -248,7 +256,7 @@ export default {
 
       const players = this.maxTeamPlayers()[1]
       if (players <= 4) {
-        this.errorMessage = ''
+        this.squadError = ''
       }
     },
 
@@ -266,7 +274,7 @@ export default {
     },
 
     save() {
-      this.loading = true
+      this.popupLoading = true
       const players = [...this.selectedPlayerIds()]
       this.saveSquad({ players })
         .then(() => {
@@ -274,18 +282,24 @@ export default {
           this.getProfile()
         })
         .catch(() => this.errorPopup = true)
-        .then(() => this.loading = false)
+        .then(() => this.popupLoading = false)
     }
   },
   created() {
     if (!this.profile) {
       this.getProfile()
-        .then(() => {
-          this.setupSquad()
-        })
+      .then(() => {
+        this.setupSquad()
+      })
+      .catch(() => {
+        this.error = 'An error occurred :( Please try refreshing the page'
+        this.errorDetail = 'If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca'
+      })
+      .then(() => this.loading = false)
     }
     else {
       this.setupSquad()
+      this.loading = false
     }
   },
 }

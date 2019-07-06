@@ -1,8 +1,6 @@
 <template>
   <v-container fluid>
-    <template v-if="!squadExists">
-      <h4 class="display-1 text-xs-center">Gameweek {{ nextGameweek ? nextGameweek.number : '' }} has not finished</h4>
-    </template>
+    <Loading :loading="loading" :error="error" :errorDetail="errorDetail" />
 
     <template v-if="squadExists">
       <h4 class="display-1 text-xs-center">Gameweek {{ activeGameweek ? activeGameweek.number : '' }}</h4>
@@ -63,13 +61,15 @@ import PlayerStatsPopup from '@/components/PlayerStatsPopup'
 import GameweeksTable from '@/components/GameweeksTable'
 import ProfileCard from '@/components/ProfileCard'
 import LeaguesCard from '@/components/LeaguesCard'
+import Loading from '@/components/Loading'
 
 export default {
   components:{
     PlayerStatsPopup,
     GameweeksTable,
     ProfileCard,
-    LeaguesCard
+    LeaguesCard,
+    Loading
   },
   data() {
     return {
@@ -80,7 +80,10 @@ export default {
         defenders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}, {blank: true}],
         midfielders: [{blank: true}, {blank: true}, {blank: true}, {blank: true}],
         forwards: [{blank: true}]
-      }
+      },
+      loading: true,
+      error: '',
+      errorDetail: ''
     }
   },
 
@@ -166,23 +169,53 @@ export default {
 
     if (profileId) {
       api.setToken(this.token)
-      
       api.getProfileById(profileId)
         .then(profile => {
           this.profile = profile
-          this.setupSquad()
+          if (this.profile && !this.profile.active_squad) {
+            this.error = 'The gameweek has not finished'
+          } 
+          else {
+            this.setupSquad()
+          }
+        })
+        .catch(() => {
+          this.error = 'An error occurred :( Please try refreshing the page'
+          this.errorDetail = 'If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca'
+        })
+        .then(() => {
+          this.loading = false
         })
     } 
     else {
       if (!this.cachedProfile) {
-        this.getProfile().then(() => {
+        this.getProfile()
+        .then(() => {
           this.profile = this.cachedProfile
-          this.setupSquad()
+          if (this.profile && !this.profile.active_squad) {
+            this.error = 'The gameweek has not finished'
+          }
+          else {
+            this.setupSquad()
+          }
+        })
+        .catch(() => {
+          this.error = 'An error occurred :( Please try refreshing the page'
+          this.errorDetail = 'If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca'
+        })
+        .then(() => {
+          this.loading = false
         })
       }
       else {
         this.profile = this.cachedProfile
-        this.setupSquad()
+        if (this.profile && !this.profile.active_squad) {
+          this.error = 'The gameweek has not finished'
+        } 
+        else {
+          this.setupSquad()
+        }
+        this.loading = false
       }
     }
   }
