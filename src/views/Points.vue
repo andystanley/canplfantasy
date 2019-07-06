@@ -173,7 +173,7 @@ export default {
         .then(profile => {
           this.profile = profile
           if (this.profile && !this.profile.active_squad) {
-            this.error = 'A squad has not been entered or the gameweek has not finished'
+            this.error = 'The gameweek has not finished'
           } 
           else {
             this.setupSquad()
@@ -193,7 +193,7 @@ export default {
         .then(() => {
           this.profile = this.cachedProfile
           if (this.profile && !this.profile.active_squad) {
-            this.error = 'A squad has not been entered or the gameweek has not finished'
+            this.error = 'The gameweek has not finished'
           }
           else {
             this.setupSquad()
@@ -210,7 +210,7 @@ export default {
       else {
         this.profile = this.cachedProfile
         if (this.profile && !this.profile.active_squad) {
-          this.error = 'A squad has not been entered or the gameweek has not finished'
+          this.error = 'The gameweek has not finished'
         } 
         else {
           this.setupSquad()
