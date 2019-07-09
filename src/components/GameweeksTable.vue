@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-data-iterator :items="gameweeks" :pagination="pagination" rows-per-page-text="" :rows-per-page-items="[0]">
+    <v-data-iterator :items="gameweeks" :pagination="pagination" rows-per-page-text="" :rows-per-page-items="[0]" hide-actions>
       <template v-slot:item="props">
           <v-card class="px-1">
             <v-card-title class="align-center justify-space-between row fill-height">
