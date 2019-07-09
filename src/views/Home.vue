@@ -8,7 +8,7 @@
           <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
           <v-card-action>
           
-              <div class="grey--text text-xs-center caption">*All credit for the images goes to John Jacques</div>
+              <div class="grey--text text-xs-center caption">*Images taken by John Jacques</div>
           
           </v-card-action>
           <v-card-title primary-title>
@@ -28,7 +28,7 @@
           <v-img src="/images/midfielderArticleReal.jpg" aspect-ratio="1.7"></v-img>
           <v-card-action>
             <div>
-              <div class="grey--text text-xs-center caption">*All credit for the images goes to John Jacques</div>
+              <div class="grey--text text-xs-center caption">*Images taken by John Jacques</div>
             </div>
           </v-card-action>
           <v-card-title primary-title>
