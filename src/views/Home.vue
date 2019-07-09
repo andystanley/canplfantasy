@@ -5,12 +5,7 @@
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
-          <v-card-action>
-          
-              <div class="grey--text text-xs-center caption">*Images taken by John Jacques</div>
-          
-          </v-card-action>
+          <v-img src="/images/forwardArticle.jpg"></v-img>
           <v-card-title primary-title>
             <h5 class="headline">Forwards to Watch: Fall Split</h5>
           </v-card-title>
@@ -25,12 +20,7 @@
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/midfielderArticleReal.jpg" aspect-ratio="1.7"></v-img>
-          <v-card-action>
-            <div>
-              <div class="grey--text text-xs-center caption">*Images taken by John Jacques</div>
-            </div>
-          </v-card-action>
+          <v-img src="/images/midfielderArticle.jpg"></v-img>
           <v-card-title primary-title>
             <h5 class="headline">Midfielders to Watch: Fall Split</h5>
           </v-card-title>

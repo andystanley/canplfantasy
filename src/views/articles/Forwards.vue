@@ -3,7 +3,8 @@
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
+          <v-img src="/images/forwardArticle.jpg"></v-img>
+          <div class="grey--text text-xs-center caption">Photo taken by <a href="http://www.johnjacques.ca/photography/">John Jacques</a></div>
 
           <v-card-title primary-title>
             <h5 class="headline">Forwards to Watch: Fall Split</h5>
