@@ -3,7 +3,8 @@
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
+          <v-img src="/images/forwardArticle.jpg"></v-img>
+          <div class="grey--text text-xs-center caption">Photo taken by <a href="http://www.johnjacques.ca/photography/">John Jacques</a></div>
 
           <v-card-title primary-title>
             <h5 class="headline">Forwards to Watch: Fall Split</h5>
@@ -79,7 +80,7 @@
             <span class="subheading">Anthony Novak (8.0m)</span>
             <p class="body-1">Anthony Novak sustained a knee injury that limited him to 5 games. However, in these 5 games Novak has scored twice. If Novak can get fit and stay healthy he might prove to be dangerous option up front.</p>
           
-            <p class="grey--text caption">* We are interested in photos of CANPL games. If you take photos and are interested in partering with us, please reach out to us at contact@canplfantasy.ca</p>
+           
           </v-card-text>
         </v-card>
       </v-flex>

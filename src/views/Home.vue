@@ -1,12 +1,11 @@
 <template>
   <v-container fluid>
-    <h4 class="display-1 text-xs-center">CANPL Fantasy</h4>
+    <h4 class="display-1 text-xs-center">CanPL Fantasy</h4>
     
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
-
+          <v-img src="/images/forwardArticle.jpg"></v-img>
           <v-card-title primary-title>
             <h5 class="headline">Forwards to Watch: Fall Split</h5>
           </v-card-title>
@@ -21,8 +20,7 @@
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
-          <v-img src="/images/midfielderArticleReal.jpg" aspect-ratio="1.7"></v-img>
-
+          <v-img src="/images/midfielderArticle.jpg"></v-img>
           <v-card-title primary-title>
             <h5 class="headline">Midfielders to Watch: Fall Split</h5>
           </v-card-title>
