@@ -8,7 +8,7 @@
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <LoginSignupPopup v-if="!isAuthenticated" />
-      <v-btn v-if="isAuthenticated" @click="logout" flat class="primary">Logout</v-btn>
+      <v-btn v-if="isAuthenticated" @click="logoutUser" flat class="primary">Logout</v-btn>
     </v-toolbar>
 
     <v-navigation-drawer app v-model="drawer" floating width="260" disable-resize-watcher>
@@ -47,9 +47,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'logout'
-    ])
+    ...mapActions(['logout']),
+
+    logoutUser() {
+      this.logout()
+        .then(() => this.$router.push('/'))
+    }
   },
   computed: {
     ...mapGetters([

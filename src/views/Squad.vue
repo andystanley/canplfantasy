@@ -65,7 +65,7 @@
             </div>
             <div class="grey--text text-xs-center caption">* You can make unlimited transfers until the gameweek deadline</div>
             
-            <GameweeksTable />
+            <GameweeksTable :showNextGameweek="true" />
           </v-flex>
 
           <v-flex v-if="profile" xs12 sm6 md5 lg4>

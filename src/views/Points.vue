@@ -36,7 +36,7 @@
               </v-container>   
             </v-img>
 
-            <GameweeksTable />
+            <GameweeksTable :showNextGameweek="false" />
           </v-flex>
 
           <v-flex v-if="profile" xs12 sm6 md5 lg4>
@@ -173,7 +173,7 @@ export default {
         .then(profile => {
           this.profile = profile
           if (this.profile && !this.profile.active_squad) {
-            this.error = 'The gameweek has not finished'
+            this.error = `${this.profile.squad_name} has not entered a squad`
           } 
           else {
             this.setupSquad()
@@ -193,7 +193,7 @@ export default {
         .then(() => {
           this.profile = this.cachedProfile
           if (this.profile && !this.profile.active_squad) {
-            this.error = 'The gameweek has not finished'
+            this.error = `${this.profile.squad_name} has not entered a squad`
           }
           else {
             this.setupSquad()
@@ -210,7 +210,7 @@ export default {
       else {
         this.profile = this.cachedProfile
         if (this.profile && !this.profile.active_squad) {
-          this.error = 'The gameweek has not finished'
+          this.error = `${this.profile.squad_name} has not entered a squad`
         } 
         else {
           this.setupSquad()

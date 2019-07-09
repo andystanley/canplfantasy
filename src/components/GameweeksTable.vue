@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-data-iterator :items="gameweeks" :pagination.sync="pagination" rows-per-page-text="" :rows-per-page-items="[0]">
+    <v-data-iterator :items="gameweeks" :pagination="pagination" rows-per-page-text="" :rows-per-page-items="[0]">
       <template v-slot:item="props">
           <v-card class="px-1">
             <v-card-title class="align-center justify-space-between row fill-height">
@@ -51,37 +51,44 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
+  props: {
+    showNextGameweek: Boolean
+  },
+
   data() {
     return {
       gameweeks: [],
       pagination: {
         page: 1,
         rowsPerPage: 1
-      }
+      },
     }
   },
 
   computed: {
     ...mapState({ cachedGameweeks: 'gameweeks' }),
+    ...mapGetters(['activeGameweek', 'nextGameweek']),
   },
 
   methods: {
-    ...mapActions(['getGameweeks']),
+    ...mapActions(['getGameweeks'])
   },
 
   created() {
     if (this.cachedGameweeks.length) {
       this.gameweeks = this.cachedGameweeks
+      this.pagination.page = this.showNextGameweek ? this.nextGameweek.number : this.activeGameweek.number
     }
     else {
       this.getGameweeks()
         .then(() => {
           this.gameweeks = this.cachedGameweeks
+          this.pagination.page = this.showNextGameweek ? this.nextGameweek.number : this.activeGameweek.number
         })
     }
-  },
+  }
 }
 </script>
