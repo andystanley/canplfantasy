@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h4 class="display-1 text-xs-center">CANPL Fantasy</h4>
+    <h4 class="display-1 text-xs-center">CanPL Fantasy</h4>
     
     <v-layout justify-center class="my-3">
       <v-flex xs12 sm10 md8 lg6>

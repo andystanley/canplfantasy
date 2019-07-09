@@ -114,7 +114,7 @@
         <v-card>
           <v-card-text class="px-4">
             <ul>
-              <li>We are always looking to grow CANPL Fantasy. If you are interested in partnering with us please email us at <b>contact@canplfantasy.ca</b></li>
+              <li>We are always looking to grow CanPL Fantasy. If you are interested in partnering with us please email us at <b>contact@canplfantasy.ca</b></li>
             </ul>
           </v-card-text>
         </v-card>
