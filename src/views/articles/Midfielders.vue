@@ -80,7 +80,6 @@
             <span class="subheading">Ryan Telfer (6.5m)</span>
             <p class="body-1"> Ryan Telfer has one of the best resumes in the CANPL, but even with that resume he has underperformed. Playing deeper in midfield has left Telfer out of his natural position. With Di Chiara coming back from injury we could potentially see Telfer moved back to where he is more comfortable. Telfer could be a bargain at 6.5m if he regains that killer instinct he had in the first game against Forge.</p>
             
-            <p class="grey--text caption">* We are interested in photos of CANPL games. If you take photos and are interested in partering with us, please reach out to us at contact@canplfantasy.ca</p>
           </v-card-text>
         </v-card>
       </v-flex>

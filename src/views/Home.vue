@@ -6,7 +6,11 @@
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
           <v-img src="/images/forwardArticleReal.jpg" aspect-ratio="1.7"></v-img>
-
+          <v-card-action>
+          
+              <div class="grey--text text-xs-center caption">*All credit for the images goes to John Jacques</div>
+          
+          </v-card-action>
           <v-card-title primary-title>
             <h5 class="headline">Forwards to Watch: Fall Split</h5>
           </v-card-title>
@@ -22,7 +26,11 @@
       <v-flex xs12 sm10 md8 lg6>
         <v-card>
           <v-img src="/images/midfielderArticleReal.jpg" aspect-ratio="1.7"></v-img>
-
+          <v-card-action>
+            <div>
+              <div class="grey--text text-xs-center caption">*All credit for the images goes to John Jacques</div>
+            </div>
+          </v-card-action>
           <v-card-title primary-title>
             <h5 class="headline">Midfielders to Watch: Fall Split</h5>
           </v-card-title>
