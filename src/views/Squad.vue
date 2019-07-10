@@ -191,7 +191,7 @@ export default {
     },
 
     selectedPlayers() {
-      const selectedPlayers = [this.squad.goalkeepers, this.squad.defenders, this.squad.midfielders, this.squad.forwards].flat()
+      const selectedPlayers = [...this.squad.goalkeepers, ...this.squad.defenders, ...this.squad.midfielders, ...this.squad.forwards]
       return selectedPlayers.filter(player => !player.hasOwnProperty('blank'))
     },
 
