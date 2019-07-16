@@ -10,7 +10,7 @@
       </v-layout>
       <hr>
       <v-layout justify-center>
-        <span :class="{'hide-text': !player}" class="font-weight-medium white--text">{{ totalPoints(player.active_stats) }}</span>
+        <span :class="{'hide-text': !player}" class="font-weight-medium white--text">{{ activePoints(player.active_stats) }}</span>
       </v-layout>
     </div>
     </template>
@@ -18,7 +18,7 @@
       <v-card-title class="pt-4">
         <div>
           <h6 class="title">{{ `${player.first_name} ${player.last_name} (${player.price}m)` }}</h6>
-          <span class="subheading grey--text">{{ totalPoints(player.active_stats) }} points</span>
+          <span class="subheading grey--text">{{ activePoints(player.active_stats) }} points</span>
         </div>
       </v-card-title>
       <v-card-text>
@@ -62,7 +62,7 @@ export default {
   },
 
   methods: {
-    totalPoints(stats) {
+    activePoints(stats) {
       return stats.reduce((a, b) => a + b.points, 0)
     },
 

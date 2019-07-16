@@ -28,6 +28,7 @@
               <td class="no-padding"><v-btn icon small @click="addPlayer(props.item)"><v-icon>person_add</v-icon></v-btn></td>
               <td>{{ props.item.first_name }} {{ props.item.last_name }}</td>
               <td >{{ props.item.points }}</td>
+              <td >{{ activePoints(props.item.stats) }}</td>
               <td >{{ props.item.price }}</td>
               <td><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
             </tr>
@@ -56,6 +57,7 @@ export default {
         { sortable: false},
         { text: 'Players', value: 'last_name'},
         { text: 'Points', value: 'points'},
+        { text: 'Active Points', value: 'activePoints(stats)'},
         { text: 'Price', value: 'price'},
         { text: 'Team', value: 'team.name'}
       ],
@@ -63,7 +65,7 @@ export default {
           page: 1,
           rowsPerPage: 5,
           totalItems: 0,
-          sortBy: 'price', 
+          sortBy: 'points', 
           descending: true
       },
     }
@@ -88,6 +90,10 @@ export default {
           || filter(player.first_name, search)
           || filter(player.first_name + ' ' + player.last_name, search)
       })
+    },
+
+    activePoints(stats) {
+      return stats.reduce((a, b) => a + b.points, 0)
     }
   }
 }

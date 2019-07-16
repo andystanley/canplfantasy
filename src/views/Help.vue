@@ -52,9 +52,9 @@
               <li>Goal scored by Defender = 6 Points</li>
               <li>Goal scored by Goalkeeper = 6 Points</li>
               <li>Assist = 3 Points</li>
-              <li>Clean sheet by Midfielder = 1 Points</li>
-              <li>Clean sheet by Defender = 4 Points</li>
-              <li>Clean sheet by Goalkeeper = 4 Points</li>
+              <li>Clean sheet by Midfielder (Must Play 60 minutes or more) = 1 Points</li>
+              <li>Clean sheet by Defender  (Must Play 60 minutes or more) = 4 Points</li>
+              <li>Clean sheet by Goalkeeper  (Must Play 60 minutes or more) = 4 Points</li>
               <li>Every 3 saves by Goalkeeper = 1 Points</li>
               <li>Penalty save = 5 Points</li>
               <li>Penalty miss = -2 Points</li>
@@ -87,6 +87,18 @@
               <ul>
                 <li>You can make unlimited transfers until the gameweek deadline</li>
               </ul>
+          </v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-content >
+        <div slot="header" class="py-1">Partnering With Us</div>
+        <v-card>
+          <v-card-text class="px-4">
+            <ul>
+              <li>We are always looking to grow CanPL Fantasy. If you are interested in partnering with us please email us at <b>contact@canplfantasy.ca</b></li>
+            </ul>
           </v-card-text>
         </v-card>
       </v-expansion-panel-content>
