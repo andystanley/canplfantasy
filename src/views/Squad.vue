@@ -15,11 +15,11 @@
               </v-flex>
               <v-flex text-xs-center>
                 <h6 class="title">Deadline</h6> 
-                <span class="subheading">{{ days }}d {{ hours }}h {{ minutes }}m {{ seconds }}s</span>
+                <span class="subheading">{{ days > 0 ? `${days}d` : '' }} {{ hours > 0 ? `${hours}h` : '' }} {{ minutes }}m {{ seconds }}s</span>
               </v-flex>
               <v-flex text-xs-center>
                 <h6 class="title">Players</h6>
-                <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
+                <span class="subheading">{{ squadSize }} / {{ maxSquadSize }}</span>
               </v-flex>
             </v-layout>
             <div class="text-xs-center red white--text font-weight-medium">{{ squadError }}</div>
