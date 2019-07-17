@@ -52,9 +52,9 @@
               <li>Goal scored by Defender = 6 Points</li>
               <li>Goal scored by Goalkeeper = 6 Points</li>
               <li>Assist = 3 Points</li>
-              <li>Clean sheet by Midfielder = 1 Points</li>
-              <li>Clean sheet by Defender = 4 Points</li>
-              <li>Clean sheet by Goalkeeper = 4 Points</li>
+              <li>Clean sheet by Midfielder (must play 60+ minutes) = 1 Points</li>
+              <li>Clean sheet by Defender (must play 60+ minutes) = 4 Points</li>
+              <li>Clean sheet by Goalkeeper (must play 60+ minutes) = 4 Points</li>
               <li>Every 3 saves by Goalkeeper = 1 Points</li>
               <li>Penalty save = 5 Points</li>
               <li>Penalty miss = -2 Points</li>

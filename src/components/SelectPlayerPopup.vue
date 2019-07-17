@@ -63,7 +63,7 @@ export default {
           page: 1,
           rowsPerPage: 5,
           totalItems: 0,
-          sortBy: 'price', 
+          sortBy: 'points', 
           descending: true
       },
     }
