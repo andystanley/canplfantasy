@@ -91,18 +91,6 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <div slot="header" class="py-1">Partnering With Us</div>
-        <v-card>
-          <v-card-text class="px-4">
-            <ul>
-              <li>We are always looking to grow CanPL Fantasy. If you are interested in partnering with us please email us at <b>contact@canplfantasy.ca</b></li>
-            </ul>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
 
     <v-layout justify-center>
       <h4 class="display-1 my-3">FAQ</h4>

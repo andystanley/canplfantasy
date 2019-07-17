@@ -8,14 +8,17 @@
       <v-container grid-list-md>
         <v-layout wrap justify-center>
           <v-flex xs12 sm8 md6 lg5>
-            <v-layout class="pa-2">
-              <v-flex>
+            <v-layout class="py-2" justify-space-between>
+              <v-flex text-xs-center>
                 <h6 class="title">Budget</h6> 
                 <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
               </v-flex>
-              <v-spacer></v-spacer>
-              <v-flex text-xs-right>
-                <h6 class="title">Players Selected</h6>
+              <v-flex text-xs-center>
+                <h6 class="title">Deadline</h6> 
+                <span class="subheading">{{ days }}d {{ hours }}h {{ minutes }}m {{ seconds }}s</span>
+              </v-flex>
+              <v-flex text-xs-center>
+                <h6 class="title">Players</h6>
                 <span class="subheading">{{ squadSize }}  / {{ maxSquadSize }}</span>
               </v-flex>
             </v-layout>
@@ -133,7 +136,11 @@ export default {
       squadError: '',
       loading: true,
       error: '',
-      errorDetail: ''
+      errorDetail: '',
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
     }
   },
   computed: {
@@ -283,7 +290,27 @@ export default {
         })
         .catch(() => this.errorPopup = true)
         .then(() => this.popupLoading = false)
-    }
+    },
+
+    countDown(endDate) {
+      if (!endDate) {
+        return
+      }
+      
+      const startTime = new Date().getTime()
+      const endTime = new Date(endDate).getTime()
+      
+      let remainingTime = endTime - startTime
+      
+      const seconds = Math.floor(remainingTime / 1000)
+      const minutes = Math.floor(seconds / 60)
+      const hours = Math.floor(minutes / 60)
+      
+      this.days = Math.floor(hours / 24)
+      this.hours = hours % 24
+      this.minutes = minutes % 60
+      this.seconds = seconds % 60
+   },
   },
   created() {
     if (!this.profile) {
@@ -301,6 +328,12 @@ export default {
       this.setupSquad()
       this.loading = false
     }
+
+    setInterval(() => {
+      if (this.nextGameweek) {
+        this.countDown(this.nextGameweek.start_date)
+      }
+    }, 1000)
   },
 }
 </script>
