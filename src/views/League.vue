@@ -20,7 +20,9 @@
       </v-layout>
 
       <v-layout justify-center class="text-xs-center pt-2">
-        <v-pagination v-model="pagination.page" :length="pages" circle></v-pagination>
+        <v-flex xs12 sm10 md8 lg6>
+          <v-pagination v-model="pagination.page" :length="pages" circle></v-pagination>
+        </v-flex>
       </v-layout>
     </template>
   </v-container>
