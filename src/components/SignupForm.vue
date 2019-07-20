@@ -137,7 +137,9 @@ export default {
       if (this.$refs.signupForm.validate()) {
         this.loading = true
         
-        const { email, firstName, lastName, password, squadName, favoriteTeam } = this.signupForm
+        let { email, firstName, lastName, password, squadName, favoriteTeam } = this.signupForm
+
+        email = email.toLowerCase()
 
         this.signup({ email, firstName, lastName, password, squadName, favoriteTeam })
           .then(() => {
