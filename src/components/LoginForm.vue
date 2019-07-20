@@ -65,7 +65,9 @@ export default {
       if (this.$refs.loginForm.validate()) {
         this.loading = true
         
-        const { email, password } = this.loginForm
+        let { email, password } = this.loginForm
+
+        email = email.toLowerCase()
 
         this.login({ email, password })
           .catch(() => this.errorPopup = true)
