@@ -27,8 +27,8 @@
             <tr>
               <td class="no-padding"><v-btn icon small @click="addPlayer(props.item)"><v-icon>person_add</v-icon></v-btn></td>
               <td nowrap>
-                <span class="hidden-xs-only">{{ props.item.first_name }}</span>
-                <span> {{ props.item.last_name }} </span>
+                <span class="hidden-xs-only">{{ props.item.first_name }} </span>
+                <span>{{ props.item.last_name }} </span>
                 <v-tooltip v-if="!props.item.availability" right>
                   <template v-slot:activator="{ on }">
                     <v-icon v-on="on" small color="green">check_circle</v-icon>
