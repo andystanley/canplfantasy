@@ -26,9 +26,23 @@
           <template v-slot:items="props"> 
             <tr>
               <td class="no-padding"><v-btn icon small @click="addPlayer(props.item)"><v-icon>person_add</v-icon></v-btn></td>
-              <td>{{ props.item.first_name }} {{ props.item.last_name }}</td>
-              <td >{{ props.item.points }}</td>
-              <td >{{ props.item.price }}</td>
+              <td>
+                {{ props.item.first_name }} {{ props.item.last_name }} 
+                <v-tooltip v-if="!props.item.availability" right>
+                  <template v-slot:activator="{ on }">
+                    <v-icon v-on="on" small color="green">check_circle</v-icon>
+                  </template>
+                  <span>Available</span>
+                </v-tooltip>
+                <v-tooltip v-else right>
+                  <template v-slot:activator="{ on }">
+                    <v-icon v-on="on" small :color="iconColor[props.item.availability.status.icon]">{{ props.item.availability.status.icon }}</v-icon>
+                  </template>
+                  <span>{{ props.item.availability.status.name }}</span>
+                </v-tooltip>
+              </td>
+              <td>{{ props.item.points }}</td>
+              <td>{{ props.item.price }}</td>
               <td><v-img max-width="35" :src="props.item.team.shirt"></v-img></td>
             </tr>
           </template>
@@ -66,6 +80,13 @@ export default {
           sortBy: 'points', 
           descending: true
       },
+      iconColor: {
+        'help': 'amber',
+        'gavel': 'red',
+        'report': 'red',
+        'autorenew': 'grey darken-1',
+        'swap_horiz': 'grey darken-1'
+      }
     }
   },
   methods : {
