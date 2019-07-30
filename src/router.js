@@ -5,6 +5,7 @@ import Squad from './views/Squad'
 import Points from './views/Points'
 import Help from './views/Help'
 import League from './views/League'
+import Injuries from './views/Injuries'
 import Leagues from './views/Leagues'
 import store from './store'
 import Forwards from './views/articles/Forwards'
@@ -66,6 +67,12 @@ const router = new Router({
       path: '/articles/midfielders',
       name: 'midfielders',
       component: Midfielders,
+    },
+    {
+    path: '/Injuries',
+      name: 'Injuries',
+      component: Injuries,
+      meta: { protected: false }
     }
   ]
 })
