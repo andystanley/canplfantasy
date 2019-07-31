@@ -13,7 +13,7 @@
                 <h6 class="title">Budget</h6> 
                 <span class="subheading">{{ squadPrice }}m / {{ maxSquadPrice }}m</span>
               </v-flex>
-              <v-flex text-xs-center>
+              <v-flex xs5 text-xs-center>
                 <h6 class="title">Deadline</h6> 
                 <span class="subheading">{{ days > 0 ? `${days}d` : '' }} {{ hours > 0 ? `${hours}h` : '' }} {{ minutes }}m {{ seconds }}s</span>
               </v-flex>
