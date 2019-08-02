@@ -6,7 +6,7 @@
           <h6 class="title">{{ name }}</h6>
           <span class="subheading">{{ squadName }}</span>
         </v-flex>
-        <v-flex xs3> 
+        <v-flex xs3>
           <v-img :src="team.shirt"></v-img>
         </v-flex>
       </v-card-title>
@@ -28,11 +28,26 @@
 <script>
 export default {
   props: {
-    name: String,
-    squadName: String,
-    team: Object,
-    points: Number,
-    gameweekPoints: Number
+    name: {
+      type: String,
+      default: ""
+    },
+    squadName: {
+      type: String,
+      default: ""
+    },
+    team: {
+      type: Object,
+      default: () => {}
+    },
+    points: {
+      type: Number,
+      default: 0
+    },
+    gameweekPoints: {
+      type: Number,
+      default: 0
+    }
   }
-}
+};
 </script>

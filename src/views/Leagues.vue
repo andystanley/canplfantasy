@@ -1,20 +1,33 @@
 <template>
   <v-container fluid>
-    <Loading :loading="loading" :error="error" :errorDetail="errorDetail" />
+    <Loading :loading="loading" :error="error" :error-detail="errorDetail" />
 
     <template v-if="leagues.length">
       <h4 class="display-1 text-xs-center">Leagues</h4>
 
       <v-container fluid grid-list-md>
         <v-layout row wrap>
-          <v-flex v-for="league in leagues" :key="league.id" align-center xs12 sm6 md4 lg3 class="mb-4">
+          <v-flex
+            v-for="league in leagues"
+            :key="league.id"
+            align-center
+            xs12
+            sm6
+            md4
+            lg3
+            class="mb-4"
+          >
             <v-card>
               <v-card-title>
                 <div>
                   <h5 class="headline">{{ league.short_name }}</h5>
-                  <span :class="{'hide-text': league.short_name === 'Overall'}" class="grey--text">Fan League</span>
+                  <span
+                    :class="{ 'hide-text': league.short_name === 'Overall' }"
+                    class="grey--text"
+                    >Fan League</span
+                  >
                 </div>
-                </v-card-title>
+              </v-card-title>
               <v-divider></v-divider>
               <v-list dense>
                 <v-list-tile>
@@ -27,7 +40,11 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-content>Leader:</v-list-tile-content>
-                  <span>{{ league.leader_profile ? league.leader_profile.squad_name : '' }}</span>
+                  <span>{{
+                    league.leader_profile
+                      ? league.leader_profile.squad_name
+                      : ""
+                  }}</span>
                 </v-list-tile>
               </v-list>
               <v-divider></v-divider>
@@ -45,47 +62,48 @@
 </template>
 
 <script>
-import Loading from '@/components/Loading'
-import { mapActions, mapState } from 'vuex'
+import Loading from "@/components/Loading";
+import { mapActions, mapState } from "vuex";
 
 export default {
-  components: { 
+  components: {
     Loading
   },
 
   data() {
     return {
       loading: true,
-      error: '',
-      errorDetail: ''
-    }
+      error: "",
+      errorDetail: ""
+    };
   },
 
   computed: {
-    ...mapState(['leagues'])
-  },
-  
-  methods: {
-    ...mapActions(['getLeagues'])
+    ...mapState(["leagues"])
   },
 
   created() {
     if (!this.leagues.length) {
       this.getLeagues()
-      .catch(() => {
-        this.error = 'An error occurred :( Please try refreshing the page'
-        this.errorDetail = 'If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca'
-      })
-      .then(() => this.loading = false)
+        .catch(() => {
+          this.error = "An error occurred :( Please try refreshing the page";
+          this.errorDetail =
+            "If this continues, reach out to us on Reddit, Twitter or email contact@canplfantasy.ca";
+        })
+        .then(() => (this.loading = false));
     } else {
-      this.loading = false
+      this.loading = false;
     }
+  },
+
+  methods: {
+    ...mapActions(["getLeagues"])
   }
-}
+};
 </script>
 
 <style scoped>
-  .hide-text {
-    opacity: 0;
-  }
+.hide-text {
+  opacity: 0;
+}
 </style>
