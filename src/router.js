@@ -49,14 +49,12 @@ const router = new Router({
     {
       path: '/leagues',
       name: 'leagues',
-      component: Leagues,
-      meta: { protected: true }
+      component: Leagues
     },
     {
       path: '/league/:id',
       name: 'league',
-      component: League,
-      meta: { protected: true }
+      component: League
     },
     {
       path: '/articles/forwards',
