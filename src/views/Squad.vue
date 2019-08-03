@@ -277,7 +277,7 @@ export default {
 
     availablePlayers(players) {
       const selectedPlayerIds = this.selectedPlayerIds()
-      return players.filter(player => !selectedPlayerIds.has(player.id))
+      return players.filter(player => !selectedPlayerIds.has(player.id) && !player.deleted)
     },
 
     save() {
