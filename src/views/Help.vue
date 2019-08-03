@@ -9,7 +9,6 @@
         <div slot="header">Squad Selection</div>
         <v-card>
           <v-card-text class="px-4">
-            
             <div>
               <span class="subheading font-weight-bold">Squad Size</span>
               <div>11 players</div>
@@ -22,9 +21,13 @@
             </div>
 
             <div class="mt-2">
-              <span class="subheading font-weight-bold">Players from the same Team</span>
+              <span class="subheading font-weight-bold"
+                >Players from the same Team</span
+              >
               <ul>
-                <li>A maximum of 4 players can be selected from the same team</li>
+                <li>
+                  A maximum of 4 players can be selected from the same team
+                </li>
               </ul>
             </div>
 
@@ -38,9 +41,9 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
-   
+
     <v-expansion-panel>
-      <v-expansion-panel-content >
+      <v-expansion-panel-content>
         <div slot="header" class="py-1">Player Points</div>
         <v-card>
           <v-card-text class="px-4">
@@ -52,15 +55,21 @@
               <li>Goal scored by Defender = 6 Points</li>
               <li>Goal scored by Goalkeeper = 6 Points</li>
               <li>Assist = 3 Points</li>
-              <li>Clean sheet by Midfielder (must play 60+ minutes) = 1 Points</li>
-              <li>Clean sheet by Defender (must play 60+ minutes) = 4 Points</li>
-              <li>Clean sheet by Goalkeeper (must play 60+ minutes) = 4 Points</li>
+              <li>
+                Clean sheet by Midfielder (must play 60+ minutes) = 1 Points
+              </li>
+              <li>
+                Clean sheet by Defender (must play 60+ minutes) = 4 Points
+              </li>
+              <li>
+                Clean sheet by Goalkeeper (must play 60+ minutes) = 4 Points
+              </li>
               <li>Every 3 saves by Goalkeeper = 1 Points</li>
               <li>Penalty save = 5 Points</li>
               <li>Penalty miss = -2 Points</li>
               <li>Yellow card = -1 Points</li>
               <li>Red Card = -3 Points</li>
-            </ul>                      
+            </ul>
           </v-card-text>
         </v-card>
       </v-expansion-panel-content>
@@ -71,9 +80,12 @@
         <div slot="header" class="py-1">Gameweek Deadline</div>
         <v-card>
           <v-card-text class="px-4">
-              <ul>
-                <li>The deadline to submit your squad is 1 hour before the first game of the gameweek</li>
-              </ul>
+            <ul>
+              <li>
+                The deadline to submit your squad is 1 hour before the first
+                game of the gameweek
+              </li>
+            </ul>
           </v-card-text>
         </v-card>
       </v-expansion-panel-content>
@@ -84,9 +96,11 @@
         <div slot="header" class="py-1">Transfers</div>
         <v-card>
           <v-card-text class="px-4">
-              <ul>
-                <li>You can make unlimited transfers until the gameweek deadline</li>
-              </ul>
+            <ul>
+              <li>
+                You can make unlimited transfers until the gameweek deadline
+              </li>
+            </ul>
           </v-card-text>
         </v-card>
       </v-expansion-panel-content>
@@ -101,7 +115,10 @@
         <v-card>
           <v-card-text class="px-4">
             <ul>
-              <li>If you're having trouble logging in or signing up please email us at <b>contact@canplfantasy.ca</b></li>
+              <li>
+                If you're having trouble logging in or signing up please email
+                us at <b>contact@canplfantasy.ca</b>
+              </li>
             </ul>
           </v-card-text>
         </v-card>
@@ -109,12 +126,16 @@
     </v-expansion-panel>
 
     <v-expansion-panel>
-      <v-expansion-panel-content >
+      <v-expansion-panel-content>
         <div slot="header" class="py-1">Partnering With Us</div>
         <v-card>
           <v-card-text class="px-4">
             <ul>
-              <li>We are always looking to grow CanPL Fantasy. If you are interested in partnering with us please email us at <b>contact@canplfantasy.ca</b></li>
+              <li>
+                We are always looking to grow CanPL Fantasy. If you are
+                interested in partnering with us please email us at
+                <b>contact@canplfantasy.ca</b>
+              </li>
             </ul>
           </v-card-text>
         </v-card>
