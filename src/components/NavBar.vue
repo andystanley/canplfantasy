@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 import LoginSignupPopup from "@/components/LoginSignupPopup";
 
@@ -79,6 +79,9 @@ export default {
         { icon: "help", text: "Help", route: "/help" }
       ]
     };
+  },
+  computed: {
+    ...mapGetters(["isAuthenticated"])
   },
   methods: {
     ...mapActions(["logout"]),
