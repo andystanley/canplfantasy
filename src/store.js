@@ -146,6 +146,12 @@ export default new Vuex.Store({
       return state.players.filter(player => 
         player.position.short_name === 'FW'
       )
+    },
+    unavaliablePlayers(state) {
+      return state.players.filter(player => 
+        player.availability !== null
+      )
     }
+
   }
 })
