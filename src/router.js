@@ -19,8 +19,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: { protected: false }
+      component: Home
     },
     {
       path: '/squad',
@@ -43,8 +42,7 @@ const router = new Router({
     {
       path: '/help',
       name: 'help',
-      component: Help,
-      meta: { protected: false }
+      component: Help
     },
     {
       path: '/leagues',
@@ -59,18 +57,17 @@ const router = new Router({
     {
       path: '/articles/forwards',
       name: 'forwards',
-      component: Forwards,
+      component: Forwards
     },
     {
       path: '/articles/midfielders',
       name: 'midfielders',
-      component: Midfielders,
+      component: Midfielders
     },
     {
-    path: '/player-availability',
+      path: '/player-availability',
       name: 'player availability',
-      component: PlayerAvailability,
-      meta: { protected: false }
+      component: PlayerAvailability
     }
   ]
 })
