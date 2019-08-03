@@ -5,7 +5,7 @@ import Squad from './views/Squad'
 import Points from './views/Points'
 import Help from './views/Help'
 import League from './views/League'
-import Injuries from './views/Injuries'
+import PlayerAvailability from './views/PlayerAvailability'
 import Leagues from './views/Leagues'
 import store from './store'
 import Forwards from './views/articles/Forwards'
@@ -69,9 +69,9 @@ const router = new Router({
       component: Midfielders,
     },
     {
-    path: '/Injuries',
-      name: 'Injuries',
-      component: Injuries,
+    path: '/player-availability',
+      name: 'player availability',
+      component: PlayerAvailability,
       meta: { protected: false }
     }
   ]

@@ -42,8 +42,8 @@ export default {
         { icon: 'person', text: 'My Squad', route: '/squad' },
         { icon: 'looks_one', text: 'Points', route: '/points' },
         { icon: 'people', text: 'Leagues', route: '/leagues' },
+        { icon: 'help', text: 'Availability', route: '/player-availability' },
         { icon: 'help', text: 'Help', route: '/help' },
-        { icon: 'help', text: 'Injuries', route: '/Injuries' }
       ],
     }
   },
