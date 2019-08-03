@@ -4,9 +4,15 @@
 
     <template v-if="unavailablePlayers.length">
       <h4 class="display-1 text-xs-center mb-4">Player Availabilty </h4>
-    
+
       <v-layout justify-center>
         <v-flex xs12 sm10>
+          <div id="legend">
+            <v-btn flat small v-for="item in legend" :key="item.text">
+              <v-icon left small :color="iconColor[item.icon]">{{ item.icon }}</v-icon>
+              {{ item.text }}
+            </v-btn>
+          </div>
           <v-data-table :headers="headers" :items="unavailablePlayers" class="elevation-1" :pagination.sync="pagination" rows-per-page-text="" :rows-per-page-items="[0]">
             <template v-slot:items="props"> 
               <tr>
@@ -63,6 +69,13 @@ export default {
         'autorenew': 'grey darken-1',
         'swap_horiz': 'grey darken-1'
       },
+      legend: [
+        {text: 'Injured', icon: 'report'},
+        {text: 'Doubt (% of availability)', icon: 'help'},
+        {text: 'Disciplinary', icon: 'gavel'},
+        {text: 'On Loan', icon: 'autorenew'},
+        {text: 'Transferred', icon: 'swap_horiz'}
+      ],
       headers: [
         { text: 'Player', value: 'last_name'},
         { text: 'Team', value: 'team.shirt'},
@@ -87,3 +100,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#legend button {
+  pointer-events: none;
+}
+</style>
