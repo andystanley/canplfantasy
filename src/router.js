@@ -5,6 +5,7 @@ import Squad from './views/Squad'
 import Points from './views/Points'
 import Help from './views/Help'
 import League from './views/League'
+import PlayerAvailability from './views/PlayerAvailability'
 import Leagues from './views/Leagues'
 import store from './store'
 import Forwards from './views/articles/Forwards'
@@ -18,8 +19,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: { protected: false }
+      component: Home
     },
     {
       path: '/squad',
@@ -42,30 +42,32 @@ const router = new Router({
     {
       path: '/help',
       name: 'help',
-      component: Help,
-      meta: { protected: false }
+      component: Help
     },
     {
       path: '/leagues',
       name: 'leagues',
-      component: Leagues,
-      meta: { protected: true }
+      component: Leagues
     },
     {
       path: '/league/:id',
       name: 'league',
-      component: League,
-      meta: { protected: true }
+      component: League
     },
     {
       path: '/articles/forwards',
       name: 'forwards',
-      component: Forwards,
+      component: Forwards
     },
     {
       path: '/articles/midfielders',
       name: 'midfielders',
-      component: Midfielders,
+      component: Midfielders
+    },
+    {
+      path: '/player-availability',
+      name: 'player availability',
+      component: PlayerAvailability
     }
   ]
 })

@@ -7,7 +7,7 @@
 
       <v-layout justify-center>
         <v-flex xs12 sm10 md8 lg6>
-          <v-data-table :headers="headers" :items="league.profiles" hide-actions :pagination.sync="pagination" class="elevation-1">
+          <v-data-table :headers="headers" :items="league.profiles" :pagination.sync="pagination" rows-per-page-text="" :rows-per-page-items="[0]" class="elevation-1">
             <template v-slot:items="props">
               <tr @click="$router.push(`/view/points/${props.item.id}`)" style="cursor: pointer">
                 <td>{{ props.item.squad_name }}</td>
@@ -16,12 +16,6 @@
               </tr>
             </template>
           </v-data-table>
-        </v-flex>
-      </v-layout>
-
-      <v-layout justify-center class="text-xs-center pt-2">
-        <v-flex xs12 sm10 md8 lg6>
-          <v-pagination v-model="pagination.page" :length="pages" circle></v-pagination>
         </v-flex>
       </v-layout>
     </template>

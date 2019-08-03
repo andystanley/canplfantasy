@@ -6,13 +6,13 @@
     </v-content>
     <v-footer justify-space-around color="#fafafa" class="mb-3">
       <v-layout justify-center>
-        <a href="https://www.reddit.com/r/canplfantasy/">
+        <a href="https://www.reddit.com/r/canplfantasy/" target="_blank">
           <img src="/images/redditImage.png" alt="reddit" height="39" width="39">
         </a>  
        
-        <img src="/images/logo.png" alt="logo" height="42" width="42">
+        <img src="/images/logo.png" alt="logo" height="42" width="42" class="mx-1">
         
-        <a href="https://twitter.com/canplfantasy">
+        <a href="https://twitter.com/canplfantasy" target="_blank">
           <img src="/images/twitter.png" alt="twitter" height="39" width="39" >
         </a>
       </v-layout>
