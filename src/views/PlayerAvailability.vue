@@ -28,7 +28,7 @@
               </td>
               <td nowrap>
                 <span>{{ props.item.availability.latest_news }}</span>
-                <v-btn v-if="props.item.availability.source" flat icon :href="props.item.availability.source" target="_blank">
+                <v-btn icon small v-if="props.item.availability.source" :href="props.item.availability.source" target="_blank">
                   <v-icon small>open_in_new</v-icon>
                 </v-btn>
               </td>
