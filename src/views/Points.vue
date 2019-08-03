@@ -58,15 +58,7 @@
           </v-flex>
 
           <v-flex v-if="profile" xs12 sm6 md5 lg4>
-            <ProfileCard
-              :name="profile.name"
-              :squad-name="profile.squad_name"
-              :team="profile.favorite_team"
-              :points="profile.points"
-              :gameweek-points="
-                profile.active_squad ? profile.active_squad.points : 0
-              "
-            />
+            <ProfileCard :profile="profile" />
             <LeaguesCard :leagues="profile.leagues" />
           </v-flex>
         </v-layout>

@@ -3,22 +3,24 @@
     <v-card class="px-1">
       <v-card-title>
         <v-flex class="pa-0">
-          <h6 class="title">{{ name }}</h6>
-          <span class="subheading">{{ squadName }}</span>
+          <h6 class="title">{{ profile.name }}</h6>
+          <span class="subheading">{{ profile.squad_name }}</span>
         </v-flex>
         <v-flex xs3>
-          <v-img :src="team.shirt"></v-img>
+          <v-img :src="profile.favorite_team.shirt"></v-img>
         </v-flex>
       </v-card-title>
       <v-divider></v-divider>
       <v-list dense>
         <v-list-tile>
           <v-list-tile-content>Overall Points:</v-list-tile-content>
-          <span>{{ points }}</span>
+          <span>{{ profile.points }}</span>
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-content>Gameweek Points:</v-list-tile-content>
-          <span>{{ gameweekPoints }}</span>
+          <span>{{
+            profile.active_squad ? profile.active_squad.points : 0
+          }}</span>
         </v-list-tile>
       </v-list>
     </v-card>
@@ -28,25 +30,9 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-      default: ""
-    },
-    squadName: {
-      type: String,
-      default: ""
-    },
-    team: {
+    profile: {
       type: Object,
       default: () => {}
-    },
-    points: {
-      type: Number,
-      default: 0
-    },
-    gameweekPoints: {
-      type: Number,
-      default: 0
     }
   }
 };

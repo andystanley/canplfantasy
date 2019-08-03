@@ -117,7 +117,7 @@ export default {
       type: Function,
       default: null
     },
-    removePlayerToSquad: {
+    removePlayerFromSquad: {
       type: Function,
       default: null
     }

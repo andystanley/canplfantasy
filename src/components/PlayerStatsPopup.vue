@@ -11,19 +11,15 @@
       </v-layout>
       <div class="darkGreen">
         <v-layout justify-center>
-          <span
-            :class="{ 'hide-text': !player }"
-            class="font-weight-regular white--text text-xs-center"
-            >{{ player.last_name }}</span
-          >
+          <span class="font-weight-regular white--text text-xs-center">{{
+            player.last_name
+          }}</span>
         </v-layout>
         <hr />
         <v-layout justify-center>
-          <span
-            :class="{ 'hide-text': !player }"
-            class="font-weight-medium white--text"
-            >{{ activePoints(player.active_stats) }}</span
-          >
+          <span class="font-weight-medium white--text">{{
+            activePoints(player.active_stats)
+          }}</span>
         </v-layout>
       </div>
     </template>
@@ -98,71 +94,13 @@ export default {
     player: {
       type: Object,
       default: () => {}
-    },
-    position: {
-      type: String,
-      default: ""
-    },
-    players: {
-      type: Array,
-      default: () => []
     }
   },
 
   data() {
     return {
-      popupOpen: false,
-      pagination: { sortBy: "game.gameweek.number", descending: true }
+      popupOpen: false
     };
-  },
-
-  computed: {
-    getHeaders() {
-      const defaultHeaders = [
-        { text: "Gameweek", value: "game.date" },
-        { text: "Points", value: "points" },
-        { text: "Minutes", value: "minutes_played" }
-      ];
-
-      switch (this.player.position.short_name) {
-        case "GK":
-          return [
-            ...defaultHeaders,
-            { text: "Saves", value: "saves" },
-            { text: "Clean Sheets", value: "clean_sheets" },
-            { text: "Yellow Cards", value: "yellow_cards" },
-            { text: "Red Cards", value: "red_cards" },
-            { text: "Goals", value: "goals" },
-            { text: "Assists", value: "assists" }
-          ];
-        case "DEF":
-          return [
-            ...defaultHeaders,
-            { text: "Clean Sheets", value: "clean_sheets" },
-            { text: "Goals", value: "goals" },
-            { text: "Assists", value: "assists" },
-            { text: "Yellow Cards", value: "yellow_cards" },
-            { text: "Red Cards", value: "red_cards" }
-          ];
-        case "MID":
-          return [
-            ...defaultHeaders,
-            { text: "Goals", value: "goals" },
-            { text: "Assists", value: "assists" },
-            { text: "Clean Sheets", value: "clean_sheets" },
-            { text: "Yellow Cards", value: "yellow_cards" },
-            { text: "Red Cards", value: "red_cards" }
-          ];
-        default:
-          return [
-            ...defaultHeaders,
-            { text: "Goals", value: "goals" },
-            { text: "Assists", value: "assists" },
-            { text: "Yellow Cards", value: "yellow_cards" },
-            { text: "Red Cards", value: "red_cards" }
-          ];
-      }
-    }
   },
 
   methods: {
@@ -189,12 +127,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.v-table thead tr th {
-  padding-right: 0px !important;
-}
-.v-table tbody tr:first-child td {
-  font-weight: bold;
-}
-</style>
