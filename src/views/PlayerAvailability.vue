@@ -26,8 +26,8 @@
                   <span>{{ props.item.availability.status.name }}</span>
                 </v-tooltip>
               </td>
-              <td>{{ props.item.availability.latest_news }}</td>
-              <td>
+              <td nowrap>
+                <span>{{ props.item.availability.latest_news }}</span>
                 <v-btn v-if="props.item.availability.source" flat icon :href="props.item.availability.source" target="_blank">
                   <v-icon small>open_in_new</v-icon>
                 </v-btn>
@@ -60,7 +60,6 @@ export default {
         { text: 'Team', value: 'team.shirt'},
         { text: 'Status', value: 'availability.status.name'},
         { text: 'Latest News', value: 'availability.latest_news'},
-        { text: 'Source', value: 'availability.source'},
         { text: 'Return Date', value: 'availability.return_date'},
         { text: 'Last Updated', value: 'availability.last_updated'}
       ],
@@ -78,5 +77,3 @@ export default {
   }
 }
 </script>
-
-
