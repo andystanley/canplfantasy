@@ -24,7 +24,7 @@ npm install
 npm run serve
 ```
 
-5. Open it at http://localhost:8080
+5. Open it at http://localhost:8080/
 
 ## Contributing
 1. [Create an issue if one does not exist already](https://github.com/andystanley/canplfantasy/issues/new)
@@ -34,4 +34,4 @@ npm run serve
 5. Write some code
 6. Create a Pull Request
 
-We'll take a look as soon as we can and do our best to get it pushed through :)
+We'll take a a look as soon as we can :)
