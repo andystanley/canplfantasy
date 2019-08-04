@@ -1,5 +1,5 @@
 ![alt text](https://canplfantasy.ca/images/header.png)
-The unoffical fantasy game of the Canadian Premier League. This repository only contains the front end code.
+The unofficial fantasy game of the Canadian Premier League. This repository only contains the front end code.
 
 
 
