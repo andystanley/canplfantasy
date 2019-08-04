@@ -117,7 +117,8 @@
             <ul>
               <li>
                 If you're having trouble logging in or signing up please email
-                us at <b>contact@canplfantasy.ca</b>
+                us at
+                <b>contact@canplfantasy.ca</b>
               </li>
             </ul>
           </v-card-text>
@@ -135,6 +136,27 @@
                 We are always looking to grow CanPL Fantasy. If you are
                 interested in partnering with us please email us at
                 <b>contact@canplfantasy.ca</b>
+              </li>
+            </ul>
+          </v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+
+    <v-expansion-panel>
+      <v-expansion-panel-content>
+        <div slot="header" class="py-1">Can I Contribute?</div>
+        <v-card>
+          <v-card-text class="px-4">
+            <ul>
+              <li>
+                Definitely! If you spot an issue or something that could be
+                improved, please log it in our GitHub
+                <a href="https://github.com/andystanley/canplfantasy/issues"
+                  >issue tracker</a
+                >. If you feel confident writing code, feel free to take a crack
+                at any of the open issues. We're grateful for any contribution,
+                large or small :)
               </li>
             </ul>
           </v-card-text>
