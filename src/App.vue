@@ -10,21 +10,23 @@
           <img
             src="/images/redditImage.png"
             alt="reddit"
-            height="39"
-            width="39"
+            height="35"
+            width="35"
           />
         </a>
 
-        <img
-          src="/images/logo.png"
-          alt="logo"
-          height="42"
-          width="42"
-          class="mx-1"
-        />
+        <a href="https://github.com/andystanley/canplfantasy" target="_blank">
+          <img
+            src="/images/github.png"
+            alt="logo"
+            height="35"
+            width="35"
+            class="mx-1"
+          />
+        </a>
 
         <a href="https://twitter.com/canplfantasy" target="_blank">
-          <img src="/images/twitter.png" alt="twitter" height="39" width="39" />
+          <img src="/images/twitter.png" alt="twitter" height="35" width="35" />
         </a>
       </v-layout>
     </v-footer>
