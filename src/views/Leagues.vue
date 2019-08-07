@@ -19,14 +19,23 @@
           >
             <v-card>
               <v-card-title>
-                <div>
-                  <h5 class="headline">{{ league.short_name }}</h5>
-                  <span
-                    :class="{ 'hide-text': league.short_name === 'Overall' }"
-                    class="grey--text"
-                    >Fan League</span
-                  >
-                </div>
+                <v-layout>
+                  <v-flex>
+                    <h5 class="headline">{{ league.short_name }}</h5>
+                    <span
+                      :class="{ 'hide-text': league.short_name === 'Overall' }"
+                      class="grey--text"
+                      >Fan League</span
+                    >
+                  </v-flex>
+                  <v-spacer></v-spacer>
+                  <v-flex xs2>
+                    <v-img
+                      :src="league.team ? league.team.logo : '/images/logo.png'"
+                      max-width="45"
+                    ></v-img>
+                  </v-flex>
+                </v-layout>
               </v-card-title>
               <v-divider></v-divider>
               <v-list dense>
@@ -40,18 +49,20 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-content>Leader:</v-list-tile-content>
-                  <span>{{
-                    league.leader_profile
-                      ? league.leader_profile.squad_name
-                      : ""
-                  }}</span>
+                  <span>
+                    {{
+                      league.leader_profile
+                        ? league.leader_profile.squad_name
+                        : ""
+                    }}
+                  </span>
                 </v-list-tile>
               </v-list>
               <v-divider></v-divider>
               <v-layout justify-end>
-                <v-btn flat color="primary" :to="`league/${league.id}`">
-                  View
-                </v-btn>
+                <v-btn flat color="primary" :to="`league/${league.id}`"
+                  >View</v-btn
+                >
               </v-layout>
             </v-card>
           </v-flex>
