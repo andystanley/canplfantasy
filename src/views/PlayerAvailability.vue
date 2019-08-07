@@ -24,23 +24,19 @@
             :items="unavailablePlayers"
             class="elevation-1"
             :pagination.sync="pagination"
-            rows-per-page-text=""
+            rows-per-page-text
             :rows-per-page-items="[0]"
           >
             <template v-slot:items="props">
               <tr>
                 <td nowrap>
-                  <span class="hidden-xs-only"
-                    >{{ props.item.first_name }}
+                  <span class="hidden-xs-only">
+                    {{ props.item.first_name }}
                   </span>
-                  <span>{{ props.item.last_name }} </span>
+                  <span>{{ props.item.last_name }}</span>
                 </td>
                 <td>
-                  <v-img
-                    :src="props.item.team.shirt"
-                    style="cursor: pointer"
-                    max-width="35"
-                  ></v-img>
+                  <v-img :src="props.item.team.shirt" max-width="35"></v-img>
                 </td>
                 <td>
                   <v-tooltip v-if="!props.item.availability" right>
