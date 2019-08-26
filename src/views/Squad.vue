@@ -11,32 +11,33 @@
         <v-layout wrap justify-center>
           <v-flex xs12 sm8 md6 lg5>
             <v-layout class="py-2" justify-space-between>
-              <v-flex text-xs-center>
-                <h6 class="title">Budget</h6>
-                <span class="subheading"
-                  >{{ squadPrice }}m / {{ maxSquadPrice }}m</span
-                >
+              <v-flex xs4 text-xs-center>
+                <span>Budget</span>
+                <h6 class="title font-weight-regular">
+                  {{ budgetRemaining }}m
+                </h6>
               </v-flex>
-              <v-flex xs5 text-xs-center>
-                <h6 class="title">Deadline</h6>
-                <span class="subheading"
-                  >{{ days > 0 ? `${days}d` : "" }}
-                  {{ hours > 0 ? `${hours}h` : "" }} {{ minutes }}m
-                  {{ seconds }}s</span
-                >
+              <v-flex xs4 text-xs-center>
+                <span>Deadline</span>
+                <h6 class="title font-weight-regular">
+                  {{ days > 0 ? `${days}d` : "" }}
+                  {{ hours > 0 ? `${hours}h` : "" }}
+                  {{ days === 0 && hours === 0 ? `${minutes}m` : "" }}
+                  {{ days === 0 && hours === 0 ? `${seconds}s` : "" }}
+                </h6>
               </v-flex>
-              <v-flex text-xs-center>
-                <h6 class="title">Players</h6>
-                <span class="subheading"
-                  >{{ squadSize }} / {{ maxSquadSize }}</span
-                >
+              <v-flex xs4 text-xs-center>
+                <span>Players</span>
+                <h6 class="title font-weight-regular">
+                  {{ squadSize }} / {{ maxSquadSize }}
+                </h6>
               </v-flex>
             </v-layout>
             <div class="text-xs-center red white--text font-weight-medium">
               {{ squadError }}
             </div>
             <v-img src="/images/startingEleven.png">
-              <v-container fluid>
+              <v-container v-if="squad" fluid>
                 <v-layout justify-space-around>
                   <v-flex
                     v-for="goalkeeper in squad.goalkeepers"
@@ -112,12 +113,15 @@
             </div>
 
             <div class="text-xs-center">
+              <v-btn color="grey white--text darken-2 mr-0" @click="setupSquad"
+                >Reset</v-btn
+              >
               <v-btn
                 :disabled="!isValidSquad()"
                 :loading="popupLoading"
                 class="success"
-                @click="save()"
-                >Save Squad</v-btn
+                @click="save"
+                >Save</v-btn
               >
             </div>
             <div class="grey--text text-xs-center caption">
@@ -181,26 +185,11 @@ export default {
         rowsPerPage: 10,
         descending: true
       },
-      squad: {
-        goalkeepers: [{ blank: true }],
-        defenders: [
-          { blank: true },
-          { blank: true },
-          { blank: true },
-          { blank: true }
-        ],
-        midfielders: [
-          { blank: true },
-          { blank: true },
-          { blank: true },
-          { blank: true }
-        ],
-        forwards: [{ blank: true }, { blank: true }]
-      },
+      squad: null,
       squadSize: 0,
       maxSquadSize: 11,
-      squadPrice: 75.0,
-      maxSquadPrice: 75.0,
+      budget: 75.0,
+      budgetRemaining: 75.0,
       successPopup: false,
       errrorPopup: false,
       popupLoading: false,
@@ -252,6 +241,26 @@ export default {
     ...mapActions(["getProfile", "saveSquad"]),
 
     setupSquad() {
+      this.squad = {
+        goalkeepers: [{ blank: true }],
+        defenders: [
+          { blank: true },
+          { blank: true },
+          { blank: true },
+          { blank: true }
+        ],
+        midfielders: [
+          { blank: true },
+          { blank: true },
+          { blank: true },
+          { blank: true }
+        ],
+        forwards: [{ blank: true }, { blank: true }]
+      };
+
+      this.squadSize = 0;
+      this.budgetRemaining = this.budget;
+
       if (this.profile.next_squad) {
         const defenders = this.profile.next_squad.players.filter(
           player => player.position.short_name === "DEF"
@@ -306,6 +315,10 @@ export default {
     },
 
     selectedPlayers() {
+      if (!this.squad) {
+        return [];
+      }
+
       const selectedPlayers = [
         ...this.squad.goalkeepers,
         ...this.squad.defenders,
@@ -353,7 +366,7 @@ export default {
         this.$set(this.squad.forwards, index, player);
       }
       this.squadSize += 1;
-      this.squadPrice -= Number(player.price);
+      this.budgetRemaining -= Number(player.price);
 
       const [team, players] = this.maxTeamPlayers();
       if (players > 4) {
@@ -381,7 +394,7 @@ export default {
         this.$set(this.squad.forwards, index, { blank: true });
       }
       this.squadSize -= 1;
-      this.squadPrice += Number(player.price);
+      this.budgetRemaining += Number(player.price);
 
       const players = this.maxTeamPlayers()[1];
       if (players <= 4) {
@@ -394,7 +407,7 @@ export default {
       if (players > 4) {
         return false;
       }
-      return this.squadSize === 11 && this.squadPrice >= 0;
+      return this.squadSize === 11 && this.budgetRemaining >= 0;
     },
 
     availablePlayers(players) {
@@ -423,17 +436,23 @@ export default {
 
       const startTime = new Date().getTime();
       const endTime = new Date(endDate).getTime();
+      const remainingTime = endTime - startTime;
 
-      let remainingTime = endTime - startTime;
+      if (remainingTime > 0) {
+        const seconds = Math.floor(remainingTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
 
-      const seconds = Math.floor(remainingTime / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-
-      this.days = Math.floor(hours / 24);
-      this.hours = hours % 24;
-      this.minutes = minutes % 60;
-      this.seconds = seconds % 60;
+        this.days = Math.floor(hours / 24);
+        this.hours = hours % 24;
+        this.minutes = minutes % 60;
+        this.seconds = seconds % 60;
+      } else {
+        this.days = 0;
+        this.hours = 0;
+        this.minutes = 0;
+        this.seconds = 0;
+      }
     }
   }
 };
