@@ -96,6 +96,7 @@ export default {
         help: "amber",
         gavel: "red",
         report: "red",
+        flight_takeoff: "grey darken-1",
         autorenew: "grey darken-1",
         swap_horiz: "grey darken-1"
       },
@@ -103,6 +104,7 @@ export default {
         { text: "Injured", icon: "report" },
         { text: "Doubt (% of availability)", icon: "help" },
         { text: "Disciplinary", icon: "gavel" },
+        { text: "International Duty", icon: "flight_takeoff" },
         { text: "On Loan", icon: "autorenew" },
         { text: "Transferred", icon: "swap_horiz" }
       ],
