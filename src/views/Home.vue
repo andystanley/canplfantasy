@@ -18,7 +18,7 @@
           <v-img src="images/winner.png" max-width="250"></v-img>
         </v-layout>
         <div class="subheading text-xs-center mt-2">
-          We'll back in Spring 2020!
+          We'll be back in Spring 2020!
         </div>
         <div class="subheading text-xs-center">
           Keep an eye on our Twitter for updates.
