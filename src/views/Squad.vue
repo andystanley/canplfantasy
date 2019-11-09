@@ -101,7 +101,7 @@
             </v-img>
 
             <div class="text-xs-center">
-              <v-btn-toggle dark>
+              <v-btn-toggle>
                 <v-btn flat @click="setFormation(5, 4, 1)">5-4-1</v-btn>
                 <v-btn flat @click="setFormation(5, 3, 2)">5-3-2</v-btn>
                 <v-btn flat @click="setFormation(4, 5, 1)">4-5-1</v-btn>

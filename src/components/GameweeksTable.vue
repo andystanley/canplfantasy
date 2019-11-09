@@ -40,7 +40,7 @@
             <v-flex xs4>
               <v-container fill-height>
                 <v-layout justify-center align-center>
-                  <v-chip dark>{{ game.date }}</v-chip>
+                  <v-chip>{{ game.date }}</v-chip>
                 </v-layout>
               </v-container>
             </v-flex>
