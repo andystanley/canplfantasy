@@ -1,5 +1,5 @@
 import Vue from "vue";
-import "./plugins/vuetify";
+import vuetify from "@/plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -19,6 +19,7 @@ Vue.use(VueAnalytics, {
 });
 
 new Vue({
+  vuetify,
   router,
   store,
   render: h => h(App)

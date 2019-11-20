@@ -125,7 +125,9 @@ export default {
   data() {
     return {
       popupOpen: false,
-      isBlankPlayer: this.player.hasOwnProperty("blank") ? true : false,
+      isBlankPlayer: Object.prototype.hasOwnProperty.call(this.player, "blank")
+        ? true
+        : false,
       search: "",
       headers: [
         { sortable: false },

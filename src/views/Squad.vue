@@ -101,7 +101,7 @@
             </v-img>
 
             <div class="text-xs-center">
-              <v-btn-toggle dark>
+              <v-btn-toggle>
                 <v-btn flat @click="setFormation(5, 4, 1)">5-4-1</v-btn>
                 <v-btn flat @click="setFormation(5, 3, 2)">5-3-2</v-btn>
                 <v-btn flat @click="setFormation(4, 5, 1)">4-5-1</v-btn>
@@ -285,7 +285,7 @@ export default {
           this.squad.defenders.push({ blank: true });
         } else {
           const player = this.squad.defenders.pop();
-          if (!player.hasOwnProperty("blank")) {
+          if (!Object.prototype.hasOwnProperty.call(player, "blank")) {
             this.removePlayerFromSquad(player);
           }
         }
@@ -296,7 +296,7 @@ export default {
           this.squad.midfielders.push({ blank: true });
         } else {
           const player = this.squad.midfielders.pop();
-          if (!player.hasOwnProperty("blank")) {
+          if (!Object.prototype.hasOwnProperty.call(player, "blank")) {
             this.removePlayerFromSquad(player);
           }
         }
@@ -307,7 +307,7 @@ export default {
           this.squad.forwards.push({ blank: true });
         } else {
           const player = this.squad.forwards.pop();
-          if (!player.hasOwnProperty("blank")) {
+          if (!Object.prototype.hasOwnProperty.call(player, "blank")) {
             this.removePlayerFromSquad(player);
           }
         }
@@ -325,7 +325,9 @@ export default {
         ...this.squad.midfielders,
         ...this.squad.forwards
       ];
-      return selectedPlayers.filter(player => !player.hasOwnProperty("blank"));
+      return selectedPlayers.filter(
+        player => !Object.prototype.hasOwnProperty.call(player, "blank")
+      );
     },
 
     selectedPlayerIds() {
@@ -351,17 +353,17 @@ export default {
         this.$set(this.squad.goalkeepers, 0, player);
       } else if (player.position.short_name == "DEF") {
         const index = this.squad.defenders.findIndex(defender =>
-          defender.hasOwnProperty("blank")
+          Object.prototype.hasOwnProperty.call(defender, "blank")
         );
         this.$set(this.squad.defenders, index, player);
       } else if (player.position.short_name == "MID") {
         const index = this.squad.midfielders.findIndex(midfielder =>
-          midfielder.hasOwnProperty("blank")
+          Object.prototype.hasOwnProperty.call(midfielder, "blank")
         );
         this.$set(this.squad.midfielders, index, player);
       } else {
         const index = this.squad.forwards.findIndex(forward =>
-          forward.hasOwnProperty("blank")
+          Object.prototype.hasOwnProperty.call(forward, "blank")
         );
         this.$set(this.squad.forwards, index, player);
       }
